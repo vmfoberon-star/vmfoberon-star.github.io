@@ -610,7 +610,9 @@ async function drawMap(){
   };
   render();let rt,lw=box.clientWidth;window.addEventListener('resize',()=>{if(box.clientWidth===lw)return;lw=box.clientWidth;clearTimeout(rt);rt=setTimeout(render,200)});
 }
-new IntersectionObserver((en,ob)=>{if(en.some(e=>e.isIntersecting)){ob.disconnect();drawMap()}},{rootMargin:'600px'}).observe($('#worldmap'));
+let mapStarted=false;const startMap=()=>{if(mapStarted)return;mapStarted=true;drawMap()};
+new IntersectionObserver((en,ob)=>{if(en.some(e=>e.isIntersecting)){ob.disconnect();startMap()}},{rootMargin:'600px'}).observe($('#worldmap'));
+addEventListener('scroll',function chk(){if(mapStarted)return removeEventListener('scroll',chk);if($('#worldmap').getBoundingClientRect().top<innerHeight+600)startMap()},{passive:true});
 
 if(location.hash&&TRIPS.some(t=>t.slug===location.hash.slice(1)))openTrip(location.hash.slice(1));
 </script>
