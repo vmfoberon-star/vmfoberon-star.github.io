@@ -280,7 +280,7 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
     <div class="facts" id="facts"></div>
     <div class="ctas">
       <a class="btn solid" href="#" id="heroLatest">Смотреть Тоскану</a>
-      <a class="btn ghost" href="#trips">Все поездки</a>
+      <a class="btn ghost" href="#map">Все поездки</a>
       <a class="btn ghost" href="#about">О нас</a>
     </div>
     <div class="dots" id="dots"></div>
@@ -303,7 +303,6 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 </div></section>
 
 <section class="feature gut" aria-label="Последнее путешествие"><div class="in" id="feature"></div></section>
-<section class="index gut" id="trips"><div class="in" id="index"></div></section>
 <section class="mapsec gut" id="map" aria-labelledby="mapTitle"><div class="in">
   <div class="map-head"><h2 id="mapTitle">Карта поездок</h2><p id="mapNote">Нажмите на точку, чтобы открыть поездку</p></div>
   <div class="worldmap" id="worldmap"><div class="map-msg">Загружаем карту…</div></div>
@@ -381,10 +380,16 @@ $('#dots').innerHTML=HERO.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('');
 let cur=0;const imgs=slides.children,dots=$('#dots').children;
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(()=>{imgs[cur].classList.remove('on');dots[cur].classList.remove('on');cur=(cur+1)%HERO.length;imgs[cur].classList.add('on');dots[cur].classList.add('on')},6000);
 
-const total=TRIPS.reduce((a,t)=>a+t.eps.length,0), hours=Math.round(TRIPS.reduce((a,t)=>a+dur(t),0)/3600);
+// slideshow videos (one per chapter) count as films too: they are on YouTube as well
+const showVids=t=>!t.slides?[]:t.chapters?t.chapters.map(c=>c.n):t.slug==='italy03'?[t.slides.filter(s=>s[1].startsWith('Рим')).length,t.slides.filter(s=>!s[1].startsWith('Рим')).length]:[t.slides.length];
+const vidSec=n=>4.5+n*4+1+4.5;
+const total=TRIPS.reduce((a,t)=>a+t.eps.length+showVids(t).length,0);
+const hours=Math.round(TRIPS.reduce((a,t)=>a+dur(t)+showVids(t).reduce((x,n)=>x+vidSec(n),0),0)/3600);
+const photos=TRIPS.reduce((a,t)=>a+(t.slides?t.slides.length:0),0);
 const countries=new Set(TRIPS.flatMap(t=>t.countries)).size;
-$('#facts').innerHTML=`<span><b>${TRIPS.length}</b>поездок</span><span><b>${countries}</b>стран</span><span><b>${total}</b>фильмов</span><span><b>${hours}</b>часов</span>`;
-$('#foot').textContent=`${TRIPS.length} поездок · ${total} фильмов`;
+const W=(n,a,b,c)=>pl(n,a,b,c).replace(/^\d+ /,'');
+$('#facts').innerHTML=`<span><b>${TRIPS.length}</b>${W(TRIPS.length,'поездка','поездки','поездок')}</span><span><b>${countries}</b>${W(countries,'страна','страны','стран')}</span><span><b>${total}</b>${W(total,'фильм','фильма','фильмов')}</span><span><b>${photos}</b>фото</span><span><b>${hours}</b>${W(hours,'час','часа','часов')}</span>`;
+$('#foot').textContent=`${pl(TRIPS.length,'поездка','поездки','поездок')} · ${pl(countries,'страна','страны','стран')} · ${pl(total,'фильм','фильма','фильмов')} · ${photos} фото`;
 
 document.getElementById('aboutImg').src=COVERS['nGdI9Q1nAy8'];
 // featured
@@ -398,7 +403,6 @@ $('#feature').innerHTML=`
   <a class="btn solid" href="#" data-slug="${latest.slug}">Открыть фильмы</a></div>`;
 
 // index + chapters
-$('#index').innerHTML=`<span class="lab">Куда мы ездили</span>`+TRIPS.map(t=>`<a href="#${t.slug}" data-slug="${t.slug}">${esc(t.title)}</a>`).join('');
 const groups=[];TRIPS.forEach(t=>{const y=t.year||'Без даты';let g=groups.find(g=>g.y===y);if(!g)groups.push(g={y,trips:[]});g.trips.push(t)});
 $('#yearNav').innerHTML=`<a href="#map">Карта</a>`+groups.map(g=>`<a href="#y${g.y}">${g.y}</a>`).join('');
 $('#chapters').innerHTML=groups.map(g=>`
