@@ -1,1 +1,5 @@
-# vmfoberon-star.github.io
+# Наши путешествия
+
+Ольга и Владимир Фронтон. Сами ездим, сами снимаем и сами монтируем.
+
+https://vmfoberon-star.github.io
