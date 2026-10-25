@@ -47,6 +47,9 @@ img{max-width:100%;display:block}
 /* top bar */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:linear-gradient(var(--ink),rgba(13,14,16,.86));backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
 .bar .in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.bar .in{justify-content:flex-start}.bar .brand{margin-right:auto}
+.lang{flex:none;font-family:var(--cond);font-size:13px;letter-spacing:.14em;color:var(--amber);text-decoration:none;border:1px solid var(--rule);padding:4px 9px;border-radius:3px}
+.lang:hover,.lang:focus-visible{color:var(--paper);border-color:var(--amber);outline:none}
 .brand{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.35rem;text-decoration:none;white-space:nowrap}
 .bar nav{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;min-width:0}
 .bar nav a{font-family:var(--cond);font-size:14px;letter-spacing:.08em;color:var(--muted);text-decoration:none;white-space:nowrap}
@@ -269,6 +272,7 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 <header class="bar gut"><div class="in">
   <a class="brand" href="#top">Наши путешествия</a>
   <nav id="yearNav" aria-label="Годы"></nav>
+  <a class="lang" id="langLink" href="en/" hreflang="en" lang="en" title="English version">EN</a>
 </div></header>
 
 <section class="hero gut" id="top">
@@ -391,6 +395,7 @@ const W=(n,a,b,c)=>pl(n,a,b,c).replace(/^\d+ /,'');
 $('#facts').innerHTML=`<span><b>${TRIPS.length}</b>${W(TRIPS.length,'поездка','поездки','поездок')}</span><span><b>${countries}</b>${W(countries,'страна','страны','стран')}</span><span><b>${total}</b>${W(total,'фильм','фильма','фильмов')}</span><span><b>${photos}</b>фото</span><span><b>${hours}</b>${W(hours,'час','часа','часов')}</span>`;
 $('#foot').textContent=`${pl(TRIPS.length,'поездка','поездки','поездок')} · ${pl(countries,'страна','страны','стран')} · ${pl(total,'фильм','фильма','фильмов')} · ${photos} фото`;
 
+$('#langLink').addEventListener('click',e=>{e.preventDefault();location.href=e.currentTarget.getAttribute('href')+location.hash});
 document.getElementById('aboutImg').src=COVERS['nGdI9Q1nAy8'];
 // featured
 const latest=TRIPS[0];
