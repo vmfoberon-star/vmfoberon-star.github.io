@@ -154,6 +154,24 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 .ch-head h3{font-family:var(--cond);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.4rem);text-transform:uppercase;margin:6px 0 0;line-height:1.05}
 .ch-head p{margin:6px 0 0;color:#CFCAC0;max-width:60ch}
 .ch .eps{padding:0}
+/* trip route map */
+.route{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:18px 28px;padding-block:26px 6px;align-items:start}
+.route .rt-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:12px}
+.route .rt-head h3{font-family:var(--cond);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);text-transform:uppercase;margin:4px 0 0;line-height:1.05}
+.route .rt-map{position:relative;aspect-ratio:4/3;max-height:460px;background:#121417;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.route .rt-map img{max-width:none}
+.route .rt-map .leaflet-attribution-flag{display:none!important}
+.route .rt-map .leaflet-container{background:#1b1d20;font:inherit}
+.rt-mk{display:grid;place-items:center}
+.rt-mk b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--amber);color:#0D0E10;border:2px solid #0D0E10;font-family:var(--cond);font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.rt-mk.on b{background:#fff}
+.route li{cursor:pointer}
+.route ol{list-style:none;margin:0;padding:0;display:grid;gap:4px;counter-reset:none}
+.route li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center;padding:5px 6px;border-radius:4px;cursor:default}
+.route li b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--amber);color:#0D0E10;font-family:var(--cond);font-size:12px}
+.route li.on{background:#1d2024}
+.route .rt-note{grid-column:1/-1;color:var(--muted);font-size:.9rem;margin:0}
+@media (max-width:720px){.route{grid-template-columns:1fr}.route ol{grid-template-columns:1fr 1fr}}
 /* slideshow */
 [hidden]{display:none!important}
 .ep.photo{all:unset;cursor:pointer;display:grid;gap:10px;min-width:0}
@@ -300,6 +318,7 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 <div class="reel" id="reel" hidden role="dialog" aria-modal="true" aria-labelledby="reelTitle">
   <button class="close" id="reelClose" aria-label="Закрыть">×</button>
   <div class="reel-top gut" id="reelTop"></div>
+  <div class="gut"><section class="in route" id="reelRoute" hidden></section></div>
   <div class="gut"><div class="in eps" id="reelEps"></div></div>
 </div>
 
@@ -420,6 +439,7 @@ async function openTrip(slug){
       <div class="th">${THUMBS[e[0]]?`<img src="${THUMBS[e[0]]}" alt="" loading="lazy">`:`<div class="ph">${i+1}</div>`}<span class="play"></span><span class="dur">${e[2]}</span></div>
       <div class="row"><span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${esc(e[1])}</span></div>
     </a>`).join('');
+  showRoute(t);
   reel.dataset.trip=t.slug;
   reel.hidden=false;reel.scrollTop=0;document.body.style.overflow='hidden';$('#reelClose').focus();
 }
@@ -498,6 +518,7 @@ function openPhotoTrip(t){
       <button class="btn ghost" data-ep="0">▶ Смотреть фильмы</button></header>
       <div class="eps">${filmCards(t)}</div></section>`);
     if(!nCh)$('#reelEps').className='in chapters';}
+  showRoute(t);
   reel.dataset.trip=t.slug;
   reel.hidden=false;reel.scrollTop=0;document.body.style.overflow='hidden';$('#reelClose').focus();
 }
@@ -556,6 +577,39 @@ let tx=null; show.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{pa
 show.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)goSlide(sIdx+(dx<0?1:-1));tx=null});
 const canOpus=!!audio.canPlayType('audio/webm; codecs="opus"');
 
+
+// per-trip route map (shares d3 + world-atlas with the big map)
+const RT_LANG=0;
+let worldP=null,leafP=null,rtMap=null;
+function getLeaflet(){return leafP||(leafP=(async()=>{const l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(l);await loadScript('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js')})().catch(e=>{leafP=null;throw e}))}
+function showRoute(t){
+  const box=$('#reelRoute');const r=t.route;
+  if(!r||!r.stops||r.stops.length<2){box.hidden=true;box.innerHTML='';return}
+  const uniq=[];const idx=r.stops.map(s=>{let k=uniq.findIndex(u=>u[0]===s[0]);if(k<0){uniq.push(s);k=uniq.length-1}return k});
+  const star=idx.length!==uniq.length;
+  box.innerHTML=`<div class="rt-head"><div><div class="eyebrow">Маршрут · ${uniq.length} ${W(uniq.length,'место','места','мест')}</div><h3>${r.order===false?'Где мы были':'Наш маршрут'}</h3></div></div>
+    <div class="rt-map" id="rtMap"><div class="map-msg">Загружаем карту…</div></div>
+    <ol>${uniq.map((s,i)=>`<li data-i="${i}"><b>${i+1}</b><span>${esc(s[RT_LANG])}</span></li>`).join('')}</ol>
+    ${r.note?`<p class="rt-note">${esc(r.note[RT_LANG])}</p>`:''}`;
+  box.hidden=false;
+  box.dataset.slug=t.slug;
+  getLeaflet().then(()=>{
+    const mapEl=$('#rtMap');if(!mapEl||$('#reelRoute').dataset.slug!==t.slug)return;
+    mapEl.innerHTML='';
+    if(rtMap){rtMap.remove();rtMap=null}
+    const m=rtMap=L.map(mapEl,{scrollWheelZoom:false,zoomControl:true,attributionControl:true});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:18,subdomains:'abcd',
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'}).addTo(m);
+    const ll=uniq.map(s=>[s[2],s[3]]);
+    if(r.order!==false)L.polyline(idx.map(k=>ll[k]),{color:'#C8901E',weight:3.5,opacity:.9,dashArray:star?'7 7':null,lineJoin:'round'}).addTo(m);
+    const mk=uniq.map((s,i)=>L.marker(ll[i],{icon:L.divIcon({className:'rt-mk',html:`<b>${i+1}</b>`,iconSize:[26,26],iconAnchor:[13,13]}),title:s[RT_LANG],keyboard:false})
+      .bindTooltip(esc(s[RT_LANG]),{direction:'top',offset:[0,-12]}).addTo(m));
+    m.fitBounds(L.latLngBounds(ll),{padding:[34,34],maxZoom:15});
+    const hl=i=>{mk.forEach((x,j)=>{const e=x.getElement();e&&e.classList.toggle('on',j===i)});box.querySelectorAll('li').forEach((li,j)=>li.classList.toggle('on',j===i))};
+    mk.forEach((x,j)=>x.on('mouseover',()=>hl(j)).on('mouseout',()=>hl(-1)));
+    box.querySelectorAll('li').forEach((li,j)=>{li.onpointerenter=()=>{hl(j);mk[j].openTooltip()};li.onpointerleave=()=>{hl(-1);mk[j].closeTooltip()};li.onclick=()=>m.setView(ll[j],Math.max(m.getZoom(),13))});
+  }).catch(()=>{const el=$('#rtMap');el&&(el.innerHTML='<div class="map-msg">Карта сейчас недоступна</div>')});
+}
 // world map of trips (d3-geo + world-atlas, loaded when the section comes near)
 const EN={'Италия':'Italy','Великобритания':'United Kingdom','Ирландия':'Ireland','Чехия':'Czechia','Австрия':'Austria','Испания':'Spain','Португалия':'Portugal',
   'Китай':'China','Франция':'France','Греция':'Greece','Норвегия':'Norway','Швейцария':'Switzerland','Дания':'Denmark','Германия':'Germany','Лихтенштейн':'Liechtenstein',

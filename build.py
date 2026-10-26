@@ -104,6 +104,9 @@ GEO={'toscana26':[43.32,11.33],'uk26':[53.6,-3.5],'prague25':[50.08,14.42],'aust
  'swiss16':[46.45,6.6],'denmark14':[55.68,12.57],'barcelona':[41.39,2.17],'vienna13':[48.21,16.37],'benelux12':[50.95,4.2],
  'uk11':[51.51,-0.13],'spain13':[40.42,-3.70],'alps08':[47.4,9.6],'paris06':[48.86,2.35],'italy03':[42.6,11.9]}
 for t in trips: t['geo']=GEO[t['slug']]
+from routes import ROUTES
+for t in trips:
+    if t['slug'] in ROUTES: t['route']=ROUTES[t['slug']]
 # YouTube playlists for the photo trips (Full HD slideshow videos) + the Spain 2013 video films
 PL5={'italy03':'PLbBMuoRQC-y4','paris06':'PLb-leMkKoPAo','alps08':'PLGR_8S6ZuCoA','uk11':'PLNz4zoSzDyh8',
      'benelux12':'PLITF_0o2LqJw','spain13':'PLMKGApVJIDDc','vienna13':'PLNrcg5RxD_TI'}

@@ -30,6 +30,9 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
+ ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ("Маршрут · ${uniq.length} ${W(uniq.length,'место','места','мест')}", "Route · ${uniq.length} ${W(uniq.length,'place','places','places')}"),
+ ("r.order===false?'Где мы были':'Наш маршрут'", "r.order===false?'Where we went':'Our route'"),
  ('<a class="brand" href="#top">Наши путешествия</a>', '<a class="brand" href="#top">Our Travels</a>'),
  ('aria-label="Годы"', 'aria-label="Years"'),
  ('<a class="lang" id="langLink" href="en/" hreflang="en" lang="en" title="English version">EN</a>',
