@@ -24,6 +24,11 @@ for t in trips:
     if t.get('slides'): t['slides'] = [[s[0], tr(s[1]), tr(s[2])] + list(s[3:]) for s in t['slides']]
 page = page[:i] + json.dumps(trips, ensure_ascii=False) + page[i + end:]
 
+j = page.index('const BEST=') + 11
+best, bend = json.JSONDecoder().raw_decode(page[j:])
+best['title'] = 'Best shots'
+best['slides'] = [[s[0], tr(s[1]), tr(s[2])] + list(s[3:]) for s in best['slides']]
+page = page[:j] + json.dumps(best, ensure_ascii=False) + page[j + bend:]
 # assets live one level up
 page = re.sub(r'"(img/c/|photos/|music/)', r'"../\1', page)
 page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
@@ -31,6 +36,7 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('>★ Лучшие кадры<', '>★ Best shots<'), ("toast('Не удалось загрузить фото')", "toast('Could not load the photos')"),
  ('/полный фильм|вариант|Короткий клип|фрагмент/i', '/full film|alternate cut|short clip|excerpt/i'),
  ('<h2 id="statsTitle">Наши путешествия в цифрах</h2>', '<h2 id="statsTitle">Our travels in numbers</h2>'),
  ('Расстояния по прямой между городами, с перелётами из дома', 'Straight-line distances between places, including flights from home'),

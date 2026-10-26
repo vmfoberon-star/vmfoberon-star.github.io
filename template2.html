@@ -338,6 +338,7 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
       <a class="btn solid" href="#" id="heroLatest">Смотреть Тоскану</a>
       <a class="btn ghost" href="#map">Все поездки</a>
       <a class="btn ghost" href="#about">О нас</a>
+      <button class="btn ghost" id="bestOpen" type="button">★ Лучшие кадры</button>
       <button class="btn ghost" id="tvOpen" type="button">📺 На телевизоре</button>
     </div>
     <div class="dots" id="dots"></div>
@@ -442,6 +443,7 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
 <div class="toast" id="toast" hidden role="status"></div>
 <script>
 const TRIPS=__DATA__, COVERS=__COVERS__, MUSIC=__MUSIC__;
+const BEST=__BEST__;
 let THUMBS={}; const BUNDLES=__PHOTOS__, PHOTOS={};
 let thumbsP=null; const loadThumbs=()=>thumbsP||(thumbsP=fetch('data/thumbs.json').then(r=>r.json()).then(j=>{THUMBS=j}).catch(()=>{thumbsP=null}));
 const photoCache={};
@@ -624,6 +626,7 @@ function goSlide(i,instant){
   back.classList.remove('kb0','kb1','kb2','kb3'); void back.offsetWidth; back.classList.add('kb'+(sIdx%4));
   back.classList.add('on'); front.classList.remove('on'); front=back;
   $('#showCity').textContent=cur[1]; $('#showCap').textContent=cur[2];
+  if(sTrip===BEST&&cur[4]&&sPlaying)switchMusic(cur[4]);
   $('#showCount').textContent=`${sIdx+1} / ${n}`;
   $('#showBar').style.width=((sIdx+1)/n*100)+'%';
   const nx=new Image(); nx.src=PHOTOS[sTrip.slides[sList[(sIdx+1)%n]][0]];
@@ -634,8 +637,8 @@ function setPlaying(p){sPlaying=p;$('#showPlay').textContent=p?'❚❚':'▶';$(
   show.classList.toggle('paused',!p); if(p){schedule(); if(!audio.muted) audio.play().catch(()=>{});} else {clearTimeout(sTimer); audio.pause();}}
 function fadeAudio(to,ms){const from=audio.volume,t0=performance.now();(function step(now){const k=Math.min(1,(now-t0)/ms);audio.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1)requestAnimationFrame(step);else if(to===0)audio.pause();})(t0);}
 function startShow(slug,i,ch){
-  sTrip=TRIPS.find(x=>x.slug===slug); show.hidden=false;
-  i=i||0; sList=[]; sLabel=`${sTrip.title} · ${sTrip.year}`; let first=0;
+  sTrip=slug==='best'?BEST:TRIPS.find(x=>x.slug===slug); show.hidden=false;
+  i=i||0; sList=[]; sLabel=sTrip.year?`${sTrip.title} · ${sTrip.year}`:sTrip.title; let first=0;
   if(ch!=null&&sTrip.chapters){let off=0;for(let k=0;k<ch;k++)off+=sTrip.chapters[k].n;const c=sTrip.chapters[ch];
     for(let k=0;k<c.n;k++)sList.push(off+k); first=i-off; sLabel=`${sTrip.title} · ${c.name}`;}
   else {for(let k=0;k<sTrip.slides.length;k++)sList.push(k); first=i;}
@@ -646,7 +649,7 @@ function startShow(slug,i,ch){
   setPlaying(true); audio.play().then(()=>fadeAudio(0.85,1500)).catch(()=>{});
   $('#showPlay').focus();
 }
-function endShow(){if(TV.on){fadeAudio(0,1200);setPlaying(false);setTimeout(tvNext,1300);return}$('#showEndTitle').textContent=sCh!=null?sTrip.chapters[sCh].name:`${sTrip.title}, ${sTrip.year}`;setPlaying(false);fadeAudio(0,1200);$('#showEnd').hidden=false;}
+function endShow(){if(TV.on){fadeAudio(0,1200);setPlaying(false);setTimeout(tvNext,1300);return}$('#showEndTitle').textContent=sCh!=null?sTrip.chapters[sCh].name:(sTrip.year?`${sTrip.title}, ${sTrip.year}`:sTrip.title);setPlaying(false);fadeAudio(0,1200);$('#showEnd').hidden=false;}
 function closeShow(){if(TV.on&&!TV.internal)tvStop();clearTimeout(sTimer);sPlaying=false;audio.pause();show.hidden=true;$('#showEnd').hidden=true;}
 document.addEventListener('click',ev=>{
   const s=ev.target.closest('[data-show]'); if(s){ev.preventDefault();ev.stopPropagation();startShow(reel.dataset.trip,+s.dataset.show,s.dataset.ch!=null?+s.dataset.ch:null);}
@@ -713,6 +716,16 @@ document.addEventListener('keydown',ev=>{
   else if(ev.key==='ArrowRight'&&(TV.q[TV.i]||{}).k!=='show'){ev.preventDefault();ev.stopImmediatePropagation();tvNext()}
 },true);
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&TV.on)tvStop()});
+
+// best shots: labels with the trip name, music follows the trip
+(function(){const bt={};TRIPS.forEach(t=>bt[t.slug]=t);
+  BEST.slides=BEST.slides.map(s=>{const t=bt[s[3]];const head=t.title+(t.year&&!t.title.includes(t.year)?' '+t.year:'');const lab=s[1]===t.title?head:head+' · '+s[1];return [s[0],lab,s[2],s[3],t.music]})})();
+let musicSwitching=false;
+function switchMusic(key){if(audio.dataset.src===key||musicSwitching||!MUSIC[key])return;musicSwitching=true;
+  const vol=audio.muted?0:0.85;fadeAudio(0,700);
+  setTimeout(()=>{const m=MUSIC[key];audio.src=canOpus?m.webm:m.m4a;audio.dataset.src=key;audio.currentTime=0;audio.volume=0;
+    if(sPlaying&&!audio.muted)audio.play().then(()=>fadeAudio(vol,1200)).catch(()=>{});musicSwitching=false},750)}
+$('#bestOpen').addEventListener('click',async()=>{document.body.style.cursor='progress';try{await loadPhotos('best')}catch(e){toast('Не удалось загрузить фото');return}finally{document.body.style.cursor=''}startShow('best',0,null)});
 
 // per-trip route map (shares d3 + world-atlas with the big map)
 const RT_LANG=0;

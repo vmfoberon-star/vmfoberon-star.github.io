@@ -84,6 +84,15 @@ _j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]
 trips=[t for t in trips if t['slug'] not in _ord]; trips[_j+1:_j+1]=_sub
 os.makedirs('site/photos',exist_ok=True)
 PHOTOS={}  # slug -> list of bundle files
+# best shots: hand-picked photos across trips (higher quality bundle)
+from best import BEST as _BEST
+_DIRS={'italy03':'photos2003','paris06':'photos2006','alps08':'photos2008','uk11':'photos2011','benelux12':'photos2012','vienna13':'photos2013','spain13':'photos2013es'}
+_bt={t['slug']:t for t in trips}
+BEST_SHOW={'slug':'best','title':'Лучшие кадры','year':'','slides':[],'music':_bt[_BEST[0][0]]['music']}
+for _sl,_id in _BEST:
+    _s=next(x for x in _bt[_sl]['slides'] if x[0]==_id)
+    BEST_SHOW['slides'].append([_id,_s[1],_s[2],_sl])
+PHOTO_SETS['best']={_id:enc(f'{_DIRS[_sl]}/{_id}.webp',1600,70) for _sl,_id in _BEST}
 for slug,ph in PHOTO_SETS.items():
     chunks=[{}];size=0
     for k,du in ph.items():
@@ -125,7 +134,7 @@ thumbs={k:v for k,v in o["eps"].items() if v}
 for i,e in enumerate(SP13FILMS): thumbs[e[0]]='data:image/webp;base64,'+base64.b64encode(open(f'vid13thumbs/{i+1}.webp','rb').read()).decode()
 json.dump(thumbs,open('site/data/thumbs.json','w'))
 html=open('template2.html').read()
-html=html.replace('__DATA__',json.dumps(trips,ensure_ascii=False)).replace('__COVERS__',json.dumps(covers)).replace('__MUSIC__',json.dumps(MUSIC)).replace('__PHOTOS__',json.dumps(PHOTOS))
+html=html.replace('__DATA__',json.dumps(trips,ensure_ascii=False)).replace('__COVERS__',json.dumps(covers)).replace('__MUSIC__',json.dumps(MUSIC)).replace('__PHOTOS__',json.dumps(PHOTOS)).replace('__BEST__',json.dumps(BEST_SHOW,ensure_ascii=False))
 html=html.replace("const countries=new Set(TRIPS.map(t=>t.country)).size;","const countries=new Set(TRIPS.flatMap(t=>t.countries)).size;")
 open('travel.html','w').write(html)
 import webextra; webextra.make(trips,covers_data,html)
