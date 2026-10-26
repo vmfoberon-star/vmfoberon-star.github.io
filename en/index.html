@@ -653,7 +653,7 @@ const canOpus=!!audio.canPlayType('audio/webm; codecs="opus"');
 // TV mode: everything in a row, full screen
 const TV={on:false,q:[],i:-1,timer:null,internal:false};
 function tvQueue(what,order){
-  let ts=TRIPS.slice().sort((a,b)=>(+a.year||9999)-(+b.year||9999));if(order==='new')ts.reverse();
+  const dated=TRIPS.filter(t=>t.year),undated=TRIPS.filter(t=>!t.year);let ts=(order==='new'?dated:dated.slice().reverse()).concat(undated);
   const q=[];
   for(const t of ts){
     const items=[];
