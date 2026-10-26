@@ -623,8 +623,8 @@ function showRoute(t){
     mapEl.innerHTML='';
     if(rtMap){rtMap.remove();rtMap=null}
     const m=rtMap=L.map(mapEl,{scrollWheelZoom:false,zoomControl:true,attributionControl:true});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:18,subdomains:'abcd',
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'}).addTo(m);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(m);
     const ll=uniq.map(s=>[s[2],s[3]]);
     if(r.order!==false)L.polyline(idx.map(k=>ll[k]),{color:'#C8901E',weight:3.5,opacity:.9,dashArray:star?'7 7':null,lineJoin:'round'}).addTo(m);
     const mk=uniq.map((s,i)=>L.marker(ll[i],{icon:L.divIcon({className:'rt-mk',html:`<b>${i+1}</b>`,iconSize:[26,26],iconAnchor:[13,13]}),title:s[RT_LANG],keyboard:false})
