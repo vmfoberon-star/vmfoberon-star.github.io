@@ -1,0 +1,150 @@
+<title>Наши путешествия</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: a travel log grouped by year; each trip is a boarding-pass card with a destination code; tapping opens the film list */
+:root{
+  --bg:#EDF1F0; --paper:#FFFFFF; --fg:#14212A; --muted:#5A6A72; --line:#D3DCDA;
+  --accent:#0E6B63; --accent-soft:#D6EAE6; --stamp:#3346B8;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1719; --paper:#172224; --fg:#E6EEEC; --muted:#93A5A8; --line:#283739;
+  --accent:#5CC8B8; --accent-soft:#1C3633; --stamp:#9AA8FF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1719; --paper:#172224; --fg:#E6EEEC; --muted:#93A5A8; --line:#283739;
+  --accent:#5CC8B8; --accent-soft:#1C3633; --stamp:#9AA8FF; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 64px}
+header.hero{display:grid;gap:20px;padding-bottom:28px;border-bottom:2px solid var(--fg)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,7vw,4.6rem);line-height:1;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.stats{display:flex;flex-wrap:wrap;gap:12px 32px}
+.stat{display:grid}
+.stat b{font-family:var(--display);font-weight:500;font-size:1.7rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.codes{display:flex;flex-wrap:wrap;gap:6px}
+.codes a{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.06em;color:var(--stamp);text-decoration:none;
+  border:1.5px solid currentColor;border-radius:4px;padding:2px 7px}
+.codes a:hover,.codes a:focus-visible{background:var(--stamp);color:var(--paper);outline:none}
+.year{display:grid;grid-template-columns:120px 1fr;gap:24px;padding-block:32px;border-bottom:1px solid var(--line)}
+.year h2{font-family:var(--display);font-weight:500;font-size:2rem;margin:0;color:var(--muted);position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.trip{all:unset;cursor:pointer;display:grid;grid-template-rows:auto 1fr;background:var(--paper);border-radius:10px;overflow:hidden;
+  box-shadow:0 1px 0 var(--line),0 0 0 1px var(--line);transition:transform .2s ease,box-shadow .2s ease}
+.trip:hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--line),0 12px 28px -14px rgba(0,0,0,.35)}
+.trip:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cover{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--accent-soft);overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover .noimg{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:3rem;color:var(--accent);opacity:.5}
+.badge{position:absolute;right:10px;bottom:10px;background:rgba(10,18,20,.78);color:#fff;font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px;font-variant-numeric:tabular-nums}
+.stub{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:16px 18px 18px;border-top:2px dashed var(--line);position:relative}
+.stub::before,.stub::after{content:"";position:absolute;top:-9px;width:16px;height:16px;border-radius:50%;background:var(--bg)}
+.stub::before{left:-8px}.stub::after{right:-8px}
+.code{grid-row:span 2;font-family:var(--mono);font-weight:700;font-size:1.5rem;color:var(--stamp);line-height:1.1;letter-spacing:.04em}
+.trip h3{margin:0;font-family:var(--display);font-weight:500;font-size:1.08rem;line-height:1.25;text-wrap:balance}
+.place{font-size:14px;color:var(--muted);min-width:0}
+dialog{border:none;padding:0;background:var(--paper);color:var(--fg);border-radius:14px;width:min(720px,100%);max-height:min(88vh,900px);
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(8,14,16,.55)}
+.sheet{display:grid;grid-template-rows:auto 1fr;max-height:inherit}
+.sheet-head{display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:22px 22px 16px;border-bottom:1px solid var(--line)}
+.sheet-head h2{margin:0;font-family:var(--display);font-weight:700;font-size:1.6rem;line-height:1.15;text-wrap:balance}
+.sheet-head p{margin:0;color:var(--muted);font-size:14px;grid-column:1}
+.close{all:unset;cursor:pointer;grid-row:1;grid-column:2;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;font-size:22px;color:var(--muted)}
+.close:hover,.close:focus-visible{background:var(--accent-soft);color:var(--fg)}
+.all{grid-column:1/-1;justify-self:start;display:inline-flex;gap:8px;align-items:center;background:var(--accent);color:var(--paper);text-decoration:none;
+  font-weight:600;font-size:14px;padding:9px 16px;border-radius:999px;margin-top:6px}
+.all:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+ol.eps{list-style:none;margin:0;padding:8px 10px 16px;overflow:auto}
+ol.eps a{display:grid;grid-template-columns:2.2em 1fr auto;gap:12px;align-items:baseline;padding:11px 12px;border-radius:8px;color:inherit;text-decoration:none}
+ol.eps a:hover,ol.eps a:focus-visible{background:var(--accent-soft);outline:none}
+.n{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{min-width:0;font-weight:500}
+.d{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+footer{padding-top:28px;color:var(--muted);font-size:13px;max-width:65ch}
+@media (max-width:700px){
+  .wrap{padding-block:24px 48px}
+  .year{grid-template-columns:1fr;gap:12px;padding-block:24px}
+  .year h2{position:static;font-size:1.5rem}
+  .grid{grid-template-columns:1fr}
+  dialog{max-height:92vh}
+}
+@media (prefers-reduced-motion:reduce){.trip{transition:none}.trip:hover{transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">Семейный архив · YouTube</div>
+    <h1>Наши путешествия</h1>
+    <div class="stats" id="stats"></div>
+    <nav class="codes" id="codes" aria-label="Быстрый переход к поездке"></nav>
+  </header>
+  <main id="years"></main>
+  <footer>Видео открываются на YouTube. Плейлисты доступны по ссылке, поэтому их видят только те, с кем вы поделились этой страницей.</footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2 id="dlgTitle"></h2>
+      <button class="close" id="dlgClose" aria-label="Закрыть">×</button>
+      <p id="dlgMeta"></p>
+      <a class="all" id="dlgAll" target="_blank" rel="noopener">▶ Смотреть весь плейлист</a>
+    </div>
+    <ol class="eps" id="dlgList"></ol>
+  </div>
+</dialog>
+
+<script>
+const TRIPS = __DATA__;
+const THUMBS = __THUMBS__;
+const $ = s => document.querySelector(s);
+const secs = d => d.split(':').map(Number).reduce((a,b)=>a*60+b,0);
+const fmt = s => { const h=Math.floor(s/3600), m=Math.round((s%3600)/60); return h ? `${h} ч ${m} мин` : `${m} мин`; };
+const plural = (n,a,b,c) => { const m10=n%10,m100=n%100; return n+' '+(m10==1&&m100!=11?a:m10>=2&&m10<=4&&(m100<10||m100>=20)?b:c); };
+const esc = s => s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const totalVideos = TRIPS.reduce((a,t)=>a+t.eps.length,0);
+const totalSecs = TRIPS.reduce((a,t)=>a+t.eps.reduce((x,e)=>x+secs(e[2]),0),0);
+const years = TRIPS.map(t=>t.year).filter(Boolean).map(Number);
+$('#stats').innerHTML = [
+  [TRIPS.length,'поездок'],[totalVideos,'фильмов'],[Math.round(totalSecs/3600),'часов видео'],[`${Math.min(...years)}–${Math.max(...years)}`,'годы']
+].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+$('#codes').innerHTML = TRIPS.map(t=>`<a href="#${t.slug}" data-slug="${t.slug}" title="${esc(t.title)}">${t.code}</a>`).join('');
+
+const groups = {};
+TRIPS.forEach(t => (groups[t.year||'Без даты'] ||= []).push(t));
+$('#years').innerHTML = Object.keys(groups).sort((a,b)=> (b==='Без даты')-(a==='Без даты') || b-a).map(y => `
+  <section class="year"><h2>${y}</h2><div class="grid">${groups[y].map(t=>{
+    const dur = t.eps.reduce((x,e)=>x+secs(e[2]),0);
+    const img = t.cover && THUMBS[t.cover] ? `<img src="${THUMBS[t.cover]}" alt="${esc(t.title)}" loading="lazy">` : `<div class="noimg">${t.code}</div>`;
+    return `<button class="trip" data-slug="${t.slug}">
+      <div class="cover">${img}<span class="badge">${plural(t.eps.length,'фильм','фильма','фильмов')} · ${fmt(dur)}</span></div>
+      <div class="stub"><span class="code">${t.code}</span><h3>${esc(t.title)}</h3><span class="place">${esc(t.place||' ')}</span></div>
+    </button>`;}).join('')}</div></section>`).join('');
+
+const dlg = $('#dlg');
+function openTrip(slug){
+  const t = TRIPS.find(x=>x.slug===slug); if(!t) return;
+  const dur = t.eps.reduce((x,e)=>x+secs(e[2]),0);
+  $('#dlgTitle').textContent = t.title;
+  $('#dlgMeta').textContent = [t.place, t.year, plural(t.eps.length,'фильм','фильма','фильмов'), fmt(dur)].filter(Boolean).join(' · ');
+  $('#dlgAll').href = `https://www.youtube.com/playlist?list=${t.list}`;
+  $('#dlgList').innerHTML = t.eps.map((e,i)=>`<li><a href="https://www.youtube.com/watch?v=${e[0]}&list=${t.list}" target="_blank" rel="noopener">
+    <span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${esc(e[1])}</span><span class="d">${e[2]}</span></a></li>`).join('');
+  if(!dlg.open) dlg.showModal();
+}
+document.addEventListener('click', ev => {
+  const b = ev.target.closest('[data-slug]');
+  if(b){ ev.preventDefault(); openTrip(b.dataset.slug); return; }
+  if(ev.target === dlg) dlg.close();
+});
+$('#dlgClose').addEventListener('click', ()=>dlg.close());
+if(location.hash) openTrip(location.hash.slice(1));
+</script>

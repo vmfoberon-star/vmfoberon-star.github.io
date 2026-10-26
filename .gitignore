@@ -1,0 +1,13 @@
+hd/
+hdmatch/
+sp13raw/
+sp13cs/
+vid13/
+web/
+site/
+yt/out/
+yt/out_hd/
+*.log
+__pycache__/
+*.wav
+travel.html
