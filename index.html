@@ -174,6 +174,32 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 .ch-head h3{font-family:var(--cond);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.4rem);text-transform:uppercase;margin:6px 0 0;line-height:1.05}
 .ch-head p{margin:6px 0 0;color:#CFCAC0;max-width:60ch}
 .ch .eps{padding:0}
+/* TV mode */
+.tv{position:fixed;inset:0;z-index:120;background:#0D0E10;color:var(--paper);display:grid;place-items:center;overflow:auto}
+.tv-setup{position:relative;width:min(720px,100% - 32px);display:grid;gap:18px;padding:56px 0 40px}
+.tv-setup h2{font-family:var(--cond);font-weight:600;font-size:clamp(2.2rem,6vw,3.6rem);text-transform:uppercase;margin:0;line-height:1}
+.tv-setup .close{position:absolute;top:8px;right:0}
+.tv-lede,.tv-help{color:#CFCAC0;margin:0;max-width:60ch}.tv-help{font-size:.9rem;color:var(--muted)}
+.tv-help b{color:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:0 5px;font-weight:500}
+.tv-opts{display:flex;flex-wrap:wrap;gap:10px}
+.tv-opts label{cursor:pointer}.tv-opts input{position:absolute;opacity:0}
+.tv-opts span{display:grid;gap:2px;border:1px solid var(--rule);border-radius:6px;padding:12px 16px;min-width:150px;font-family:var(--cond);letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+.tv-opts small{font-family:inherit;text-transform:none;letter-spacing:0;color:var(--muted);font-size:12px}
+.tv-opts input:checked+span{border-color:var(--amber);background:#2a2418}
+.tv-opts input:focus-visible+span{outline:2px solid var(--amber);outline-offset:2px}
+.tv-go{justify-self:start;font-size:1.05rem;padding:16px 30px}
+.tv-card{position:fixed;inset:0;display:grid;align-items:end;isolation:isolate;animation:tvfade 1s ease}
+.tv-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;animation:drift 7s ease-out forwards}
+.tv-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(13,14,16,.2),rgba(13,14,16,.85))}
+.tv-card .in{padding:0 6vw 9vh;display:grid;gap:12px}
+.tv-card h2{font-family:var(--cond);font-weight:600;font-size:clamp(3rem,9vw,7rem);text-transform:uppercase;margin:0;line-height:.95}
+.tv-card .place{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3vw,2.4rem);color:#E4DFD5}
+.tv-cnt{color:var(--muted);font-family:var(--cond);letter-spacing:.12em;text-transform:uppercase;font-size:14px}
+@keyframes tvfade{from{opacity:0}to{opacity:1}}
+body.tvmode .player{grid-template-rows:0 1fr 0}
+body.tvmode .player .pl-top,body.tvmode .player .pl-bar{visibility:hidden}
+body.tvmode .pl-box{width:min(100vw,calc(100vh * 16 / 9))}
+body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .show-ctl{opacity:1}
 /* trip route map */
 .route{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:18px 28px;padding-block:26px 6px;align-items:start}
 .route .rt-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:12px}
@@ -305,6 +331,7 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
       <a class="btn solid" href="#" id="heroLatest">Смотреть Тоскану</a>
       <a class="btn ghost" href="#map">Все поездки</a>
       <a class="btn ghost" href="#about">О нас</a>
+      <button class="btn ghost" id="tvOpen" type="button">📺 На телевизоре</button>
     </div>
     <div class="dots" id="dots"></div>
   </div>
@@ -374,6 +401,26 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
     <button class="btn ghost" id="plNext">Следующий ›</button>
     <a class="btn ghost" id="plYT" target="_blank" rel="noopener">Открыть на YouTube</a>
   </div>
+</div>
+<div class="tv" id="tv" hidden role="dialog" aria-modal="true" aria-labelledby="tvH">
+  <div class="tv-setup" id="tvSetup">
+    <button class="close" id="tvClose" aria-label="Закрыть">×</button>
+    <div class="eyebrow">Режим для телевизора</div>
+    <h2 id="tvH">Смотреть всё подряд</h2>
+    <p class="tv-lede">Все слайд-шоу и фильмы по очереди, на весь экран, с заставкой перед каждой поездкой. Удобно включить на телевизоре или большом мониторе и смотреть всей семьёй.</p>
+    <div class="tv-opts" role="radiogroup" aria-label="Что показывать">
+      <label><input type="radio" name="tvWhat" value="all" checked><span>Всё<small id="tvAllInfo"></small></span></label>
+      <label><input type="radio" name="tvWhat" value="photo"><span>Только слайд-шоу<small id="tvPhotoInfo"></small></span></label>
+      <label><input type="radio" name="tvWhat" value="film"><span>Только фильмы<small id="tvFilmInfo"></small></span></label>
+    </div>
+    <div class="tv-opts" role="radiogroup" aria-label="Порядок">
+      <label><input type="radio" name="tvOrder" value="old" checked><span>С 2003 года</span></label>
+      <label><input type="radio" name="tvOrder" value="new"><span>С новых поездок</span></label>
+    </div>
+    <button class="btn solid tv-go" id="tvGo">▶ Начать показ</button>
+    <p class="tv-help">Во время показа: <b>→</b> — дальше, <b>Esc</b> — выход. С телефона можно вывести на телевизор через «Повтор экрана» (AirPlay) или Chromecast.</p>
+  </div>
+  <div class="tv-card" id="tvCard" hidden><img alt=""><div class="in"><div class="eyebrow" id="tvCardYear"></div><h2 id="tvCardTitle"></h2><div class="place" id="tvCardPlace"></div><div class="tv-cnt" id="tvCardCnt"></div></div></div>
 </div>
 <div class="toast" id="toast" hidden role="status"></div>
 <script>
@@ -494,11 +541,11 @@ async function playEp(slug,i){
   $('#plYT').href=`https://www.youtube.com/watch?v=${e[0]}&list=${pTrip.list}`;$('#plClose').focus();
   try{if(plainFrame)throw 0;await loadYT();
     if(!ytp)ytp=new YT.Player('ytp',{host:'https://www.youtube-nocookie.com',videoId:e[0],playerVars:{autoplay:1,rel:0,playsinline:1,modestbranding:1},
-      events:{onStateChange:ev=>{if(ev.data===0&&pTrip&&pIdx<pTrip.eps.length-1)playEp(pTrip.slug,pIdx+1)}}});
+      events:{onStateChange:ev=>{if(ev.data!==0)return;if(TV.on){tvNext();return}if(pTrip&&pIdx<pTrip.eps.length-1)playEp(pTrip.slug,pIdx+1)}}});
     else ytp.loadVideoById(e[0]);
   }catch(err){plainFrame=true;$('.pl-box').innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${e[0]}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${esc(e[1])}"></iframe>`}
 }
-function closePlayer(){if(player.hidden)return;player.hidden=true;try{ytp&&ytp.stopVideo&&ytp.stopVideo()}catch(e){}if(plainFrame)$('.pl-box').innerHTML='<div id="ytp"></div>';}
+function closePlayer(){if(TV.on&&!TV.internal)tvStop();if(player.hidden)return;player.hidden=true;try{ytp&&ytp.stopVideo&&ytp.stopVideo()}catch(e){}if(plainFrame)$('.pl-box').innerHTML='<div id="ytp"></div>';}
 document.addEventListener('click',ev=>{const a=ev.target.closest('[data-ep]');if(a&&reel.dataset.trip){ev.preventDefault();ev.stopPropagation();playEp(reel.dataset.trip,+a.dataset.ep)}},true);
 $('#plPrev').addEventListener('click',()=>playEp(pTrip.slug,pIdx-1));
 $('#plNext').addEventListener('click',()=>playEp(pTrip.slug,pIdx+1));
@@ -568,7 +615,7 @@ function goSlide(i,instant){
 function schedule(){clearTimeout(sTimer);sTimer=setTimeout(()=>{ if(sIdx===sList.length-1){endShow();} else goSlide(sIdx+1); },SLIDE_MS);}
 function setPlaying(p){sPlaying=p;$('#showPlay').textContent=p?'❚❚':'▶';$('#showPlay').setAttribute('aria-label',p?'Пауза':'Продолжить');
   show.classList.toggle('paused',!p); if(p){schedule(); if(!audio.muted) audio.play().catch(()=>{});} else {clearTimeout(sTimer); audio.pause();}}
-function fadeAudio(to,ms){const from=audio.volume,t0=performance.now();(function step(now){const k=Math.min(1,(now-t0)/ms);audio.volume=from+(to-from)*k;if(k<1)requestAnimationFrame(step);else if(to===0)audio.pause();})(t0);}
+function fadeAudio(to,ms){const from=audio.volume,t0=performance.now();(function step(now){const k=Math.min(1,(now-t0)/ms);audio.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1)requestAnimationFrame(step);else if(to===0)audio.pause();})(t0);}
 function startShow(slug,i,ch){
   sTrip=TRIPS.find(x=>x.slug===slug); show.hidden=false;
   i=i||0; sList=[]; sLabel=`${sTrip.title} · ${sTrip.year}`; let first=0;
@@ -582,8 +629,8 @@ function startShow(slug,i,ch){
   setPlaying(true); audio.play().then(()=>fadeAudio(0.85,1500)).catch(()=>{});
   $('#showPlay').focus();
 }
-function endShow(){$('#showEndTitle').textContent=sCh!=null?sTrip.chapters[sCh].name:`${sTrip.title}, ${sTrip.year}`;setPlaying(false);fadeAudio(0,1200);$('#showEnd').hidden=false;}
-function closeShow(){clearTimeout(sTimer);sPlaying=false;audio.pause();show.hidden=true;$('#showEnd').hidden=true;}
+function endShow(){if(TV.on){fadeAudio(0,1200);setPlaying(false);setTimeout(tvNext,1300);return}$('#showEndTitle').textContent=sCh!=null?sTrip.chapters[sCh].name:`${sTrip.title}, ${sTrip.year}`;setPlaying(false);fadeAudio(0,1200);$('#showEnd').hidden=false;}
+function closeShow(){if(TV.on&&!TV.internal)tvStop();clearTimeout(sTimer);sPlaying=false;audio.pause();show.hidden=true;$('#showEnd').hidden=true;}
 document.addEventListener('click',ev=>{
   const s=ev.target.closest('[data-show]'); if(s){ev.preventDefault();ev.stopPropagation();startShow(reel.dataset.trip,+s.dataset.show,s.dataset.ch!=null?+s.dataset.ch:null);}
 },true);
@@ -600,6 +647,55 @@ let tx=null; show.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{pa
 show.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)goSlide(sIdx+(dx<0?1:-1));tx=null});
 const canOpus=!!audio.canPlayType('audio/webm; codecs="opus"');
 
+
+// TV mode: everything in a row, full screen
+const TV={on:false,q:[],i:-1,timer:null,internal:false};
+function tvQueue(what,order){
+  let ts=TRIPS.slice().sort((a,b)=>(+a.year||9999)-(+b.year||9999));if(order==='new')ts.reverse();
+  const q=[];
+  for(const t of ts){
+    const items=[];
+    if(t.slides&&what!=='film')items.push({k:'show',t});
+    if(t.eps.length&&what!=='photo')t.eps.forEach((e,i)=>{if(!/полный фильм|вариант|Короткий клип|фрагмент/i.test(e[1]))items.push({k:'ep',t,i})});
+    if(items.length)q.push({k:'card',t,n:items.length},...items);
+  }
+  return q;
+}
+function tvInfo(){const s=q=>{const sec=q.reduce((a,x)=>a+(x.k==='ep'?secs(x.t.eps[x.i][2]):x.k==='show'?x.t.slides.length*SLIDE_MS/1000:6),0);const h=Math.floor(sec/3600),m=Math.round(sec%3600/60);return h?`${h} ч ${m} мин`:`${m} мин`};
+  $('#tvAllInfo').textContent=s(tvQueue('all','old'));$('#tvPhotoInfo').textContent=s(tvQueue('photo','old'));$('#tvFilmInfo').textContent=s(tvQueue('film','old'));}
+function tvHide(){TV.internal=true;try{if(!show.hidden)closeShow();if(!player.hidden)closePlayer()}finally{TV.internal=false}$('#tvCard').hidden=true}
+async function tvNext(){
+  clearTimeout(TV.timer);if(!TV.on)return;
+  TV.i++;const it=TV.q[TV.i];
+  if(!it){tvStop();toast('Показ закончен');return}
+  if(it.k==='card'){tvHide();$('#tv').hidden=false;$('#tvSetup').hidden=true;const c=$('#tvCard');c.hidden=false;
+    c.querySelector('img').src=it.t.cover&&COVERS[it.t.cover]?COVERS[it.t.cover]:'';
+    $('#tvCardYear').textContent=[it.t.year,it.t.country].filter(Boolean).join(' · ');$('#tvCardTitle').textContent=it.t.title;$('#tvCardPlace').textContent=it.t.place;
+    $('#tvCardCnt').textContent=it.t.slides&&it.k==='card'&&TV.q[TV.i+1]&&TV.q[TV.i+1].k==='show'?`${it.t.slides.length} фото`:pl(it.n,'фильм','фильма','фильмов');
+    const nx=TV.q[TV.i+1];if(nx&&nx.k==='show')loadPhotos(nx.t.slug).catch(()=>{});
+    TV.timer=setTimeout(tvNext,6000);return}
+  if(it.k==='show'){try{await loadPhotos(it.t.slug)}catch(e){tvNext();return}
+    TV.internal=true;if(!player.hidden)closePlayer();TV.internal=false;$('#tv').hidden=true;startShow(it.t.slug,0,null);return}
+  if(it.k==='ep'){TV.internal=true;if(!show.hidden)closeShow();TV.internal=false;$('#tv').hidden=true;
+    playEp(it.t.slug,it.i);TV.timer=setTimeout(tvNext,(secs(it.t.eps[it.i][2])+8)*1000)}
+}
+function tvStart(){
+  const what=document.querySelector('input[name=tvWhat]:checked').value,order=document.querySelector('input[name=tvOrder]:checked').value;
+  TV.q=tvQueue(what,order);TV.i=-1;TV.on=true;document.body.classList.add('tvmode');
+  const el=document.documentElement;(el.requestFullscreen||el.webkitRequestFullscreen||(()=>{})).call(el);
+  tvNext();
+}
+function tvStop(){if(!TV.on&&$('#tv').hidden)return;TV.on=false;clearTimeout(TV.timer);tvHide();$('#tv').hidden=true;$('#tvSetup').hidden=false;document.body.classList.remove('tvmode');
+  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});}
+$('#tvOpen').addEventListener('click',()=>{tvInfo();$('#tv').hidden=false;$('#tvSetup').hidden=false;$('#tvCard').hidden=true;$('#tvGo').focus()});
+$('#tvClose').addEventListener('click',()=>{$('#tv').hidden=true});
+$('#tvGo').addEventListener('click',tvStart);
+document.addEventListener('keydown',ev=>{
+  if(!TV.on){if(ev.key==='Escape'&&!$('#tv').hidden){ev.stopImmediatePropagation();$('#tv').hidden=true}return}
+  if(ev.key==='Escape'){ev.preventDefault();ev.stopImmediatePropagation();tvStop()}
+  else if(ev.key==='ArrowRight'&&(TV.q[TV.i]||{}).k!=='show'){ev.preventDefault();ev.stopImmediatePropagation();tvNext()}
+},true);
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&TV.on)tvStop()});
 
 // per-trip route map (shares d3 + world-atlas with the big map)
 const RT_LANG=0;
