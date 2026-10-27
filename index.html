@@ -235,7 +235,7 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 body.tvmode .player{grid-template-rows:0 1fr 0}
 body.tvmode .player .pl-top,body.tvmode .player .pl-bar{visibility:hidden}
 body.tvmode .pl-box{width:min(100vw,calc(100vh * 16 / 9))}
-body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .show-ctl{opacity:1}
+body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}body.tvmode .show:hover .show-ctl,body.tvmode .show:hover .show-seek{opacity:1}
 /* trip route map */
 .route{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:18px 28px;padding-block:26px 6px;align-items:start}
 .route .rt-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:12px}
@@ -277,18 +277,25 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
   padding:calc(env(safe-area-inset-top,0px) + 16px) max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px));
   font-family:var(--cond);letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:#d6d1c7}
 #showCount{font-variant-numeric:tabular-nums}
-.show-cap{position:absolute;left:max(20px,env(safe-area-inset-left,0px));right:max(20px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 92px);display:grid;gap:6px;max-width:44ch}
+.show-cap{position:absolute;left:max(20px,env(safe-area-inset-left,0px));right:max(20px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 116px);display:grid;gap:6px;max-width:44ch}
 .show-cap .cap{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,4vw,2.8rem);line-height:1.1;text-shadow:0 2px 18px rgba(0,0,0,.6);text-wrap:balance}
-.show-ctl{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 22px);display:flex;gap:10px;align-items:center}
+.show-ctl{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 42px);display:flex;gap:10px;align-items:center}
 .show-ctl button{width:48px;height:48px;border-radius:50%;border:1px solid rgba(238,234,226,.35);background:rgba(13,14,16,.55);color:var(--paper);font-size:22px;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(6px)}
 .show-ctl button.main{width:60px;height:60px;background:var(--amber);color:var(--ink);border-color:transparent;font-size:18px}
 .show-ctl button.off{opacity:.55}
 .show-ctl button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
-.show-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(238,234,226,.15)}
-.show-bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .6s ease}
+.show-seek{position:absolute;left:max(20px,env(safe-area-inset-left,0px));right:max(20px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 8px);display:flex;align-items:center;gap:12px;font-family:var(--cond);font-size:13px;letter-spacing:.06em;color:#d6d1c7;font-variant-numeric:tabular-nums}
+.show-seek span{min-width:3.2em}.show-seek span:last-child{text-align:right}
+#showSeek{flex:1;-webkit-appearance:none;appearance:none;height:22px;background:transparent;cursor:pointer;margin:0;--p:0%}
+#showSeek::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--amber) var(--p),rgba(238,234,226,.25) var(--p))}
+#showSeek::-moz-range-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--amber) var(--p),rgba(238,234,226,.25) var(--p))}
+#showSeek::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--amber);margin-top:-6px;border:0;box-shadow:0 0 0 3px rgba(13,14,16,.4)}
+#showSeek::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--amber);border:0}
+#showSeek:focus-visible{outline:2px solid var(--amber);outline-offset:4px;border-radius:4px}
+.show-ctl button.skip{font-family:var(--cond);font-size:14px;letter-spacing:.02em}
 .show-end{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;background:rgba(0,0,0,.6);text-align:center;padding:24px}
 .show-end h3{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(2.2rem,6vw,4rem);margin:0}
-@media (max-width:600px){.show-cap{bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}.show-ctl{gap:8px}.show-ctl button{width:44px;height:44px}}
+@media (max-width:600px){.show-cap{bottom:calc(env(safe-area-inset-bottom,0px) + 112px)}.show-ctl{gap:5px}.show-ctl button{width:38px;height:38px;font-size:19px}.show-ctl button.main{width:50px;height:50px}.show-ctl button.skip{font-size:12px}.show-seek{gap:8px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){.show .layer .fg{animation:none!important}.show .layer{transition:none}}
 /* map */
 .mapsec{padding-block:24px 8px}
@@ -428,14 +435,16 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
   <div class="show-top"><span id="showTitle"></span><span id="showCount"></span></div>
   <div class="show-cap"><div class="eyebrow" id="showCity"></div><div class="cap" id="showCap" aria-live="polite"></div></div>
   <div class="show-ctl">
+    <button id="showBack" class="skip" aria-label="Назад на 10 секунд" title="Назад на 10 секунд">−10</button>
     <button id="showPrev" aria-label="Предыдущее фото">‹</button>
     <button id="showPlay" class="main" aria-label="Пауза">❚❚</button>
     <button id="showNext" aria-label="Следующее фото">›</button>
+    <button id="showFwd" class="skip" aria-label="Вперёд на 10 секунд" title="Вперёд на 10 секунд">+10</button>
     <button id="showMute" aria-label="Выключить музыку" aria-pressed="false">♪</button>
     <button id="showShare" aria-label="Поделиться" title="Поделиться" hidden>⤴</button>
     <button id="showClose" aria-label="Закрыть слайд-шоу">×</button>
   </div>
-  <div class="show-bar"><i id="showBar"></i></div>
+  <div class="show-seek"><span id="showT">0:00</span><input type="range" id="showSeek" min="0" max="0" value="0" step="1" aria-label="Перемотка"><span id="showDur">0:00</span></div>
   <div class="show-end" id="showEnd" hidden><div class="eyebrow">Конец</div><h3 id="showEndTitle"></h3>
     <div class="ctas"><button class="btn solid" id="showAgain">Смотреть ещё раз</button><button class="btn ghost" id="showEndShare" hidden>Поделиться</button></div></div>
   <audio id="showAudio" loop preload="auto"></audio>
@@ -679,10 +688,16 @@ function goSlide(i,instant){
   $('#showCity').textContent=cur[1]; $('#showCap').textContent=cur[2];
   if(sTrip===BEST&&cur[4]&&sPlaying)switchMusic(cur[4]);
   $('#showCount').textContent=`${sIdx+1} / ${n}`;
-  $('#showBar').style.width=((sIdx+1)/n*100)+'%';
+  updSeek();
   const nx=new Image(); nx.src=PHOTOS[sTrip.slides[sList[(sIdx+1)%n]][0]];
   if(sPlaying) schedule();
 }
+const fmtT=ms=>{const t=Math.round(ms/1000);return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')};
+function updSeek(){const n=sList.length,r=$('#showSeek');r.max=Math.max(0,n-1);r.value=sIdx;r.style.setProperty('--p',(n>1?sIdx/(n-1)*100:100)+'%');
+  r.setAttribute('aria-valuetext',`${fmtT(sIdx*SLIDE_MS)} из ${fmtT(n*SLIDE_MS)}`);
+  $('#showT').textContent=fmtT(sIdx*SLIDE_MS); $('#showDur').textContent=fmtT(n*SLIDE_MS);}
+const SKIP=Math.max(1,Math.round(10000/SLIDE_MS));
+function seekTo(i){const n=sList.length;$('#showEnd').hidden=true;goSlide(Math.max(0,Math.min(n-1,i)));}
 function schedule(){clearTimeout(sTimer);sTimer=setTimeout(()=>{ if(sIdx===sList.length-1){endShow();} else goSlide(sIdx+1); },SLIDE_MS);}
 function setPlaying(p){sPlaying=p;$('#showPlay').textContent=p?'❚❚':'▶';$('#showPlay').setAttribute('aria-label',p?'Пауза':'Продолжить');
   show.classList.toggle('paused',!p); if(p){schedule(); if(!audio.muted) audio.play().catch(()=>{});} else {clearTimeout(sTimer); audio.pause();}}
@@ -708,13 +723,16 @@ document.addEventListener('click',ev=>{
 $('#showPlay').addEventListener('click',()=>setPlaying(!sPlaying));
 $('#showNext').addEventListener('click',()=>goSlide(sIdx+1));
 $('#showPrev').addEventListener('click',()=>goSlide(sIdx-1));
+$('#showBack').addEventListener('click',()=>seekTo(sIdx-SKIP));
+$('#showFwd').addEventListener('click',()=>seekTo(sIdx+SKIP));
+$('#showSeek').addEventListener('input',e=>seekTo(+e.target.value));
 $('#showClose').addEventListener('click',closeShow);
 $('#showAgain').addEventListener('click',()=>{$('#showEnd').hidden=true;startShow(sTrip.slug,sList[0],sCh);});
 $('#showMute').addEventListener('click',()=>{audio.muted=!audio.muted;$('#showMute').textContent=audio.muted?'♪̸':'♪';$('#showMute').setAttribute('aria-pressed',String(audio.muted));
   $('#showMute').classList.toggle('off',audio.muted); if(!audio.muted&&sPlaying){audio.volume=0.85;audio.play().catch(()=>{});}});
 document.addEventListener('keydown',ev=>{ if(show.hidden)return; ev.stopImmediatePropagation();
-  if(ev.key==='Escape')closeShow(); else if(ev.key==='ArrowRight')goSlide(sIdx+1); else if(ev.key==='ArrowLeft')goSlide(sIdx-1); else if(ev.key===' '){ev.preventDefault();setPlaying(!sPlaying);} },true);
-let tx=null; show.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  if(ev.key==='Escape')closeShow(); else if(ev.key==='ArrowRight'&&ev.shiftKey||ev.key==='l'||ev.key==='д')seekTo(sIdx+SKIP); else if(ev.key==='ArrowLeft'&&ev.shiftKey||ev.key==='j'||ev.key==='о')seekTo(sIdx-SKIP); else if(ev.key==='Home'){ev.preventDefault();seekTo(0)} else if(ev.key==='End'){ev.preventDefault();seekTo(sList.length-1)} else if(ev.key==='ArrowRight')goSlide(sIdx+1); else if(ev.key==='ArrowLeft')goSlide(sIdx-1); else if(ev.key===' '){ev.preventDefault();setPlaying(!sPlaying);} },true);
+let tx=null; show.addEventListener('touchstart',e=>{tx=e.target.closest('.show-seek,.show-ctl')?null:e.touches[0].clientX},{passive:true});
 show.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)goSlide(sIdx+(dx<0?1:-1));tx=null});
 const canOpus=!!audio.canPlayType('audio/webm; codecs="opus"');
 
