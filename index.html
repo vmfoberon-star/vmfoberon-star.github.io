@@ -204,6 +204,11 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 .tl-trip p{margin:4px 0 0;color:#B9B4AA;font-size:.9rem;max-width:70ch}
 @media (max-width:640px){.tl-list::before{left:20px}.tl-yr{grid-template-columns:1fr;gap:8px;padding-left:40px}.tl-yr>h3{text-align:left}.tl-yr>h3::after{left:-26px;right:auto}
   .tl-gap{padding-left:40px}.tl-trip{grid-template-columns:96px 1fr;gap:12px}.tl-trip img{width:96px}}
+.sp-box{width:min(620px,100% - 32px)}
+.sp-link{display:flex;gap:10px;flex-wrap:wrap}
+.sp-link input{flex:1 1 260px;min-width:0;background:#121417;color:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:12px 14px;font:inherit;font-size:15px}
+.sp-btns{display:flex;flex-wrap:wrap;gap:10px}
+.share-panel{z-index:130}
 /* TV mode */
 .tv{position:fixed;inset:0;z-index:120;background:#0D0E10;color:var(--paper);display:grid;place-items:center;overflow:auto}
 .tv-setup{position:relative;width:min(720px,100% - 32px);display:grid;gap:18px;padding:56px 0 40px}
@@ -363,6 +368,7 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
       <a class="btn ghost" href="#map">Все поездки</a>
       <a class="btn ghost" href="#about">О нас</a>
       <button class="btn ghost" id="bestOpen" type="button">★ Лучшие кадры</button>
+      <button class="btn ghost" id="bestShareBtn" type="button" title="Отправить ссылку на «Лучшие кадры»">⤴ Отправить</button>
       <button class="btn ghost" id="tvOpen" type="button">📺 На телевизоре</button>
     </div>
     <div class="dots" id="dots"></div>
@@ -468,6 +474,22 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
 <div class="tv best-splash" id="bestSplash" hidden role="dialog" aria-modal="true" aria-labelledby="bestSplashT">
   <div class="tv-card"><img id="bestSplashImg" alt=""><div class="in"><div class="eyebrow">Ольга и Владимир Фронтон</div><h2 id="bestSplashT">Лучшие кадры</h2>
     <div class="place" id="bestSplashP"></div><div class="ctas"><button class="btn solid tv-go" id="bestSplashGo">▶ Смотреть</button><a class="btn ghost" href="#" id="bestSplashSite">Весь сайт</a></div></div></div>
+</div>
+<div class="tv share-panel" id="sharePanel" hidden role="dialog" aria-modal="true" aria-labelledby="spT">
+  <div class="tv-setup sp-box">
+    <button class="close" id="spClose" aria-label="Закрыть">×</button>
+    <div class="eyebrow">Отправить ссылку</div>
+    <h2 id="spT">Лучшие кадры</h2>
+    <p class="tv-lede">Получатель откроет ссылку и нажмёт «Смотреть» — слайд-шоу пойдёт с музыкой.</p>
+    <div class="sp-link"><input id="spUrl" readonly><button class="btn solid" id="spCopy">Скопировать</button></div>
+    <div class="sp-btns">
+      <a class="btn ghost" id="spWa" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" id="spTg" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn ghost" id="spMail">Почта</a>
+      <a class="btn ghost" id="spSms">SMS</a>
+      <button class="btn ghost" id="spMore" hidden>Другое…</button>
+    </div>
+  </div>
 </div>
 <div class="toast" id="toast" hidden role="status"></div>
 <script>
@@ -756,11 +778,27 @@ function switchMusic(key){if(audio.dataset.src===key||musicSwitching||!MUSIC[key
     if(sPlaying&&!audio.muted)audio.play().then(()=>fadeAudio(vol,1200)).catch(()=>{});musicSwitching=false},750)}
 $('#bestOpen').addEventListener('click',async()=>{document.body.style.cursor='progress';try{await loadPhotos('best')}catch(e){toast('Не удалось загрузить фото');return}finally{document.body.style.cursor=''}startShow('best',0,null)});
 
-$('#showShare').addEventListener('click',()=>shareTrip('best'));
-$('#showEndShare').addEventListener('click',()=>shareTrip('best'));
+$('#showShare').addEventListener('click',()=>{setPlaying(false);openSharePanel()});
+$('#showEndShare').addEventListener('click',openSharePanel);
 function bestSplash(){const s=$('#bestSplash');$('#bestSplashImg').src=COVERS[BEST.cover]||'';$('#bestSplashP').textContent=BEST.place+' · '+BEST.slides.length+' фото';s.hidden=false;$('#bestSplashGo').focus()}
 $('#bestSplashGo').addEventListener('click',()=>{$('#bestSplash').hidden=true;$('#bestOpen').click()});
 $('#bestSplashSite').addEventListener('click',e=>{e.preventDefault();$('#bestSplash').hidden=true;history.replaceState(null,'',location.pathname+location.search)});
+
+// share panel for the best-shots link
+function bestUrl(){return /github\.io$/.test(location.hostname)?`${location.origin}/t/best/`:`${location.origin}${location.pathname}#best`}
+function openSharePanel(){const url=bestUrl(),text=`${BEST.title} — ${BEST.place}`;const both=`${text}\n${url}`;
+  $('#spUrl').value=url;
+  $('#spWa').href='https://wa.me/?text='+encodeURIComponent(both);
+  $('#spTg').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text);
+  $('#spMail').href='mailto:?subject='+encodeURIComponent(BEST.title)+'&body='+encodeURIComponent(both);
+  $('#spSms').href='sms:?&body='+encodeURIComponent(both);
+  $('#spMore').hidden=!navigator.share;
+  $('#sharePanel').hidden=false;$('#spCopy').focus()}
+$('#spCopy').addEventListener('click',async()=>{const u=$('#spUrl').value;try{await navigator.clipboard.writeText(u)}catch(e){$('#spUrl').select();document.execCommand('copy')}toast('Ссылка скопирована')});
+$('#spMore').addEventListener('click',async()=>{try{await navigator.share({title:BEST.title,text:`${BEST.title} — ${BEST.place}`,url:bestUrl()})}catch(e){}});
+$('#spClose').addEventListener('click',()=>{$('#sharePanel').hidden=true});
+$('#bestShareBtn').addEventListener('click',openSharePanel);
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('#sharePanel').hidden){ev.stopImmediatePropagation();$('#sharePanel').hidden=true}},true);
 
 // per-trip route map (shares d3 + world-atlas with the big map)
 const RT_LANG=0;
