@@ -37,6 +37,10 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('aria-label="Назад на 10 секунд" title="Назад на 10 секунд"', 'aria-label="Back 10 seconds" title="Back 10 seconds"'),
+ ('aria-label="Вперёд на 10 секунд" title="Вперёд на 10 секунд"', 'aria-label="Forward 10 seconds" title="Forward 10 seconds"'),
+ ('aria-label="Перемотка"', 'aria-label="Seek"'),
+ ('`${fmtT(sIdx*SLIDE_MS)} из ${fmtT(n*SLIDE_MS)}`', '`${fmtT(sIdx*SLIDE_MS)} of ${fmtT(n*SLIDE_MS)}`'),
  ('title="Отправить ссылку на «Лучшие кадры»">⤴ Отправить<', 'title="Send a link to the best shots">⤴ Send<'),
  ('<div class="eyebrow">Отправить ссылку</div>\n    <h2 id="spT">Лучшие кадры</h2>', '<div class="eyebrow">Send a link</div>\n    <h2 id="spT">Best shots</h2>'),
  ('Получатель откроет ссылку и нажмёт «Смотреть» — слайд-шоу пойдёт с музыкой.', 'They open the link and press “Watch” — the slideshow plays with music.'),
