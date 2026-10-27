@@ -37,6 +37,10 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('title="Отправить ссылку на «Лучшие кадры»">⤴ Отправить<', 'title="Send a link to the best shots">⤴ Send<'),
+ ('<div class="eyebrow">Отправить ссылку</div>\n    <h2 id="spT">Лучшие кадры</h2>', '<div class="eyebrow">Send a link</div>\n    <h2 id="spT">Best shots</h2>'),
+ ('Получатель откроет ссылку и нажмёт «Смотреть» — слайд-шоу пойдёт с музыкой.', 'They open the link and press “Watch” — the slideshow plays with music.'),
+ ('id="spCopy">Скопировать<', 'id="spCopy">Copy<'), ('id="spMail">Почта<', 'id="spMail">Email<'), ('id="spMore" hidden>Другое…<', 'id="spMore" hidden>More…<'),
  ('aria-label="Поделиться" title="Поделиться"', 'aria-label="Share" title="Share"'), ('id="showEndShare" hidden>Поделиться<', 'id="showEndShare" hidden>Share<'),
  ('<div class="eyebrow">Ольга и Владимир Фронтон</div><h2 id="bestSplashT">Лучшие кадры</h2>', '<div class="eyebrow">Olga and Vladimir Fronton</div><h2 id="bestSplashT">Best shots</h2>'),
  ('>▶ Смотреть</button><a class="btn ghost" href="#" id="bestSplashSite">Весь сайт</a>', '>▶ Watch</button><a class="btn ghost" href="#" id="bestSplashSite">The whole site</a>'),
