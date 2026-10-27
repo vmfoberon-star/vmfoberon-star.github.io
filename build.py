@@ -88,11 +88,14 @@ PHOTOS={}  # slug -> list of bundle files
 from best import BEST as _BEST
 _DIRS={'italy03':'photos2003','paris06':'photos2006','alps08':'photos2008','uk11':'photos2011','benelux12':'photos2012','vienna13':'photos2013','spain13':'photos2013es'}
 _bt={t['slug']:t for t in trips}
-BEST_SHOW={'slug':'best','title':'Лучшие кадры','year':'','slides':[],'music':_bt[_BEST[0][0]]['music']}
+BEST_SHOW={'slug':'best','title':'Лучшие кадры','place':'Лучшие фото из наших поездок, 2003–2013','year':'','slides':[],'music':_bt[_BEST[0][0]]['music']}
 for _sl,_id in _BEST:
     _s=next(x for x in _bt[_sl]['slides'] if x[0]==_id)
     BEST_SHOW['slides'].append([_id,_s[1],_s[2],_sl])
 PHOTO_SETS['best']={_id:enc(f'{_DIRS[_sl]}/{_id}.webp',1600,70) for _sl,_id in _BEST}
+_bc=next((x for x in BEST_SHOW['slides'] if 'Нойшванштайн' in x[2]),BEST_SHOW['slides'][0])
+BEST_SHOW['coverFile']=f"{_DIRS[_bc[3]]}/{_bc[0]}.webp"
+COVERS_EXTRA['p:best']=enc(BEST_SHOW['coverFile'],1600,70); BEST_SHOW['cover']='p:best'
 for slug,ph in PHOTO_SETS.items():
     chunks=[{}];size=0
     for k,du in ph.items():
@@ -138,5 +141,20 @@ html=html.replace('__DATA__',json.dumps(trips,ensure_ascii=False)).replace('__CO
 html=html.replace("const countries=new Set(TRIPS.map(t=>t.country)).size;","const countries=new Set(TRIPS.flatMap(t=>t.countries)).size;")
 open('travel.html','w').write(html)
 import webextra; webextra.make(trips,covers_data,html)
+def best_share_page(prefix, title, place, label, sitetitle):
+    import html as _H
+    from PIL import Image as _I
+    os.makedirs(f'site/{prefix}t/best', exist_ok=True); os.makedirs(f'site/og/{prefix}', exist_ok=True)
+    webextra.og_image(_I.open(BEST_SHOW['coverFile']).convert('RGB'), title, place, f'site/og/{prefix}best.jpg', label)
+    root='../../' if not prefix else '../../../'
+    hd=webextra.HEAD.format(desc=_H.escape(place), title=_H.escape(f'{title} — {sitetitle}'), url=f'{webextra.BASE}/{prefix}t/best/', img=f'{webextra.BASE}/og/{prefix}best.jpg', root=root)
+    if prefix: hd=hd.replace('lang="ru"','lang="en"')
+    open(f'site/{prefix}t/best/index.html','w').write(hd+f'''<title>{_H.escape(title)} — {_H.escape(sitetitle)}</title>
+<meta http-equiv="refresh" content="0; url=../../#best">
+<script>location.replace('../../#best')</script>
+<style>body{{background:#0D0E10;color:#EEEAE2;font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0}}a{{color:#E2B04A}}</style>
+</head><body><p><a href="../../#best">{_H.escape(title)} →</a></p></body></html>
+''')
+best_share_page('', 'Лучшие кадры', BEST_SHOW['place'], 'ОЛЬГА И ВЛАДИМИР ФРОНТОН', 'наши путешествия')
 print(len(html)/1e6,'MB page');import subprocess;print(subprocess.run(['du','-sh','site'],capture_output=True,text=True).stdout)
 import runpy; runpy.run_path('en/build_en.py')

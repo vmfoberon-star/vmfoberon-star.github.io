@@ -202,6 +202,7 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 .tv-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;animation:drift 7s ease-out forwards}
 .tv-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(13,14,16,.2),rgba(13,14,16,.85))}
 .tv-card .in{padding:0 6vw 9vh;display:grid;gap:12px}
+.best-splash .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
 .tv-card h2{font-family:var(--cond);font-weight:600;font-size:clamp(3rem,9vw,7rem);text-transform:uppercase;margin:0;line-height:.95}
 .tv-card .place{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3vw,2.4rem);color:#E4DFD5}
 .tv-cnt{color:var(--muted);font-family:var(--cond);letter-spacing:.12em;text-transform:uppercase;font-size:14px}
@@ -402,11 +403,12 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
     <button id="showPlay" class="main" aria-label="Пауза">❚❚</button>
     <button id="showNext" aria-label="Следующее фото">›</button>
     <button id="showMute" aria-label="Выключить музыку" aria-pressed="false">♪</button>
+    <button id="showShare" aria-label="Поделиться" title="Поделиться" hidden>⤴</button>
     <button id="showClose" aria-label="Закрыть слайд-шоу">×</button>
   </div>
   <div class="show-bar"><i id="showBar"></i></div>
   <div class="show-end" id="showEnd" hidden><div class="eyebrow">Конец</div><h3 id="showEndTitle"></h3>
-    <div class="ctas"><button class="btn solid" id="showAgain">Смотреть ещё раз</button></div></div>
+    <div class="ctas"><button class="btn solid" id="showAgain">Смотреть ещё раз</button><button class="btn ghost" id="showEndShare" hidden>Поделиться</button></div></div>
   <audio id="showAudio" loop preload="auto"></audio>
 </div>
 
@@ -439,6 +441,10 @@ body.tvmode .show-ctl{opacity:0;transition:opacity .3s}body.tvmode .show:hover .
     <p class="tv-help">Во время показа: <b>→</b> — дальше, <b>Esc</b> — выход. С телефона можно вывести на телевизор через «Повтор экрана» (AirPlay) или Chromecast.</p>
   </div>
   <div class="tv-card" id="tvCard" hidden><img alt=""><div class="in"><div class="eyebrow" id="tvCardYear"></div><h2 id="tvCardTitle"></h2><div class="place" id="tvCardPlace"></div><div class="tv-cnt" id="tvCardCnt"></div></div></div>
+</div>
+<div class="tv best-splash" id="bestSplash" hidden role="dialog" aria-modal="true" aria-labelledby="bestSplashT">
+  <div class="tv-card"><img id="bestSplashImg" alt=""><div class="in"><div class="eyebrow">Ольга и Владимир Фронтон</div><h2 id="bestSplashT">Лучшие кадры</h2>
+    <div class="place" id="bestSplashP"></div><div class="ctas"><button class="btn solid tv-go" id="bestSplashGo">▶ Смотреть</button><a class="btn ghost" href="#" id="bestSplashSite">Весь сайт</a></div></div></div>
 </div>
 <div class="toast" id="toast" hidden role="status"></div>
 <script>
@@ -542,7 +548,7 @@ window.addEventListener('popstate',()=>{const h=location.hash.slice(1);
 function openTripNoPush(slug){history.replaceState({trip:slug},'','#'+slug);openTrip(slug)}
 const shareBtn=`<button class="btn ghost" data-share>Поделиться</button>`;
 function toast(msg){const el=$('#toast');el.textContent=msg;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2600)}
-async function shareTrip(slug){const t=TRIPS.find(x=>x.slug===slug);
+async function shareTrip(slug){const t=slug==='best'?BEST:TRIPS.find(x=>x.slug===slug);
   const url=/github\.io$/.test(location.hostname)?`${location.origin}/t/${slug}/`:`${location.origin}${location.pathname}#${slug}`;
   const data={title:`${t.title} — наши путешествия`,text:`${t.title}: ${t.place}`,url};
   if(navigator.share){try{await navigator.share(data);return}catch(e){if(e.name==='AbortError')return}}
@@ -642,7 +648,7 @@ function startShow(slug,i,ch){
   if(ch!=null&&sTrip.chapters){let off=0;for(let k=0;k<ch;k++)off+=sTrip.chapters[k].n;const c=sTrip.chapters[ch];
     for(let k=0;k<c.n;k++)sList.push(off+k); first=i-off; sLabel=`${sTrip.title} · ${c.name}`;}
   else {for(let k=0;k<sTrip.slides.length;k++)sList.push(k); first=i;}
-  sCh=ch; $('#showTitle').textContent=sLabel;
+  sCh=ch; $('#showTitle').textContent=sLabel; $('#showShare').hidden=$('#showEndShare').hidden=sTrip!==BEST;
   A.classList.remove('on');B.classList.remove('on'); front=B; goSlide(first);
   const m=MUSIC[sTrip.music]; const src=canOpus?m.webm:m.m4a; if(audio.dataset.src!==sTrip.music){audio.src=src;audio.dataset.src=sTrip.music;}
   audio.currentTime=0; audio.volume=0; audio.muted=false; $('#showMute').textContent='♪'; $('#showMute').setAttribute('aria-pressed','false');
@@ -726,6 +732,12 @@ function switchMusic(key){if(audio.dataset.src===key||musicSwitching||!MUSIC[key
   setTimeout(()=>{const m=MUSIC[key];audio.src=canOpus?m.webm:m.m4a;audio.dataset.src=key;audio.currentTime=0;audio.volume=0;
     if(sPlaying&&!audio.muted)audio.play().then(()=>fadeAudio(vol,1200)).catch(()=>{});musicSwitching=false},750)}
 $('#bestOpen').addEventListener('click',async()=>{document.body.style.cursor='progress';try{await loadPhotos('best')}catch(e){toast('Не удалось загрузить фото');return}finally{document.body.style.cursor=''}startShow('best',0,null)});
+
+$('#showShare').addEventListener('click',()=>shareTrip('best'));
+$('#showEndShare').addEventListener('click',()=>shareTrip('best'));
+function bestSplash(){const s=$('#bestSplash');$('#bestSplashImg').src=COVERS[BEST.cover]||'';$('#bestSplashP').textContent=BEST.place+' · '+BEST.slides.length+' фото';s.hidden=false;$('#bestSplashGo').focus()}
+$('#bestSplashGo').addEventListener('click',()=>{$('#bestSplash').hidden=true;$('#bestOpen').click()});
+$('#bestSplashSite').addEventListener('click',e=>{e.preventDefault();$('#bestSplash').hidden=true;history.replaceState(null,'',location.pathname+location.search)});
 
 // per-trip route map (shares d3 + world-atlas with the big map)
 const RT_LANG=0;
@@ -860,5 +872,6 @@ let mapStarted=false;const startMap=()=>{if(mapStarted)return;mapStarted=true;dr
 new IntersectionObserver((en,ob)=>{if(en.some(e=>e.isIntersecting)){ob.disconnect();startMap()}},{rootMargin:'600px'}).observe($('#worldmap'));
 addEventListener('scroll',function chk(){if(mapStarted)return removeEventListener('scroll',chk);if($('#worldmap').getBoundingClientRect().top<innerHeight+600)startMap()},{passive:true});
 
-if(location.hash&&TRIPS.some(t=>t.slug===location.hash.slice(1)))openTrip(location.hash.slice(1));
+if(location.hash==='#best')bestSplash();
+else if(location.hash&&TRIPS.some(t=>t.slug===location.hash.slice(1)))openTrip(location.hash.slice(1));
 </script>

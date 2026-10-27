@@ -27,6 +27,7 @@ page = page[:i] + json.dumps(trips, ensure_ascii=False) + page[i + end:]
 j = page.index('const BEST=') + 11
 best, bend = json.JSONDecoder().raw_decode(page[j:])
 best['title'] = 'Best shots'
+best['place'] = 'The best photos from our trips, 2003–2013'
 best['slides'] = [[s[0], tr(s[1]), tr(s[2])] + list(s[3:]) for s in best['slides']]
 page = page[:j] + json.dumps(best, ensure_ascii=False) + page[j + bend:]
 # assets live one level up
@@ -36,6 +37,10 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('aria-label="Поделиться" title="Поделиться"', 'aria-label="Share" title="Share"'), ('id="showEndShare" hidden>Поделиться<', 'id="showEndShare" hidden>Share<'),
+ ('<div class="eyebrow">Ольга и Владимир Фронтон</div><h2 id="bestSplashT">Лучшие кадры</h2>', '<div class="eyebrow">Olga and Vladimir Fronton</div><h2 id="bestSplashT">Best shots</h2>'),
+ ('>▶ Смотреть</button><a class="btn ghost" href="#" id="bestSplashSite">Весь сайт</a>', '>▶ Watch</button><a class="btn ghost" href="#" id="bestSplashSite">The whole site</a>'),
+ ("BEST.slides.length+' фото'", "BEST.slides.length+' photos'"),
  ('>★ Лучшие кадры<', '>★ Best shots<'), ("toast('Не удалось загрузить фото')", "toast('Could not load the photos')"),
  ('/полный фильм|вариант|Короткий клип|фрагмент/i', '/full film|alternate cut|short clip|excerpt/i'),
  ('<h2 id="statsTitle">Наши путешествия в цифрах</h2>', '<h2 id="statsTitle">Our travels in numbers</h2>'),
@@ -175,3 +180,16 @@ for t in trips:
 </head><body><p><a href="../../#{slug}">{H.escape(t['title'])} →</a></p></body></html>
 ''')
 print('en pages:', len(trips))
+
+# share page for the best-shots slideshow (English)
+from PIL import Image as _I2
+os.makedirs('site/en/t/best', exist_ok=True)
+_bimg = 'site/' + COV['p:best'].replace('../', '', 1)
+webextra.og_image(_I2.open(_bimg).convert('RGB'), 'Best shots', best['place'], 'site/og/en/best.jpg', EN_LABEL)
+_hd = HEAD.format(desc=H.escape(best['place']), title='Best shots — Our Travels', url=f'{B}/en/t/best/', img=f'{B}/og/en/best.jpg', root='../../../')
+open('site/en/t/best/index.html', 'w').write(_hd + '''<title>Best shots — Our Travels</title>
+<meta http-equiv="refresh" content="0; url=../../#best">
+<script>location.replace('../../#best')</script>
+<style>body{background:#0D0E10;color:#EEEAE2;font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0}a{color:#E2B04A}</style>
+</head><body><p><a href="../../#best">Best shots →</a></p></body></html>
+''')
