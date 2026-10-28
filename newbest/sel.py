@@ -119,3 +119,18 @@ S = [
  ('austria25','2025__AUS2025__Bad_Ishl__DSC08887.jpg','Бад-Ишль','Река Траун','Bad Ischl','The river Traun'),
  ('austria25','2025__AUS2025__ZK6_Traunsee_Gmunden_Traunkirchen__DSC09259.jpg','Траунзее','Берег Траунзее','Traunsee','The shore of the Traunsee'),
 ]
+P='2026__Toscana26__'
+S += [
+ ('toscana26',P+'ОрвьетоF__DSC09289.jpg','Орвието','В соборе Орвието','Orvieto','Inside Orvieto Cathedral'),
+ ('toscana26',P+'Пьенца__F__DSC09745.jpg','Пьенца','Валь-д’Орча и гора Амиата','Pienza','Val d’Orcia and Monte Amiata'),
+ ('toscana26',P+'Монтальчино__F__20260928_112933.jpg','Монтальчино','Вид с крепостной стены','Montalcino','The view from the fortress wall'),
+ ('toscana26',P+'Montalpulchino__F__20260928_145259.jpg','Монтепульчано','Церковь Сан-Бьяджо','Montepulciano','The church of San Biagio'),
+ ('toscana26',P+'Montalpulchino__F__20260928_173814.jpg','Монтепульчано','Кипарисы и оливы','Montepulciano','Cypresses and olive trees'),
+ ('toscana26',P+'Пьенца__F__20260928_183632.jpg','Пьенца','Закат над долиной','Pienza','Sunset over the valley'),
+ ('toscana26',P+'Сиена__F__20260929_111935.jpg','Сиена','Сиенский собор','Siena','Siena Cathedral'),
+ ('toscana26',P+'Радда-ин-Кьянти__F__20260930_162712.jpg','Кьянти','Виноградники Кьянти','Chianti','The vineyards of Chianti'),
+ ('toscana26',P+'Сан-Джиминьяно__F__20260930_113410.jpg','Сан-Джиминьяно','Город башен','San Gimignano','The town of towers'),
+ ('toscana26',P+'V.Uffizi__F__20261001_120021.jpg','Флоренция','Галерея Уффици','Florence','The Uffizi'),
+ ('toscana26',P+'V.Веккьо__F__20261001_111433.jpg','Флоренция','Палаццо Веккьо','Florence','Palazzo Vecchio'),
+ ('toscana26',P+'Прог2.ольтр__F__20261002_180355.jpg','Флоренция','Вечер над Арно','Florence','Evening over the Arno'),
+]
