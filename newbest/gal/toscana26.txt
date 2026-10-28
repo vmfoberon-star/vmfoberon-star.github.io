@@ -1,0 +1,33 @@
+ОрвьетоF__DSC09416|Орвието|Фасад собора|Orvieto|The cathedral façade
+ОрвьетоF__DSC09289|Орвието|В соборе Орвието|Orvieto|Inside Orvieto Cathedral
+ОрвьетоF__DSC09351|Орвието|Фрески капеллы|Orvieto|Chapel frescoes
+ОрвьетоF__DSC09484|Орвието|Лавки с керамикой|Orvieto|Ceramics shops
+Пьенца__F__DSC09578|Пьенца|Вечерняя улица|Pienza|An evening street
+Пьенца__F__DSC09659|Пьенца|Крыши и холмы|Pienza|Roofs and hills
+Пьенца__F__DSC09745|Пьенца|Валь-д’Орча и гора Амиата|Pienza|Val d’Orcia and Monte Amiata
+Монтальчино__F__20260928_112933|Монтальчино|Вид с крепостной стены|Montalcino|The view from the fortress wall
+Монтальчино__F__20260928_122453|Монтальчино|Площадь с башней|Montalcino|The square with the tower
+Montalpulchino__F__20260928_145259|Монтепульчано|Церковь Сан-Бьяджо|Montepulciano|The church of San Biagio
+Montalpulchino__F__20260928_173814|Монтепульчано|Кипарисы и оливы|Montepulciano|Cypresses and olive trees
+Пьенца__F__20260928_183632|Пьенца|Закат над долиной|Pienza|Sunset over the valley
+Сиена__F__20260929_102108|Сиена|Полосатый собор|Siena|The striped cathedral
+Сиена__F__20260929_104143|Сиена|Мозаичный пол собора|Siena|The cathedral’s marble floor
+Сиена__F__20260929_111935|Сиена|Сиенский собор|Siena|Siena Cathedral
+Кастеллина-ин-Кьянти__F__20260929_183113|Кастеллина-ин-Кьянти|Наша гостиница|Castellina in Chianti|Our hotel
+Кастеллина-ин-Кьянти__F__20260930_080405|Кастеллина-ин-Кьянти|Утро над холмами|Castellina in Chianti|Morning over the hills
+Сан-Джиминьяно__F__20260930_113410|Сан-Джиминьяно|Город башен|San Gimignano|The town of towers
+Сан-Джиминьяно__F__20260930_114613|Сан-Джиминьяно|Средневековая улочка|San Gimignano|A medieval lane
+Сан-Джиминьяно__F__20260930_120906|Сан-Джиминьяно|Вид с городской стены|San Gimignano|The view from the town wall
+Радда-ин-Кьянти__F__20260930_162712|Кьянти|Виноградники Кьянти|Chianti|The vineyards of Chianti
+Радда-ин-Кьянти__F__20260930_162820|Кьянти|Зелёные холмы|Chianti|Green hills
+Радда-ин-Кьянти__F__20260930_164726|Радда-ин-Кьянти|Кафе с бочкой|Radda in Chianti|A café with a wine barrel
+V.Веккьо__F__20261001_111433|Флоренция|Палаццо Веккьо|Florence|Palazzo Vecchio
+V.Uffizi__F__20261001_120021|Флоренция|Галерея Уффици|Florence|The Uffizi
+V.Uffizi__F__20261001_124411|Флоренция|Кофе с видом на Палаццо Веккьо|Florence|Coffee with a view of Palazzo Vecchio
+V.Uffizi__F__20261001_132912|Флоренция|Автопортрет Рембрандта в Уффици|Florence|Rembrandt’s self-portrait in the Uffizi
+V.Веккьо__F__20261002_091524|Флоренция|Зал Палаццо Веккьо|Florence|A hall in Palazzo Vecchio
+V.Веккьо__F__20261002_100712|Флоренция|Площадь Синьории|Florence|Piazza della Signoria
+Прог2.ольтр__F__20261002_115030|Флоренция|Церковь в Ольтрарно|Florence|A church in the Oltrarno
+Прог2.ольтр__F__20261002_124948|Флоренция|Флорентийские стейки|Florence|Florentine steaks
+Прог2.ольтр__F__20261002_180355|Флоренция|Вечер над Арно|Florence|Evening over the Arno
+V.Officina Profumo-Farmaceutica di Santa Maria Novella__F__20261004_102935|Флоренция|Старинная аптека Санта-Мария-Новелла|Florence|The old pharmacy of Santa Maria Novella

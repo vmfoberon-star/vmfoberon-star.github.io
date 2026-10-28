@@ -1,0 +1,30 @@
+LR_night Hong Kong__P1250469|Гонконг|Ночные небоскрёбы|Hong Kong|Skyscrapers at night
+LR_Hong Kong.Victoria Peak__P1250510|Гонконг|Вид с пика Виктория|Hong Kong|The view from Victoria Peak
+LR_Hong Kong.Aberdeen__P1250528|Гонконг|Бухта Абердин|Hong Kong|Aberdeen harbour
+LR_Hong Kong__P1250559|Гонконг|Набережная Цимшацуй|Hong Kong|The Tsim Sha Tsui promenade
+LR_Macao__P1250602|Макао|Благовония в храме|Macau|Incense in a temple
+LR_Macao__P1250651|Макао|Огни казино|Macau|Casino lights
+LR_пещера тростниковой флейты__P1250698|Гуйлинь|Пещера Тростниковой флейты|Guilin|Reed Flute Cave
+LR_террасаы Лунцзи__P1250714|Лунцзи|Деревня среди террас|Longji|A village among the terraces
+LR_террасаы Лунцзи__P1250745|Лунцзи|Рисовые террасы|Longji|Rice terraces
+LR_Guilin__P1250772|Гуйлинь|На реке у карстовых гор|Guilin|On the river below the karst hills
+LR_Guilin__P1250829|Гуйлинь|Ночной мост|Guilin|A bridge at night
+LR_Яншо__P1250856|Яншо|Река среди карстовых гор|Yangshuo|A river among karst peaks
+LR_Яншо__P1250895|Яншо|По реке Ли|Yangshuo|Along the Li River
+LR_терракотовая армия__P1250933|Сиань|Терракотовая армия|Xi’an|The Terracotta Army
+LR_терракотовая армия__P1250978|Сиань|Танцевальное шоу|Xi’an|A dance show
+LR_Сиань.Пагода диких гусей__P1260036|Сиань|На сувенирном рынке|Xi’an|At the souvenir market
+LR_nightShanghai__P1260126|Шанхай|Вечерний Бунд|Shanghai|The Bund in the evening
+LR_nightShanghai__P1260153|Шанхай|Ночной Пудун|Shanghai|Pudong at night
+LR_Шанхай__P1260176|Шанхай|Небоскрёбы над рекой|Shanghai|Skyscrapers above the river
+LR_Шанхай__P1260296|Шанхай|Улица старого города|Shanghai|An old-town street
+LR_храм Нефритового Будды__P1260409|Шанхай|Каналы и лодки|Shanghai|Canals and boats
+LR_сучжоу__P1260541|Сучжоу|Пагода на Тигровом холме|Suzhou|The pagoda on Tiger Hill
+LR_Пекин__P1260624|Пекин|На Великой стене|Beijing|On the Great Wall
+LR_Пекин__P1260691|Пекин|Каменный страж у аллеи|Beijing|A stone guardian by the avenue
+LR_Пекин8__P1260766|Пекин|Площадь Тяньаньмэнь|Beijing|Tiananmen Square
+LR_Пекин8__P1260875|Пекин|Новые знакомые в парке|Beijing|New friends in the park
+LR_Пекин9__P1260994|Пекин|Храм Неба|Beijing|The Temple of Heaven
+LR_Пекин9__P1270108|Пекин|Вечерняя торговая улица|Beijing|An evening shopping street
+LR_Пекин10__P1270173|Пекин|Озеро в Летнем дворце|Beijing|The lake at the Summer Palace
+LR_Пекин10__P1270271|Пекин|Фарфоровый малыш с рыбой|Beijing|A porcelain child with a fish

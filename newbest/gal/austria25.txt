@@ -1,0 +1,34 @@
+Melk__DSC05440|Мельк|Улица старого города|Melk|A street in the old town
+Melk__DSC05542|Мельк|Кафе на главной площади|Melk|A café on the main square
+Melk__DSC05649|Мельк|Двор барочного аббатства|Melk|The courtyard of the Baroque abbey
+ZK1_Schafberg__DSC05883|Шафберг|Вид с вершины на озёра|Schafberg|The lakes from the summit
+ZK1_Schafberg__DSC06302|Шафберг|Зелёные склоны над Вольфгангзее|Schafberg|Green slopes above the Wolfgangsee
+ZK1_Санкт-Гильген__DSC06893|Санкт-Гильген|Гостиница в цветах|St. Gilgen|An inn covered in flowers
+ZK1_Санкт-Гильген__DSC06955|Санкт-Гильген|Кафе у пристани|St. Gilgen|A café by the pier
+ZK1_onLakeWolf__DSC06995|Вольфгангзее|Вилла над бирюзовой водой|Wolfgangsee|A villa above the turquoise water
+ZK1_onLakeWolf__DSC07023|Вольфгангзее|Усадьба на берегу|Wolfgangsee|A manor on the shore
+ZK2_Hallshtatt__DSC07158|Гальштат|Дорога в городок|Hallstatt|The road into the village
+ZK2_Hallshtatt__DSC07215|Гальштат|Дома на склоне|Hallstatt|Houses on the hillside
+ZK2_Hallshtatt__DSC07265|Гальштат|Церковь у озера|Hallstatt|The church by the lake
+ZK2_Hallshtatt__DSC07317|Гальштат|Классический вид на Гальштат|Hallstatt|The classic view of Hallstatt
+ZK2_Hallshtatt__DSC07371|Гальштат|Над крышами Гальштата|Hallstatt|Above the roofs of Hallstatt
+ZK2_AltausserLake__DSC07496|Альтаусзее|Озеро под облаками|Altaussee|The lake under the clouds
+ZK2_AltausserLake__DSC07523|Альтаусзее|Тропа вокруг озера|Altaussee|The path around the lake
+ZK3_Fushlsee__DSC07673|Фушльзее|Бирюзовое озеро|Fuschlsee|The turquoise lake
+ZK4_Kaiservilla__DSC08096|Бад-Ишль|Парк Кайзервиллы|Bad Ischl|The park of the Kaiservilla
+ZK4_Kaiservilla__DSC08254|Бад-Ишль|Лужайки императорского парка|Bad Ischl|The lawns of the imperial park
+ZK5_Vorderer_Gosausee__DSC08349|Гозаузее|Отражение Дахштайна|Gosausee|The Dachstein reflected
+ZK5_Vorderer_Gosausee__DSC08416|Гозаузее|Тропа вдоль скал|Gosausee|A path along the cliffs
+ZK5_Vorderer_Gosausee__DSC08591|Гозаузее|Ледник над озером|Gosausee|The glacier above the lake
+ZK5_Stroble_Wolfgangsee__DSC08729|Штробль|Лодки на Вольфгангзее|Strobl|Boats on the Wolfgangsee
+Bad_Ishl__DSC07991|Бад-Ишль|Летнее кафе|Bad Ischl|A summer café
+Bad_Ishl__DSC08887|Бад-Ишль|Река Траун и горы|Bad Ischl|The river Traun and the mountains
+ZK6_Traunsee_Gmunden_Traunkirchen__DSC08934|Гмунден|На берегу Траунзее|Gmunden|On the shore of the Traunsee
+ZK6_Traunsee_Gmunden_Traunkirchen__DSC09040|Траунзее|Синие горы над озером|Traunsee|Blue mountains above the lake
+ZK6_Traunsee_Gmunden_Traunkirchen__DSC09259|Траункирхен|Деревня у воды|Traunkirchen|A village by the water
+Krems__DSC09339|Кремс|Барочная церковь|Krems|A Baroque church
+Krems__DSC09374|Кремс|Пешеходная улица|Krems|The pedestrian street
+Krems__DSC09415|Кремс|Штайнер Тор|Krems|The Steiner Tor gate
+Krems__DSC09470|Кремс|Колокольня над крышами|Krems|A bell tower above the roofs
+Гёттвейгское аббатство__DSC09593|Гёттвейг|Двор аббатства|Göttweig|The abbey courtyard
+Гёттвейгское аббатство__DSC09722|Гёттвейг|Аббатство на холме|Göttweig|The abbey on the hill

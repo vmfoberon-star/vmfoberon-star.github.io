@@ -1,0 +1,32 @@
+P1070068|Норвегия|Здание театра|Norway|The theatre building
+P1070098|Берген|Вечерние кафе|Bergen|Cafés in the evening
+P1070176|Берген|Переулок старого города|Bergen|A lane in the old town
+P1070225|Норвегия|Дорога через долину|Norway|A road through the valley
+P1070261|Норвегия|Водопад у дороги|Norway|A waterfall by the road
+P1070322|Норвегия|Осенняя дорога в горы|Norway|An autumn road into the mountains
+P1070340|Норвегия|Водопад в ущелье|Norway|A waterfall in the gorge
+P1070378|Норвегия|Тропа среди камней|Norway|A path among the rocks
+P1070428|Фьорды|На палубе парома|The fjords|On the ferry deck
+P1070474|Фьорды|Отвесные скалы над водой|The fjords|Sheer cliffs above the water
+P1070500|Фьорды|След парома|The fjords|The ferry’s wake
+P1070538 (1)|Фьорды|Под норвежским флагом|The fjords|Under the Norwegian flag
+P1070563|Фьорды|Пристань в конце фьорда|The fjords|The pier at the end of the fjord
+P1070599|Норвегия|Сад у старого дома|Norway|A garden by an old house
+P1070625|Берген|Деревянные дома Брюггена|Bergen|The wooden houses of Bryggen
+P1070669|Берген|Старый деревянный Брюгген|Bergen|Old wooden Bryggen
+P1070745|Норвегия|Улица с зелёным шпилем|Norway|A street with a green spire
+P1070766|Норвегия|Осенняя долина|Norway|An autumn valley
+P1070816|Норвегия|Водопад в ущелье|Norway|A waterfall in the gorge
+P1070863|Норвегия|Туман над долиной|Norway|Mist over the valley
+P1070923|Норвегия|Озеро в парке|Norway|A lake in the park
+P1070926|Норвегия|Зелёный сад|Norway|A green garden
+P1070969|Норвегия|Прогулка по парку|Norway|A walk in the park
+P1070989|Берген|Деревянная церковь|Bergen|A wooden stave church
+P1080025|Норвегия|У бронзовой статуи в парке|Norway|By a bronze statue in the park
+P1080057|Норвегия|Замшелые деревья|Norway|Mossy trees
+P1080156|Осло|Национальный театр|Oslo|The National Theatre
+P1080267|Осло|На крыше Оперы|Oslo|On the roof of the Opera House
+P1080344|Осло|Осенний склон|Oslo|An autumn slope
+P1080417|Осло|Музей «Фрам»|Oslo|The Fram Museum
+P1080528|Осло|Пруд в парке|Oslo|A pond in the park
+P1080576|Осло|Вечерний город|Oslo|The city in the evening

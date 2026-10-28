@@ -1,0 +1,25 @@
+P1200624|Барселона|Фонтан на бульваре|Barcelona|A fountain on the boulevard
+P1200643|Барселона|Дом Бальо|Barcelona|Casa Batlló
+P1210682|Барселона|Фасад Дома Бальо|Barcelona|The façade of Casa Batlló
+P1200658|Барселона|Пасео-де-Грасия|Barcelona|Passeig de Gràcia
+P1200698|Барселона|На крыше Ла Педрера|Barcelona|On the roof of La Pedrera
+P1200703|Барселона|Трубы-воины Гауди|Barcelona|Gaudí’s warrior chimneys
+P1200738|Барселона|Квартира-музей в Ла Педрера|Barcelona|The period flat in La Pedrera
+P1200767|Барселона|Саграда Фамилия|Barcelona|The Sagrada Família
+P1200793|Барселона|Башни Саграды Фамилии|Barcelona|The towers of the Sagrada Família
+P1200774|Барселона|Фасад Страстей|Barcelona|The Passion façade
+P1210013|Барселона|Омары на рынке Бокерия|Barcelona|Lobsters at La Boqueria
+P1210049|Барселона|Малина с рынка Бокерия|Barcelona|Raspberries from La Boqueria
+P1210074|Барселона|Чайка в порту|Barcelona|A gull in the harbour
+P1210141|Барселона|Пруд в парке Цитадели|Barcelona|The pond in Ciutadella Park
+P1210165|Барселона|Узкая улочка Готического квартала|Barcelona|A narrow lane in the Gothic Quarter
+P1210212|Барселона|Кафедральный собор|Barcelona|The cathedral
+P1200811|Барселона|Готическая церковь|Barcelona|A Gothic church
+P1210233|Барселона|Праздничная толпа на улице|Barcelona|A festive crowd in the street
+P1210286|Барселона|Кафе в стиле модерн|Barcelona|An Art Nouveau café
+P1210316|Барселона|В зале театра|Barcelona|In the theatre hall
+P1210525|Барселона|Монжуик, Национальный дворец|Barcelona|Montjuïc, the National Palace
+P1210572|Барселона|В художественном музее|Barcelona|In the art museum
+P1210597|Барселона|Картина в музее|Barcelona|A painting in the museum
+P1210628|Барселона|Башня в Пуэбло-Эспаньол|Barcelona|A tower in the Poble Espanyol
+P1210661|Барселона|Улочка Пуэбло-Эспаньол|Barcelona|A lane in the Poble Espanyol

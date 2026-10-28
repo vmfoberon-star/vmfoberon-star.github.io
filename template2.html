@@ -509,7 +509,7 @@ const fmt=s=>{const h=Math.floor(s/3600),m=Math.round(s%3600/60);return h?`${h} 
 const pl=(n,a,b,c)=>{const t=n%10,h=n%100;return n+' '+(t==1&&h!=11?a:t>=2&&t<=4&&(h<10||h>=20)?b:c)};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const dur=t=>t.eps.reduce((x,e)=>x+secs(e[2]),0);
-const metaLine=t=>t.slides?`${t.slides.length} фото · слайд-шоу с музыкой${t.eps.length?' · '+pl(t.eps.length,'фильм','фильма','фильмов'):''}`:`${pl(t.eps.length,'фильм','фильма','фильмов')} · ${fmt(dur(t))}`;
+const metaLine=t=>t.slides?`${t.slides.length} фото · слайд-шоу с музыкой${t.eps.length?' · '+pl(t.eps.length,'фильм','фильма','фильмов'):''}`:`${pl(t.eps.length,'фильм','фильма','фильмов')} · ${fmt(dur(t))}${t.gal?' · фото':''}`;
 const coverImg=(t,cls='')=>t.cover&&COVERS[t.cover]?`<img src="${COVERS[t.cover]}" alt="${esc(t.title)}" class="${cls}" loading="lazy">`:`<div class="ph">${esc(t.title)}</div>`;
 const zoomCls=t=>ZOOM.has(t.cover)?' zoom':'';
 
@@ -525,7 +525,7 @@ const showVids=t=>!t.slides?[]:t.chapters?t.chapters.map(c=>c.n):t.slug==='italy
 const vidSec=n=>4.5+n*4+1+4.5;
 const total=TRIPS.reduce((a,t)=>a+t.eps.length+showVids(t).length,0);
 const hours=Math.round(TRIPS.reduce((a,t)=>a+dur(t)+showVids(t).reduce((x,n)=>x+vidSec(n),0),0)/3600);
-const photos=TRIPS.reduce((a,t)=>a+(t.slides?t.slides.length:0),0);
+const photos=TRIPS.reduce((a,t)=>a+(t.slides?t.slides.length:0)+(t.gal?t.gal.slides.length:0),0);
 const countries=new Set(TRIPS.map(t=>t.country)).size;
 const W=(n,a,b,c)=>pl(n,a,b,c).replace(/^\d+ /,'');
 $('#facts').innerHTML=`<span><b>${TRIPS.length}</b>${W(TRIPS.length,'поездка','поездки','поездок')}</span><span><b>${countries}</b>${W(countries,'страна','страны','стран')}</span><span><b>${total}</b>${W(total,'фильм','фильма','фильмов')}</span><span><b>${photos}</b>фото</span><span><b>${hours}</b>${W(hours,'час','часа','часов')}</span>`;
@@ -570,8 +570,8 @@ async function openTrip(slug){
     <div class="in"><div class="eyebrow">${[t.year,t.country].filter(Boolean).join(' · ')}</div>
     <h2 id="reelTitle">${esc(t.title)}</h2><div class="place">${esc(t.place)}</div>
     <p class="lede">${esc(t.blurb)}</p>
-    <div class="facts"><span><b>${t.eps.length}</b>${pl(t.eps.length,'фильм','фильма','фильмов').replace(/^\d+ /,'')}</span><span><b>${fmt(dur(t))}</b></span></div>
-    <div class="ctas"><button class="btn solid" data-ep="0">▶ Смотреть подряд</button>${shareBtn}<a class="btn ghost" href="https://www.youtube.com/playlist?list=${t.list}" target="_blank" rel="noopener">Плейлист на YouTube</a></div></div>`;
+    <div class="facts"><span><b>${t.eps.length}</b>${pl(t.eps.length,'фильм','фильма','фильмов').replace(/^\d+ /,'')}</span><span><b>${fmt(dur(t))}</b></span>${t.gal?`<span><b>${t.gal.slides.length}</b>фото</span>`:''}</div>
+    <div class="ctas"><button class="btn solid" data-ep="0">▶ Смотреть подряд</button>${t.gal?`<button class="btn ghost" data-gal="${t.slug}">▶ Фото · слайд-шоу</button>`:''}${shareBtn}<a class="btn ghost" href="https://www.youtube.com/playlist?list=${t.list}" target="_blank" rel="noopener">Плейлист на YouTube</a></div></div>`;
   $('#reelEps').className='in eps';
   $('#reelEps').innerHTML=t.eps.map((e,i)=>`
     <a class="ep" data-ep="${i}" href="https://www.youtube.com/watch?v=${e[0]}&list=${t.list}" target="_blank" rel="noopener">
@@ -695,8 +695,12 @@ function schedule(){clearTimeout(sTimer);sTimer=setTimeout(()=>{ if(sIdx===sList
 function setPlaying(p){sPlaying=p;$('#showPlay').textContent=p?'❚❚':'▶';$('#showPlay').setAttribute('aria-label',p?'Пауза':'Продолжить');
   show.classList.toggle('paused',!p); if(p){schedule(); if(!audio.muted) audio.play().catch(()=>{});} else {clearTimeout(sTimer); audio.pause();}}
 function fadeAudio(to,ms){const from=audio.volume,t0=performance.now();(function step(now){const k=Math.min(1,(now-t0)/ms);audio.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1)requestAnimationFrame(step);else if(to===0)audio.pause();})(t0);}
+const galCache={};
+function galShow(s){if(!galCache[s]){const t=TRIPS.find(x=>x.slug===s);galCache[s]={slug:'g:'+s,title:t.title,year:t.year,slides:t.gal.slides,music:t.gal.music}}return galCache[s]}
+async function openGallery(s){document.body.style.cursor='progress';try{await loadPhotos('g:'+s)}catch(e){document.body.style.cursor='';return}document.body.style.cursor='';startShow('g:'+s,0)}
+document.addEventListener('click',ev=>{const b=ev.target.closest('[data-gal]');if(!b)return;ev.preventDefault();ev.stopPropagation();openGallery(b.dataset.gal)},true);
 function startShow(slug,i,ch){
-  sTrip=slug==='best'?BEST:TRIPS.find(x=>x.slug===slug); show.hidden=false;
+  sTrip=slug==='best'?BEST:slug.startsWith('g:')?galShow(slug.slice(2)):TRIPS.find(x=>x.slug===slug); show.hidden=false;
   i=i||0; sList=[]; sLabel=sTrip.year?`${sTrip.title} · ${sTrip.year}`:sTrip.title; let first=0;
   if(ch!=null&&sTrip.chapters){let off=0;for(let k=0;k<ch;k++)off+=sTrip.chapters[k].n;const c=sTrip.chapters[ch];
     for(let k=0;k<c.n;k++)sList.push(off+k); first=i-off; sLabel=`${sTrip.title} · ${c.name}`;}

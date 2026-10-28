@@ -98,6 +98,12 @@ for _x in _BEST_NEW:
 _bc=next((x for x in BEST_SHOW['slides'] if 'Нойшванштайн' in x[2]),BEST_SHOW['slides'][0])
 BEST_SHOW['coverFile']=f"{_DIRS[_bc[3]]}/{_bc[0]}.webp"
 COVERS_EXTRA['p:best']=enc(BEST_SHOW['coverFile'],1600,70); BEST_SHOW['cover']='p:best'
+from gallery import GAL as _GAL
+for _s,_g in _GAL.items():
+    _t=next((t for t in trips if t['slug']==_s),None)
+    if not _t: continue
+    _t['gal']={'music':_g['music'],'slides':_g['slides']}
+    PHOTO_SETS['g:'+_s]={x[0]:enc(f'photosgal/{_s}/{x[0]}.webp',1280,66) for x in _g['slides']}
 for slug,ph in PHOTO_SETS.items():
     chunks=[{}];size=0
     for k,du in ph.items():
@@ -105,7 +111,7 @@ for slug,ph in PHOTO_SETS.items():
         chunks[-1][k]=du; size+=len(du)
     PHOTOS[slug]=[]
     for ci,c in enumerate(chunks):
-        fn=f'photos/{slug}-{ci}.json'; json.dump(c,open('site/'+fn,'w'),separators=(',',':')); PHOTOS[slug].append(fn)
+        fn=f"photos/{slug.replace(':','_')}-{ci}.json"; json.dump(c,open('site/'+fn,'w'),separators=(',',':')); PHOTOS[slug].append(fn)
 covers={t["cover"]:o["covers"][t["cover"]] for t in trips if t["cover"] in o["covers"]}
 covers.update(COVERS_EXTRA)
 for v in ["sRH4EahgCnA","cIyQY-rwktE","nGdI9Q1nAy8","fym5_-XKHbY","G-meRAm9ffE"]: covers[v]=o["covers"][v]

@@ -1,0 +1,33 @@
+Fécamp__P1110411|Фекан|Во дворце Бенедиктин|Fécamp|Inside the Palais Bénédictine
+Fécamp__P1110413|Фекан|Коллекция ликёров|Fécamp|A collection of liqueurs
+France_print__P1110468|Этрета|Набережная и скалы|Étretat|The promenade and the cliffs
+LR_Etreta__P1110482|Этрета|На смотровой площадке|Étretat|At the viewpoint
+LR_Etreta__P1110502|Этрета|Арка в скалах|Étretat|The arch in the cliffs
+LR_Etreta__P1110560|Нормандия|Закат над Ла-Маншем|Normandy|Sunset over the Channel
+LR_Etreta__P1110601|Этрета|Галечный пляж и белые скалы|Étretat|The pebble beach and white cliffs
+LR_Etreta__P1110616|Этрета|Кирпичные дома|Étretat|Brick houses
+LR_Honfler__P1110649|Онфлёр|Витражи церкви|Honfleur|Church stained glass
+LR_Honfler__P1110658|Онфлёр|Церковь Святой Екатерины|Honfleur|St Catherine’s church
+LR_Honfler__P1110676|Онфлёр|Улочки старого порта|Honfleur|Streets of the old harbour
+LR_Douville__P1110770|Довиль|Фахверковые виллы|Deauville|Half-timbered villas
+LR_Douville__P1110784|Довиль|Бульвар у моря|Deauville|The seaside boulevard
+France_print__P1120007|Нормандия|Старый рынок под черепичной крышей|Normandy|An old market hall under a tiled roof
+LR_Douville__P1120027|Довиль|Нормандские дома|Deauville|Norman houses
+LR_Douville__P1120037|Довиль|Магазины в фахверке|Deauville|Shops in half-timbered houses
+France_print__P1120199|Кан|Мужское аббатство|Caen|The Abbaye aux Hommes
+LR_caen__P1120214|Кан|Под сводами аббатства|Caen|Under the abbey vaults
+LR_caen__P1120216|Кан|Неф аббатства|Caen|The abbey nave
+France_print__P1120355|Бретань|Отлив|Brittany|Low tide
+LR_Dinan__P1120565|Динан|Средневековый фахверк|Dinan|Medieval half-timbering
+LR_Dinan__P1120578|Динан|Каменная улица в цветах|Dinan|A stone street in flowers
+LR_Dinan__P1120641|Динан|Дом с гортензиями|Dinan|A house with hydrangeas
+LR_Dinan__P1120666|Динан|Готические своды|Dinan|Gothic vaults
+France_print__P1120703|Бретань|Площадь старого городка|Brittany|An old town square
+France_print__P1120989|Бретань|Сады у крепостной стены|Brittany|Gardens by the ramparts
+France_print__P1130382|Живерни|Кувшинки в саду Моне|Giverny|Water lilies in Monet’s garden
+LR_Chartes__P1130187|Шартр|Резной портал собора|Chartres|The carved cathedral portal
+LR_Chartes__P1130226|Шартр|Река Эр|Chartres|The river Eure
+LR_Chartes__P1130249|Шартр|Под сводами собора|Chartres|Under the cathedral vaults
+France_print__P1130469|Париж|Нотр-Дам вечером|Paris|Notre-Dame in the evening
+France_print__P1130648|Париж|Мост Александра III|Paris|Pont Alexandre III
+France_print__P1130772|Париж|Монмартр|Paris|Montmartre

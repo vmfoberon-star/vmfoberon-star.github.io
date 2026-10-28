@@ -22,6 +22,7 @@ for t in trips:
         for k in ['name', 'date', 'note']:
             if c.get(k): c[k] = tr(c[k])
     if t.get('slides'): t['slides'] = [[s[0], tr(s[1]), tr(s[2])] + list(s[3:]) for s in t['slides']]
+    if t.get('gal'): t['gal']['slides'] = [[s[0], tr(s[1]), tr(s[2])] for s in t['gal']['slides']]
 page = page[:i] + json.dumps(trips, ensure_ascii=False) + page[i + end:]
 
 j = page.index('const BEST=') + 11
@@ -37,6 +38,9 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('<span><b>${t.gal.slides.length}</b>фото</span>', '<span><b>${t.gal.slides.length}</b>photos</span>'),
+ ('▶ Фото · слайд-шоу</button>', '▶ Photo slideshow</button>'),
+ ("${t.gal?' · фото':''}", "${t.gal?' · photos':''}"),
  ("b.textContent='⤢ Весь маршрут';b.title='Показать весь маршрут';", "b.textContent='⤢ Whole route';b.title='Show the whole route';"),
  ('aria-label="На главную страницу">← На главную</button>', 'aria-label="Back to the home page">← Home</button>'),
  ('aria-label="Назад на 10 секунд" title="Назад на 10 секунд"', 'aria-label="Back 10 seconds" title="Back 10 seconds"'),
