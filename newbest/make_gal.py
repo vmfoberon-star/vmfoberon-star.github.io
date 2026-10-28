@@ -1,6 +1,6 @@
 import os,glob,json
 from PIL import Image,ImageOps
-MUS={'denmark14':'benelux','norway17':'benelux','france18':'paris','barcelona':'spain','china19':'vienna','apulia21':'italia','azores22':'spain','portugal22':'spain','napoli23':'italia','spain23':'spain','rome25':'italia','prague25':'vienna','austria25':'vienna','toscana26':'italia','italy16':'italia'}
+MUS={'denmark14':'benelux','norway17':'benelux','france18':'paris','barcelona':'spain','china19':'vienna','apulia21':'italia','azores22':'spain','portugal22':'spain','napoli23':'italia','spain23':'spain','rome25':'italia','prague25':'vienna','austria25':'vienna','toscana26':'italia','italy16':'italia','greece18':'spain'}
 GAL={};EN={}
 for f in sorted(glob.glob('newbest/gal/*.txt')):
     s=os.path.basename(f)[:-4]; d='portugal22' if s=='azores22' else s

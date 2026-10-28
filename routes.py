@@ -63,5 +63,6 @@ ROUTES = {
    P('Тюильри', 'The Tuileries', 48.8635, 2.3275), P('Музей Орсе', "Musée d'Orsay", 48.8600, 2.3266), P('Сорбонна', 'The Sorbonne', 48.8488, 2.3431),
    P('Люксембургский сад', 'Luxembourg Gardens', 48.8462, 2.3372), P('Монмартр', 'Montmartre', 48.8867, 2.3431), P('Опера Гарнье', 'Opéra Garnier', 48.8720, 2.3316)]),
  'moscow16': dict(order=False, stops=[P('Красная площадь', 'Red Square', 55.7539, 37.6208), P('Москва-Сити', 'Moscow City', 55.7494, 37.5399)]),
+ 'greece18': dict(order=False, stops=[P('Афины', 'Athens', 37.9838, 23.7275), P('Акрополь', 'Acropolis', 37.9715, 23.7257), P('Ликабет', 'Lycabettus', 37.9819, 23.7433), P('Пелопоннес', 'Peloponnese', 37.7308, 22.7564)]),
  'italy03': dict(stops=[P('Рим', 'Rome', 41.9028, 12.4964), P('Флоренция', 'Florence', 43.7696, 11.2558)]),
 }
