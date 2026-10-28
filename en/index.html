@@ -834,9 +834,9 @@ function showRoute(t){
     <ol>${uniq.map((s,i)=>`<li data-i="${i}"><b>${i+1}</b><span>${esc(s[RT_LANG])}</span></li>`).join('')}</ol>
     ${r.note?`<p class="rt-note">${esc(r.note[RT_LANG])}</p>`:''}`;
   box.hidden=false;
-  box.dataset.slug=t.slug;
+  box.dataset.route=t.slug;
   getLeaflet().then(()=>{
-    const mapEl=$('#rtMap');if(!mapEl||$('#reelRoute').dataset.slug!==t.slug)return;
+    const mapEl=$('#rtMap');if(!mapEl||$('#reelRoute').dataset.route!==t.slug)return;
     mapEl.innerHTML='';
     if(rtMap){rtMap.remove();rtMap=null}
     const m=rtMap=L.map(mapEl,{scrollWheelZoom:false,zoomControl:true,attributionControl:true});
@@ -848,7 +848,7 @@ function showRoute(t){
       .bindTooltip(esc(s[RT_LANG]),{direction:'top',offset:[0,-12]}).addTo(m));
     m.fitBounds(L.latLngBounds(ll),{padding:[34,34],maxZoom:15});
     const hl=i=>{mk.forEach((x,j)=>{const e=x.getElement();e&&e.classList.toggle('on',j===i)});box.querySelectorAll('li').forEach((li,j)=>li.classList.toggle('on',j===i))};
-    mk.forEach((x,j)=>x.on('mouseover',()=>hl(j)).on('mouseout',()=>hl(-1)));
+    mk.forEach((x,j)=>x.on('mouseover',()=>hl(j)).on('mouseout',()=>hl(-1)).on('click',()=>{hl(j);m.setView(ll[j],Math.max(m.getZoom(),13))}));
     box.querySelectorAll('li').forEach((li,j)=>{li.onpointerenter=()=>{hl(j);mk[j].openTooltip()};li.onpointerleave=()=>{hl(-1);mk[j].closeTooltip()};li.onclick=()=>m.setView(ll[j],Math.max(m.getZoom(),13))});
   }).catch(()=>{const el=$('#rtMap');el&&(el.innerHTML='<div class="map-msg">The map is unavailable right now</div>')});
 }
