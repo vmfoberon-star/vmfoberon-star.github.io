@@ -1,0 +1,42 @@
+2016_Milan_day1__P1130236|Милан|Церковь на тихой площади|Milan|A church on a quiet square
+2016_Milan_day1__P1130265|Милан|Под сводами Дуомо|Milan|Under the vaults of the Duomo
+2016_Milan_day1__P1130291|Милан|На крыше Дуомо|Milan|On the roof of the Duomo
+2016_Milan_day1__P1130326|Милан|Холл старой гостиницы|Milan|The lobby of an old hotel
+2016_Milan_day2__P1130348|Милан|Зелёный парк|Milan|A green park
+2016_Milan_day2__P1130368|Милан|Пинакотека Брера|Milan|The Brera Gallery
+2016_Milan_day2__P1130399|Милан|Новые небоскрёбы|Milan|The new skyscrapers
+2016_Milan_day2__P1130425|Милан|Церковь Сан-Бабила|Milan|The church of San Babila
+2016.08_Верона-001__P1130443|Верона|Улица Мадзини|Verona|Via Mazzini
+2016.08_Верона-001__P1130455|Верона|Полосатая романская церковь|Verona|A striped Romanesque church
+2016.08_Верона-001__P1130469|Верона|Вечерний концерт|Verona|An evening concert
+2016.04_Виченца-001__P1130484|Виченца|В соборе|Vicenza|Inside the cathedral
+2016.04_Виченца-001__P1130500|Виченца|Базилика Палладио|Vicenza|The Basilica Palladiana
+2016.04_Виченца-001__P1130511|Виченца|Барочный фасад|Vicenza|A Baroque façade
+2016.04_Виченца-001__P1130526|Виченца|Кирпичная церковь|Vicenza|A brick church
+2016.08_Верона-001__P1130555|Верона|Жёлтые дома|Verona|Yellow houses
+2016.08_Верона-001__P1130567|Верона|Площадь Эрбе и башня Ламберти|Verona|Piazza delle Erbe and the Lamberti tower
+2016.04_Мантуя__2016.04_Мантуя__P1130586|Мантуя|Базилика Сант-Андреа|Mantua|The basilica of Sant’Andrea
+2016.04_Мантуя__2016.04_Мантуя__P1130621|Мантуя|На берегу озера|Mantua|On the lakeshore
+2016.04_Мантуя__2016.04_Мантуя__P1130649|Мантуя|Праздник на площади|Mantua|A festival on the square
+2016.04_Мантуя__2016.04_Мантуя__P1130687|Мантуя|Аркады дворца|Mantua|The palace arcades
+2016.04_Garda__P1130742|Гарда|Обед у озера|Lake Garda|Lunch by the lake
+2016.04_Garda__P1130765|Гарда|Кафе на набережной|Lake Garda|Cafés on the waterfront
+2016.04_Garda__P1130795|Гарда|Лодки у причала|Lake Garda|Boats at the pier
+2016.04_Garda__P1130836|Гарда|Городок на берегу|Lake Garda|A lakeside town
+2016.04_Падуя-001__P1130854|Падуя|Нарядный дворец|Padua|An ornate palazzo
+2016.04_Падуя-001__P1130877|Падуя|Канал в старом городе|Padua|A canal in the old town
+2016.04_Падуя-001__P1130888|Падуя|Прато-делла-Валле|Padua|Prato della Valle
+2016.04_Падуя-001__P1130907|Падуя|Бронзовая статуя в саду|Padua|A bronze statue in the garden
+2016.04_Болонья__2016.04_Болонья__P1130941|Болонья|Пьяцца Маджоре|Bologna|Piazza Maggiore
+2016.04_Болонья__2016.04_Болонья__P1130955|Болонья|Дворец Подеста|Bologna|The Palazzo del Podestà
+2016.04_Болонья__2016.04_Болонья__P1130974(1)|Болонья|Бесконечные портики|Bologna|Endless porticoes
+2016.04_Болонья__2016.04_Болонья__P1130983|Болонья|Рыночные улочки|Bologna|Market lanes
+2016.04_Болонья__2016.04_Болонья__P1130996|Болонья|Дворик за решёткой|Bologna|A courtyard behind the gate
+2016.04_Венеция__2016.04_Венеция__P1140029|Венеция|Собор Святого Марка|Venice|St Mark’s Basilica
+2016.04_Венеция__2016.04_Венеция__P1140068|Венеция|Барочная церковь|Venice|A Baroque church
+2016.04_Венеция__2016.04_Венеция__P1140128|Венеция|Дворцы на Большом канале|Venice|Palaces on the Grand Canal
+2016.04_Венеция__2016.04_Венеция__P1140171|Венеция|Санта-Мария-делла-Салюте|Venice|Santa Maria della Salute
+2016.04_Венеция__2016.04_Венеция__P1140204|Венеция|Палаццо у воды|Venice|A palazzo on the water
+2016.04_Венеция__2016.04_Венеция__P1140235|Венеция|Тихий канал|Venice|A quiet canal
+2016.04_Венеция__2016.04_Венеция__P1140255|Венеция|Старинные книги в музее|Venice|Old books in a museum
+2016.04_Венеция__2016.04_Венеция__P1140278|Венеция|В венецианской церкви|Venice|Inside a Venetian church
