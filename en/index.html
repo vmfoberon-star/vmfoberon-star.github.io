@@ -157,7 +157,9 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 .home-btn{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 14px);left:calc(env(safe-area-inset-left,0px) + 16px);height:46px;padding:0 18px 0 14px;border-radius:23px;border:1px solid rgba(238,234,226,.35);background:rgba(13,14,16,.6);color:var(--paper);font:600 14px/1 var(--cond,inherit);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;backdrop-filter:blur(6px)}
 .home-btn:hover{border-color:var(--amber);color:var(--amber)}
 .home-btn:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-.player .home-btn{z-index:95}.show .home-btn{position:absolute;z-index:5}.show .show-top{padding-top:calc(env(safe-area-inset-top,0px) + 74px)}
+.player .home-btn{z-index:95}.player .pl-top{padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+.reel-band{position:fixed;z-index:55;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + 74px);background:rgba(13,14,16,.94);border-bottom:1px solid rgba(238,234,226,.1);opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(6px)}
+.reel-band.on{opacity:1}.show .home-btn{position:absolute;z-index:5}.show .show-top{padding-top:calc(env(safe-area-inset-top,0px) + 74px)}
 body.tvmode .show .home-btn{opacity:0;transition:opacity .3s}body.tvmode .show:hover .home-btn{opacity:1}
 @media (max-width:600px){.home-btn{height:40px;padding:0 14px 0 11px;font-size:12px}}
 .eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px 22px;padding-block:28px 72px}
@@ -337,7 +339,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 .pl-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:calc(env(safe-area-inset-top,0px) + 18px) 80px 12px max(20px,env(safe-area-inset-left,0px));font-family:var(--cond);letter-spacing:.12em;text-transform:uppercase;font-size:13px;color:#d6d1c7}
 .pl-top b{display:block;font-family:var(--body);font-weight:500;letter-spacing:0;text-transform:none;font-size:clamp(1rem,2.4vw,1.3rem);color:var(--paper);margin-top:4px}
 .pl-frame{display:grid;place-items:center;min-height:0;padding:0 max(12px,env(safe-area-inset-left,0px))}
-.pl-box{position:relative;width:min(100%,calc((100vh - 190px) * 16 / 9));aspect-ratio:16/9;background:#0a0a0a}
+.pl-box{position:relative;width:min(100%,calc((100vh - 250px) * 16 / 9));aspect-ratio:16/9;background:#0a0a0a}
 .pl-box iframe,.pl-box>div{position:absolute;inset:0;width:100%;height:100%;border:0}
 .pl-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:14px 16px calc(env(safe-area-inset-bottom,0px) + 18px)}
 .pl-bar .btn{padding:11px 18px}
@@ -431,6 +433,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 <div class="reel" id="reel" hidden role="dialog" aria-modal="true" aria-labelledby="reelTitle">
   <button class="close" id="reelClose" aria-label="Close">×</button>
   <button class="home-btn" data-home aria-label="Back to the home page">← Home</button>
+  <div class="reel-band" id="reelBand"></div>
   <div class="reel-top gut" id="reelTop"></div>
   <div class="gut"><section class="in route" id="reelRoute" hidden></section></div>
   <div class="gut"><div class="in eps" id="reelEps"></div></div>
@@ -644,6 +647,7 @@ document.addEventListener('keydown',ev=>{if(player.hidden)return;if(ev.key==='Es
 document.addEventListener('click',ev=>{const b=ev.target.closest('[data-slug]');if(b){ev.preventDefault();openTrip(b.dataset.slug)}});
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!reel.hidden)closeTrip();if(ev.key==='Enter'&&ev.target.matches('.pic[role=button]'))openTrip(ev.target.dataset.slug)});
 $('#reelClose').addEventListener('click',()=>closeTrip());
+reel.addEventListener('scroll',()=>$('#reelBand').classList.toggle('on',reel.scrollTop>30),{passive:true});
 document.addEventListener('click',ev=>{if(!ev.target.closest('[data-home]'))return;ev.preventDefault();ev.stopPropagation();goHome()},true);
 function goHome(){const hadTrip=!reel.hidden;if(TV.on)tvStop();if(!show.hidden)closeShow();closePlayer();closeTrip();if(!hadTrip&&location.hash)history.replaceState(null,'',location.pathname+location.search);setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),60)}
 
