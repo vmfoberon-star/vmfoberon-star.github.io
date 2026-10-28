@@ -27,7 +27,7 @@ page = page[:i] + json.dumps(trips, ensure_ascii=False) + page[i + end:]
 j = page.index('const BEST=') + 11
 best, bend = json.JSONDecoder().raw_decode(page[j:])
 best['title'] = 'Best shots'
-best['place'] = 'The best photos from our trips, 2003–2013'
+best['place'] = 'The best photos from our trips, 2003–2026'
 best['slides'] = [[s[0], tr(s[1]), tr(s[2])] + list(s[3:]) for s in best['slides']]
 page = page[:j] + json.dumps(best, ensure_ascii=False) + page[j + bend:]
 # assets live one level up

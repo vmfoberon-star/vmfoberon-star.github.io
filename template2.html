@@ -765,7 +765,7 @@ document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement
 
 // best shots: labels with the trip name, music follows the trip
 (function(){const bt={};TRIPS.forEach(t=>bt[t.slug]=t);
-  BEST.slides=BEST.slides.map(s=>{const t=bt[s[3]];const head=t.title+(t.year&&!t.title.includes(t.year)?' '+t.year:'');const lab=s[1]===t.title?head:head+' · '+s[1];return [s[0],lab,s[2],s[3],t.music]})})();
+  BEST.slides=BEST.slides.map(s=>{const t=bt[s[3]];const head=t.title+(t.year&&!t.title.includes(t.year)?' '+t.year:'');const lab=s[1]===t.title?head:head+' · '+s[1];return [s[0],lab,s[2],s[3],s[4]||t.music]})})();
 let musicSwitching=false;
 function switchMusic(key){if(audio.dataset.src===key||musicSwitching||!MUSIC[key])return;musicSwitching=true;
   const vol=audio.muted?0:0.85;fadeAudio(0,700);

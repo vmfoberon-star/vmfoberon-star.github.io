@@ -85,14 +85,16 @@ trips=[t for t in trips if t['slug'] not in _ord]; trips[_j+1:_j+1]=_sub
 os.makedirs('site/photos',exist_ok=True)
 PHOTOS={}  # slug -> list of bundle files
 # best shots: hand-picked photos across trips (higher quality bundle)
-from best import BEST as _BEST
+from best import BEST as _BEST, BEST_NEW as _BEST_NEW
 _DIRS={'italy03':'photos2003','paris06':'photos2006','alps08':'photos2008','uk11':'photos2011','benelux12':'photos2012','vienna13':'photos2013','spain13':'photos2013es'}
 _bt={t['slug']:t for t in trips}
-BEST_SHOW={'slug':'best','title':'Лучшие кадры','place':'Лучшие фото из наших поездок, 2003–2013','year':'','slides':[],'music':_bt[_BEST[0][0]]['music']}
+BEST_SHOW={'slug':'best','title':'Лучшие кадры','place':'Лучшие фото из наших поездок, 2003–2026','year':'','slides':[],'music':_bt[_BEST[0][0]]['music']}
 for _sl,_id in _BEST:
     _s=next(x for x in _bt[_sl]['slides'] if x[0]==_id)
     BEST_SHOW['slides'].append([_id,_s[1],_s[2],_sl])
 PHOTO_SETS['best']={_id:enc(f'{_DIRS[_sl]}/{_id}.webp',1600,70) for _sl,_id in _BEST}
+for _x in _BEST_NEW:
+    BEST_SHOW['slides'].append(list(_x)); PHOTO_SETS['best'][_x[0]]=enc(f'photosbest/{_x[0]}.webp',1600,70)
 _bc=next((x for x in BEST_SHOW['slides'] if 'Нойшванштайн' in x[2]),BEST_SHOW['slides'][0])
 BEST_SHOW['coverFile']=f"{_DIRS[_bc[3]]}/{_bc[0]}.webp"
 COVERS_EXTRA['p:best']=enc(BEST_SHOW['coverFile'],1600,70); BEST_SHOW['cover']='p:best'
