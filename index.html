@@ -925,6 +925,7 @@ function renderStats(){
 function drawAllRoutes(){
   getLeaflet().then(()=>{const el=$('#stMap');el.innerHTML='';
     const m=L.map(el,{scrollWheelZoom:false,worldCopyJump:true});
+    m.on('popupopen',e=>{const pe=e.popup.getElement();if(pe)pe.querySelectorAll('[data-slug]').forEach(x=>{x.onclick=ev=>{ev.preventDefault();ev.stopPropagation();m.closePopup();openTrip(x.dataset.slug)}})});
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(m);
     const all=[];const pal=['#C8901E','#B5462F','#2F6FB5','#3E8E5A','#8A4FB5','#C2563A','#1F8A8A','#9B7A1C'];
     TRIPS.forEach((t,k)=>{const st=tripStops(t);if(!st.length)return;const ll=st.map(s=>[s[0],s[1]]);all.push(...ll);
