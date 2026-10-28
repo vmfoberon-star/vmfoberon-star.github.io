@@ -248,6 +248,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 .route{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:18px 28px;padding-block:26px 6px;align-items:start}
 .route .rt-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:12px}
 .route .rt-head h3{font-family:var(--cond);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);text-transform:uppercase;margin:4px 0 0;line-height:1.05}
+.rt-all{background:#fff;color:#1b1d20;border:2px solid rgba(0,0,0,.2);border-radius:4px;padding:6px 10px;font:600 13px/1.2 var(--body,sans-serif);cursor:pointer;box-shadow:none}.rt-all:hover{background:#f4f4f4}.rt-all:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 .route .rt-map{position:relative;z-index:0;isolation:isolate;aspect-ratio:4/3;max-height:460px;background:#121417;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
 .route .rt-map img{max-width:none}
 .route .rt-map .leaflet-attribution-flag{display:none!important}
@@ -860,6 +861,10 @@ function showRoute(t){
     const mk=uniq.map((s,i)=>L.marker(ll[i],{icon:L.divIcon({className:'rt-mk',html:`<b>${i+1}</b>`,iconSize:[26,26],iconAnchor:[13,13]}),title:s[RT_LANG],keyboard:false})
       .bindTooltip(esc(s[RT_LANG]),{direction:'top',offset:[0,-12]}).addTo(m));
     m.fitBounds(L.latLngBounds(ll),{padding:[34,34],maxZoom:15});
+    const fitAll=()=>m.fitBounds(L.latLngBounds(ll),{padding:[34,34],maxZoom:15});
+    const AllCtl=L.Control.extend({options:{position:'topright'},onAdd(){const b=L.DomUtil.create('button','rt-all');b.type='button';b.textContent='⤢ Весь маршрут';b.title='Показать весь маршрут';
+      L.DomEvent.disableClickPropagation(b);L.DomEvent.on(b,'click',e=>{L.DomEvent.preventDefault(e);fitAll();box.querySelectorAll('li').forEach(li=>li.classList.remove('on'))});return b}});
+    m.addControl(new AllCtl());
     const hl=i=>{mk.forEach((x,j)=>{const e=x.getElement();e&&e.classList.toggle('on',j===i)});box.querySelectorAll('li').forEach((li,j)=>li.classList.toggle('on',j===i))};
     mk.forEach((x,j)=>x.on('mouseover',()=>hl(j)).on('mouseout',()=>hl(-1)).on('click',()=>{hl(j);m.setView(ll[j],Math.max(m.getZoom(),13))}));
     box.querySelectorAll('li').forEach((li,j)=>{li.onpointerenter=()=>{hl(j);mk[j].openTooltip()};li.onpointerleave=()=>{hl(-1);mk[j].closeTooltip()};li.onclick=()=>m.setView(ll[j],Math.max(m.getZoom(),13))});
