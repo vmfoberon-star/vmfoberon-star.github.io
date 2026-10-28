@@ -1,0 +1,41 @@
+ANCI_R__P1010008|Савойя|Зелёные холмы по дороге в Анси|Savoy|Green hills on the way to Annecy
+ANCI_R__P1010030|Анси|Дома над каналом Тиу|Annecy|Houses above the Thiou canal
+ANCI_R__P1010062|Анси|Старый дом на углу|Annecy|An old corner house
+ANCI_R__P1010085|Анси|Канал Тиу в старом городе|Annecy|The Thiou canal in the old town
+ANCI_R__P1010099|Анси|Цветы на мостике через канал|Annecy|Flowers on a canal bridge
+ANCI_R__P1010130|Анси|Лебедь на озере|Annecy|A swan on the lake
+ANCI_R__P1010156|Анси|Вечерняя улица|Annecy|An evening street
+ANCI_R__P1010193|Анси|Вдвоём на набережной озера|Annecy|The two of us on the lakeshore
+ANCI_R__P1010204|Анси|Розовое дерево в парке|Annecy|A pink tree in the park
+ANCI_R__P1010231|Озеро Анси|Облака над горами|Lake Annecy|Clouds over the mountains
+ANCI_R__P1010265|Озеро Анси|Бирюзовая вода и горы|Lake Annecy|Turquoise water and mountains
+ANCI_R__P1010306|Озеро Анси|Виллы на берегу|Lake Annecy|Villas on the shore
+ANCI_R__P1010342|Анси|Цветы у канала|Annecy|Flowers by the canal
+ANCI_R__P1010352|Анси|На набережной канала|Annecy|On the canal embankment
+ANCI_R__P1010363|Анси|Дом, увитый плющом|Annecy|An ivy-covered house
+ANCI_R__P1010406|Анси|Кафе вдоль канала|Annecy|Cafés along the canal
+ANCI_R__P1010419|Анси|Канал и горы вдали|Annecy|The canal with mountains beyond
+Lousanna_R__P1010556|Лозанна|У вокзала|Lausanne|At the railway station
+Lousanna_R__P1010563|Лозанна|Угловой дом в центре|Lausanne|A corner building in the centre
+Lousanna_R__P1010585|Лозанна|Вдвоём на мосту, вдали собор|Lausanne|The two of us on a bridge, the cathedral beyond
+Lousanna_R__P1010603|Лозанна|Шпиль над площадью|Lausanne|A spire above the square
+Lousanna_R__P1010607|Лозанна|Орган в соборе|Lausanne|The organ in the cathedral
+Lousanna_R__P1010617|Лозанна|Витраж-роза собора|Lausanne|The cathedral's rose window
+Lousanna_R__P1010639|Лозанна|Старинное здание в центре|Lausanne|A grand old building in the centre
+Lousanna_R__P1010653|Лозанна|Ратуша|Lausanne|The town hall
+Lousanna_R__P1010670|Лозанна|У Женевского озера|Lausanne|By Lake Geneva
+VEVE_Montre_R__P1010709|Монтрё|Отели belle époque|Montreux|Belle-époque hotels
+VEVE_Montre_R__P1010722|Монтрё|Сад перед отелем|Montreux|A garden in front of a hotel
+VEVE_Montre_R__P1010725|Монтрё|Осень на набережной|Montreux|Autumn on the promenade
+VEVE_Montre_R__P1010736|Монтрё|Город у подножия гор|Montreux|The town at the foot of the mountains
+VEVE_Montre_R__P1010748|Монтрё|Отель «Эден»|Montreux|The Hotel Eden
+VEVE_Montre_R__P1010764|Монтрё|Склоны над озером|Montreux|Hillsides above the lake
+VEVE_Montre_R__P1010775|Монтрё|Гранд-отель «Эксельсиор»|Montreux|The Grand Hotel Excelsior
+VEVE_Montre_R__P1010790|Монтрё|Прогулка по набережной|Montreux|A walk along the promenade
+VEVE_Montre_R__P1010821|Шильон|Вдвоём у Шильонского замка|Chillon|The two of us at Chillon Castle
+VEVE_Montre_R__P1010851|Шильон|Замок и виадук|Chillon|The castle and the viaduct
+VEVE_Montre_R__P1020016|Веве|Вилла на берегу|Vevey|A lakeside villa
+VEVE_Montre_R__P1020034|Веве|У памятника Чаплину|Vevey|By the Charlie Chaplin statue
+VEVE_Montre_R__P1020052|Веве|Старая улица|Vevey|An old street
+VEVE_Montre_R__P1020062|Веве|Лебеди у набережной|Vevey|Swans by the promenade
+VEVE_Montre_R__P1020073|Веве|Колокольня над крышами|Vevey|A bell tower above the rooftops
