@@ -152,6 +152,12 @@ footer .in{border-top:1px solid var(--rule);padding-top:24px;display:flex;flex-w
 .close{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 14px);right:calc(env(safe-area-inset-right,0px) + 16px);width:46px;height:46px;border-radius:50%;
   border:1px solid rgba(238,234,226,.35);background:rgba(13,14,16,.6);color:var(--paper);font-size:24px;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(6px)}
 .close:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.home-btn{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 14px);left:calc(env(safe-area-inset-left,0px) + 16px);height:46px;padding:0 18px 0 14px;border-radius:23px;border:1px solid rgba(238,234,226,.35);background:rgba(13,14,16,.6);color:var(--paper);font:600 14px/1 var(--cond,inherit);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;backdrop-filter:blur(6px)}
+.home-btn:hover{border-color:var(--amber);color:var(--amber)}
+.home-btn:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.player .home-btn{z-index:95}.show .home-btn{position:absolute;z-index:5}.show .show-top{padding-top:calc(env(safe-area-inset-top,0px) + 74px)}
+body.tvmode .show .home-btn{opacity:0;transition:opacity .3s}body.tvmode .show:hover .home-btn{opacity:1}
+@media (max-width:600px){.home-btn{height:40px;padding:0 14px 0 11px;font-size:12px}}
 .eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px 22px;padding-block:28px 72px}
 .ep{display:grid;gap:10px;text-decoration:none;min-width:0}
 .ep .th{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;border-radius:2px;background:var(--ink-2)}
@@ -422,6 +428,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 
 <div class="reel" id="reel" hidden role="dialog" aria-modal="true" aria-labelledby="reelTitle">
   <button class="close" id="reelClose" aria-label="Закрыть">×</button>
+  <button class="home-btn" data-home aria-label="На главную страницу">← На главную</button>
   <div class="reel-top gut" id="reelTop"></div>
   <div class="gut"><section class="in route" id="reelRoute" hidden></section></div>
   <div class="gut"><div class="in eps" id="reelEps"></div></div>
@@ -432,6 +439,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
   <div class="layer" id="showA"><img class="bg" alt=""><img class="fg" alt=""></div>
   <div class="layer" id="showB"><img class="bg" alt=""><img class="fg" alt=""></div>
   <div class="show-shade"></div>
+  <button class="home-btn" data-home aria-label="На главную страницу">← На главную</button>
   <div class="show-top"><span id="showTitle"></span><span id="showCount"></span></div>
   <div class="show-cap"><div class="eyebrow" id="showCity"></div><div class="cap" id="showCap" aria-live="polite"></div></div>
   <div class="show-ctl">
@@ -452,6 +460,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 
 <div class="player" id="player" hidden role="dialog" aria-modal="true" aria-labelledby="plTitle">
   <button class="close" id="plClose" aria-label="Закрыть видео">×</button>
+  <button class="home-btn" data-home aria-label="На главную страницу">← На главную</button>
   <div class="pl-top"><div><span id="plTrip"></span><b id="plTitle"></b></div><span id="plCount"></span></div>
   <div class="pl-frame"><div class="pl-box"><div id="ytp"></div></div></div>
   <div class="pl-bar">
@@ -633,6 +642,8 @@ document.addEventListener('keydown',ev=>{if(player.hidden)return;if(ev.key==='Es
 document.addEventListener('click',ev=>{const b=ev.target.closest('[data-slug]');if(b){ev.preventDefault();openTrip(b.dataset.slug)}});
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!reel.hidden)closeTrip();if(ev.key==='Enter'&&ev.target.matches('.pic[role=button]'))openTrip(ev.target.dataset.slug)});
 $('#reelClose').addEventListener('click',()=>closeTrip());
+document.addEventListener('click',ev=>{if(!ev.target.closest('[data-home]'))return;ev.preventDefault();ev.stopPropagation();goHome()},true);
+function goHome(){const hadTrip=!reel.hidden;if(TV.on)tvStop();if(!show.hidden)closeShow();closePlayer();closeTrip();if(!hadTrip&&location.hash)history.replaceState(null,'',location.pathname+location.search);setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),60)}
 
 // photo trips: page with photo grid + full-screen slideshow with music
 function photoCard(t,sl,i,ch){return `
