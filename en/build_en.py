@@ -37,6 +37,7 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ("b.textContent='⤢ Весь маршрут';b.title='Показать весь маршрут';", "b.textContent='⤢ Whole route';b.title='Show the whole route';"),
  ('aria-label="На главную страницу">← На главную</button>', 'aria-label="Back to the home page">← Home</button>'),
  ('aria-label="Назад на 10 секунд" title="Назад на 10 секунд"', 'aria-label="Back 10 seconds" title="Back 10 seconds"'),
  ('aria-label="Вперёд на 10 секунд" title="Вперёд на 10 секунд"', 'aria-label="Forward 10 seconds" title="Forward 10 seconds"'),
