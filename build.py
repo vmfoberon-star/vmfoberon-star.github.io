@@ -49,6 +49,8 @@ if HAVE13ES: COVERS_EXTRA['p:spain13']=enc(trip2013es.COVER,1280,66)
 if HAVE13: COVERS_EXTRA['p:vienna13']=enc(trip2013.COVER,1280,66)
 if HAVE11: COVERS_EXTRA['p:uk11']=enc(trip2011.COVER,1280,66)
 if HAVE12: COVERS_EXTRA['p:benelux12']=enc(trip2012.COVER,1280,66)
+import trip2016m
+PHOTO_SETS['moscow16']=trip2016m.photos(enc); COVERS_EXTRA['p:moscow16']=enc(trip2016m.COVER,1280,66)
 def mus(name):
     shutil.copy(f'music/{name}.webm',f'site/music/{name}.webm'); shutil.copy(f'music/{name}.m4a',f'site/music/{name}.mp4')
     return {'webm':f'music/{name}.webm','m4a':f'music/{name}.mp4'}
@@ -78,6 +80,7 @@ if HAVE12:
     j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]; trips.insert(j+1,trip2012.TRIP)
 if HAVE11:
     j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]; trips.insert(j+1,trip2011.TRIP)
+j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]; trips.insert(j,trip2016m.TRIP)
 _ord=['spain13','vienna13','benelux12','uk11']
 _sub=[t for t in trips if t['slug'] in _ord]; _sub.sort(key=lambda t:_ord.index(t['slug']))
 _j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]
@@ -121,7 +124,7 @@ for t in trips:
 GEO={'toscana26':[43.32,11.33],'uk26':[53.6,-3.5],'prague25':[50.08,14.42],'austria25':[47.7,13.6],'rome25':[41.9,12.5],
  'spain23':[37.39,-5.98],'napoli23':[40.85,14.27],'azores22':[37.78,-25.5],'portugal22':[40.2,-8.4],'apulia21':[40.78,17.24],
  'china19':[39.9,116.4],'france18':[48.85,-1.6],'greece18':[37.98,23.73],'norway17':[60.9,6.8],'italy16':[45.44,10.99],
- 'swiss16':[46.45,6.6],'denmark14':[55.68,12.57],'barcelona':[41.39,2.17],'vienna13':[48.21,16.37],'benelux12':[50.95,4.2],
+ 'swiss16':[46.45,6.6],'moscow16':[55.75,37.62],'denmark14':[55.68,12.57],'barcelona':[41.39,2.17],'vienna13':[48.21,16.37],'benelux12':[50.95,4.2],
  'uk11':[51.51,-0.13],'spain13':[40.42,-3.70],'alps08':[47.4,9.6],'paris06':[48.86,2.35],'italy03':[42.6,11.9]}
 for t in trips: t['geo']=GEO[t['slug']]
 from routes import ROUTES
