@@ -182,16 +182,15 @@ body.tvmode .show .home-btn{opacity:0;transition:opacity .3s}body.tvmode .show:h
 .tl-yr>h3{margin:0;font-family:var(--cond);font-weight:600;font-size:1.6rem;color:var(--amber);text-align:right;position:relative;line-height:1.2}
 .tl-yr>h3::after{content:"";position:absolute;right:-19px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--amber);border:3px solid var(--ink)}
 .tl-gap{padding:2px 0 2px 100px;color:var(--muted);font-size:.93rem;font-style:italic}
-.tl-trips{display:grid;gap:12px}
-.tl-trip{all:unset;cursor:pointer;display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;padding:8px;border-radius:6px;border:1px solid transparent}
-.tl-trip:hover,.tl-trip:focus-visible{border-color:var(--rule);background:#121417}
+.tl-trips{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.tl-trip{all:unset;cursor:pointer;display:inline-flex;align-items:baseline;gap:8px;padding:5px 12px;border-radius:999px;border:1px solid var(--rule);background:#121417}
+.tl-trip:hover,.tl-trip:focus-visible{border-color:var(--amber)}
 .tl-trip:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-.tl-trip img{width:132px;aspect-ratio:16/10;object-fit:cover;border-radius:4px;display:block;background:#1d2024}
-.tl-trip h4{margin:0;font-family:var(--cond);font-weight:600;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
-.tl-trip .pl{font-family:var(--serif);font-style:italic;color:#E4DFD5;font-size:1.05rem}
-.tl-trip p{margin:4px 0 0;color:#CFCAC0;font-size:.95rem;max-width:70ch}
-@media (max-width:640px){.tl-list::before{left:20px}.tl-yr{grid-template-columns:1fr;gap:8px;padding-left:40px}.tl-yr>h3{text-align:left}.tl-yr>h3::after{left:-26px;right:auto}
-  .tl-gap{padding-left:40px}.tl-trip{grid-template-columns:96px 1fr;gap:12px}.tl-trip img{width:96px}}
+.tl-trip h4{margin:0;font-family:var(--cond);font-weight:600;font-size:1.05rem;text-transform:uppercase;letter-spacing:.02em}
+.tl-trip .pl{font-family:var(--serif);font-style:italic;color:#CFCAC0;font-size:.95rem}
+.tl-yr{padding:6px 0}.tl-yr>h3{font-size:1.35rem}
+@media (max-width:640px){.tl-list::before{left:20px}.tl-yr{grid-template-columns:1fr;gap:6px;padding-left:40px}.tl-yr>h3{text-align:left}.tl-yr>h3::after{left:-26px;right:auto}
+  .tl-gap{padding-left:40px}.tl-trip .pl{display:none}}
 .sp-box{width:min(620px,100% - 32px)}
 .sp-link{display:flex;gap:10px;flex-wrap:wrap}
 .sp-link input{flex:1 1 260px;min-width:0;background:#121417;color:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:12px 14px;font:inherit;font-size:15px}
@@ -942,8 +941,8 @@ function renderTimeline(){
   const dated=TRIPS.filter(t=>t.year).slice().reverse();const byY={};dated.forEach(t=>(byY[t.year]=byY[t.year]||[]).push(t));
   const ys=Object.keys(byY).map(Number).sort((a,b)=>a-b);let html='',prev=null;
   for(const y of ys){if(prev&&y-prev>1)html+=`<li class="tl-gap">${y-prev-1===1?'год':pl(y-prev-1,'год','года','лет')} без больших поездок на сайте</li>`;
-    html+=`<li class="tl-yr"><h3>${y}</h3><div class="tl-trips">${byY[y].map(t=>{const s=(t.blurb||'').split(/(?<=[.!?])\s/)[0];
-      return `<button class="tl-trip" data-slug="${t.slug}"><img src="${COVERS[t.cover]||''}" alt="" loading="lazy"><div><h4>${esc(t.title)}</h4><div class="pl">${esc(t.place)}</div><p>${esc(s)}</p></div></button>`}).join('')}</div></li>`;prev=y}
+    html+=`<li class="tl-yr"><h3>${y}</h3><div class="tl-trips">${byY[y].map(t=>{const pl=(t.place||'').split('·')[0].trim();
+      return `<button class="tl-trip" data-slug="${t.slug}" title="${esc(t.place)}"><h4>${esc(t.title)}</h4><span class="pl">${esc(pl)}</span></button>`}).join('')}</div></li>`;prev=y}
   $('#tlList').innerHTML=html;$('#tlNote').textContent=`${ys[0]} — ${ys[ys.length-1]}`;
 }
 renderStats();renderTimeline();
