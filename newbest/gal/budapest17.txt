@@ -1,0 +1,36 @@
+gp__buda__000|Будапешт|Рыбацкий бастион|Budapest|Fisherman's Bastion
+gp__buda__001|Будапешт|Церковь Матьяша|Budapest|Matthias Church
+gp__buda__003|Будапешт|Вид с Крепостного холма|Budapest|The view from Castle Hill
+gp__buda__004|Будапешт|Башни бастиона|Budapest|The towers of the Bastion
+gp__buda__005|Будапешт|Площадь Святой Троицы|Budapest|Holy Trinity Square
+gp__buda__009|Будапешт|Улица Буды|Budapest|A street in Buda
+gp__buda__010|Будапешт|Шпиль церкви Матьяша|Budapest|The spire of Matthias Church
+gp__buda__013|Будапешт|Кафе в Крепостном квартале|Budapest|A café in the Castle District
+gp__buda__016|Будапешт|Парламент над Дунаем|Budapest|Parliament on the Danube
+gp__buda__017|Будапешт|Цепной мост и Пешт|Budapest|The Chain Bridge and Pest
+gp__buda__019|Будапешт|Настоящий гуляш|Budapest|Real goulash
+gp__buda__024|Будапешт|Церковь Матьяша и бастион|Budapest|Matthias Church and the Bastion
+gp__buda__025|Будапешт|В церкви Матьяша|Budapest|Inside Matthias Church
+gp__buda__027|Будапешт|Расписные своды|Budapest|Painted vaults
+gp__buda__029|Будапешт|Орган церкви Матьяша|Budapest|The organ of Matthias Church
+gp__buda__042|Будапешт|Памятник святому Иштвану|Budapest|The statue of St Stephen
+gp__buda__043|Будапешт|Галереи бастиона|Budapest|The Bastion's galleries
+gp__buda__044|Будапешт|Панорама Пешта|Budapest|A panorama of Pest
+gp__buda__045|Будапешт|Мост Маргит|Budapest|Margaret Bridge
+gp__buda__047|Будапешт|Пешт с высоты|Budapest|Pest from above
+gp__buda__049|Будапешт|Уличные музыканты|Budapest|Street musicians
+gp__buda__050|Будапешт|Базилика Святого Иштвана|Budapest|St Stephen's Basilica
+gp__buda__051|Будапешт|Цепной мост|Budapest|The Chain Bridge
+gp__buda__053|Будапешт|Королевский дворец|Budapest|The Royal Palace
+gp__buda__056|Будапешт|Ворота с птицей Турул|Budapest|The gate with the Turul bird
+gp__nbud__002|Будапешт|Вечер на Дунае|Budapest|Evening on the Danube
+gp__nbud__006|Будапешт|Цепной мост в огнях|Budapest|The Chain Bridge in lights
+gp__nbud__001|Будапешт|Парламент ночью|Budapest|Parliament at night
+gp__nbud__008|Будапешт|Парламент и набережная|Budapest|Parliament and the embankment
+gp__nbud__012|Будапешт|Подсветка Парламента|Budapest|Parliament illuminated
+gp__nbud__014|Будапешт|Церковь Матьяша ночью|Budapest|Matthias Church at night
+gp__nbud__015|Будапешт|Дворец над рекой|Budapest|The palace above the river
+gp__nbud__017|Будапешт|Концертный зал Вигадо|Budapest|The Vigadó concert hall
+gp__nbud__020|Будапешт|Мост Свободы|Budapest|Liberty Bridge
+gp__nbud__021|Будапешт|Купальни Геллерт|Budapest|The Gellért Baths
+gp__nbud__022|Будапешт|Вечерняя улица|Budapest|An evening street

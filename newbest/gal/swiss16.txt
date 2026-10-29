@@ -39,3 +39,34 @@ VEVE_Montre_R__P1020034|Веве|У памятника Чаплину|Vevey|By t
 VEVE_Montre_R__P1020052|Веве|Старая улица|Vevey|An old street
 VEVE_Montre_R__P1020062|Веве|Лебеди у набережной|Vevey|Swans by the promenade
 VEVE_Montre_R__P1020073|Веве|Колокольня над крышами|Vevey|A bell tower above the rooftops
+gp__gen__003|Женева|Набережная Роны|Geneva|The Rhône embankment
+gp__gen__012|Женева|Лебеди на Женевском озере|Geneva|Swans on Lake Geneva
+gp__gen__020|Женева|Фонтан Же-До|Geneva|The Jet d'Eau
+gp__gen__021|Женева|Яхты у набережной|Geneva|Yachts by the quay
+gp__gen__027|Женева|Собор Святого Петра|Geneva|St Peter's Cathedral
+gp__gen__029|Женева|Башни собора|Geneva|The cathedral towers
+gp__gen__032|Женева|Орган собора|Geneva|The cathedral organ
+gp__gen__034|Женева|Старинные пушки под аркадой|Geneva|Old cannons under an arcade
+gp__gen__039|Женева|Большие шахматы в парке Бастионов|Geneva|Giant chess in the Parc des Bastions
+gp__gen__040|Женева|Аллея парка Бастионов|Geneva|An avenue in the Parc des Bastions
+gp__gen__072|Женева|Гавань с лебедями|Geneva|The harbour with swans
+gp__gen__077|Женева|Парус у маяка|Geneva|A sail by the lighthouse
+gp__lyon1__007|Лион|Улица Старого Лиона|Lyon|A street in Vieux Lyon
+gp__lyon1__013|Лион|Во дворике трабуля|Lyon|In a traboule courtyard
+gp__lyon1__019|Лион|Собор Святого Иоанна|Lyon|St John's Cathedral
+gp__lyon1__023|Лион|Фурвьер над городом|Lyon|Fourvière above the city
+gp__lyon1__027|Лион|В базилике Фурвьер|Lyon|Inside the Fourvière basilica
+gp__lyon1__028|Лион|Мозаика базилики|Lyon|The basilica's mosaic
+gp__lyon1__030|Лион|Алтарь базилики|Lyon|An altar in the basilica
+gp__lyon1__051|Лион|Мост через Сону|Lyon|A bridge over the Saône
+gp__lyon1__058|Лион|Готическая церковь|Lyon|A Gothic church
+gp__lyon2__011|Лион|Мостик к церкви Сен-Жорж|Lyon|The footbridge to Saint-Georges
+gp__lyon2__013|Лион|Площадь Белькур|Lyon|Place Bellecour
+gp__lyon2__022|Лион|Ратуша на площади Терро|Lyon|The Hôtel de Ville on Place des Terreaux
+gp__lyon2__023|Лион|Фонтан на площади|Lyon|A fountain on the square
+gp__lyon2__028|Лион|Дом с росписью|Lyon|A painted wall
+gp__lyon2__032|Лион|Устрицы на рынке Поль Бокюз|Lyon|Oysters at Les Halles Paul Bocuse
+gp__lyon2__033|Лион|Колбасы и окорока на рынке|Lyon|Sausages and hams at the market
+gp__lyon2__041|Лион|Фурвьер ночью|Lyon|Fourvière at night
+gp__lyon2__043|Лион|Базилика в ночной подсветке|Lyon|The basilica lit up at night
+gp__lyon2__044|Лион|Вечерние улицы|Lyon|Streets in the evening

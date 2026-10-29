@@ -81,7 +81,17 @@ if HAVE12:
 if HAVE11:
     j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]; trips.insert(j+1,trip2011.TRIP)
 j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]; trips.insert(j,trip2016m.TRIP)
-_ord=['spain13','vienna13','benelux12','uk11']
+import newtrips
+for _nt in newtrips.TRIPS:
+    PHOTO_SETS[_nt['slug']]=newtrips.photos(enc,_nt['slug']); COVERS_EXTRA['p:'+_nt['slug']]=enc(newtrips.cover(_nt['slug']),1280,66)
+_nt={t['slug']:t for t in newtrips.TRIPS}
+trips.insert([i for i,t in enumerate(trips) if t['slug']=='norway17'][0]+1,_nt['budapest17'])
+trips.insert([i for i,t in enumerate(trips) if t['slug']=='china19'][0]+1,_nt['rhodes19'])
+_bc=[t for t in trips if t['slug']=='barcelona'][0]; trips.remove(_bc)
+_bc['year']='2019'; _bc['place']='Испания · Барселона и Жирона, январь 2019'
+trips.insert([i for i,t in enumerate(trips) if t['slug']=='rhodes19'][0]+1,_bc)
+_ord=['spain13','vienna13','benelux12','uk11','sf10']
+trips.append(_nt['sf10'])
 _sub=[t for t in trips if t['slug'] in _ord]; _sub.sort(key=lambda t:_ord.index(t['slug']))
 _j=[i for i,t in enumerate(trips) if t['slug']=='denmark14'][0]
 trips=[t for t in trips if t['slug'] not in _ord]; trips[_j+1:_j+1]=_sub
@@ -104,7 +114,7 @@ COVERS_EXTRA['p:best']=enc(BEST_SHOW['coverFile'],1600,70); BEST_SHOW['cover']='
 from gallery import GAL as _GAL
 for _s,_g in _GAL.items():
     _t=next((t for t in trips if t['slug']==_s),None)
-    if not _t: continue
+    if not _t or _s in _nt: continue
     _t['gal']={'music':_g['music'],'slides':_g['slides']}
     PHOTO_SETS['g:'+_s]={x[0]:enc(f'photosgal/{_s}/{x[0]}.webp',1280,66) for x in _g['slides']}
 for slug,ph in PHOTO_SETS.items():
@@ -125,7 +135,7 @@ GEO={'toscana26':[43.32,11.33],'uk26':[53.6,-3.5],'prague25':[50.08,14.42],'aust
  'spain23':[37.39,-5.98],'napoli23':[40.85,14.27],'azores22':[37.78,-25.5],'portugal22':[40.2,-8.4],'apulia21':[40.78,17.24],
  'china19':[39.9,116.4],'france18':[48.85,-1.6],'greece18':[37.98,23.73],'norway17':[60.9,6.8],'italy16':[45.44,10.99],
  'swiss16':[46.45,6.6],'moscow16':[55.75,37.62],'denmark14':[55.68,12.57],'barcelona':[41.39,2.17],'vienna13':[48.21,16.37],'benelux12':[50.95,4.2],
- 'uk11':[51.51,-0.13],'spain13':[40.42,-3.70],'alps08':[47.4,9.6],'paris06':[48.86,2.35],'italy03':[42.6,11.9]}
+ 'uk11':[51.51,-0.13],'budapest17':[47.50,19.04],'rhodes19':[36.25,28.0],'sf10':[37.77,-122.42],'spain13':[40.42,-3.70],'alps08':[47.4,9.6],'paris06':[48.86,2.35],'italy03':[42.6,11.9]}
 for t in trips: t['geo']=GEO[t['slug']]
 from routes import ROUTES
 for t in trips:

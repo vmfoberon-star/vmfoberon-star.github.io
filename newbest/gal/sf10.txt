@@ -1,0 +1,9 @@
+gp__sfo__000|Сан-Франциско|Ольга у моста Золотые Ворота|San Francisco|Olga by the Golden Gate Bridge
+gp__sfo__001|Сан-Франциско|Церковь на холме|San Francisco|A church on the hill
+gp__sfo__003|Сан-Франциско|Церковь Святых Петра и Павла|San Francisco|Saints Peter and Paul Church
+gp__sfo__002|Сан-Франциско|Викторианские дома «Расписные леди»|San Francisco|The Painted Ladies
+gp__sfo__005|Сан-Франциско|Канатный трамвай|San Francisco|A cable car
+gp__sfo__012|Тихоокеанское побережье|Тропа над океаном|Pacific coast|A trail above the ocean
+gp__sfo__013|Тихоокеанское побережье|Ольга над океаном|Pacific coast|Olga above the ocean
+gp__sfo__014|Мьюир-Вудс|Гигантские секвойи|Muir Woods|Giant redwoods
+gp__sfo__015|Мьюир-Вудс|Спил тысячелетней секвойи|Muir Woods|A cross-section of an ancient redwood

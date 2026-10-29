@@ -30,3 +30,12 @@ P1080344|Осло|Осенний склон|Oslo|An autumn slope
 P1080417|Осло|Музей «Фрам»|Oslo|The Fram Museum
 P1080528|Осло|Пруд в парке|Oslo|A pond in the park
 P1080576|Осло|Вечерний город|Oslo|The city in the evening
+gp__oslo__000|Осло|Монолит в парке Вигеланда|Oslo|The Monolith in Vigeland Park
+gp__oslo__002|Осло|Парк скульптур Вигеланда|Oslo|Vigeland Sculpture Park
+gp__oslo__048|Осло|Фонтан Вигеланда|Oslo|The Vigeland fountain
+gp__oslo__015|Осло|Королевский дворец|Oslo|The Royal Palace
+gp__oslo__021|Осло|Оперный театр|Oslo|The Opera House
+gp__oslo__022|Осло|Крепость Акерсхус|Oslo|Akershus Fortress
+gp__oslo__031|Осло|Ратуша|Oslo|The City Hall
+gp__oslo__035|Осло|В соборе|Oslo|Inside the cathedral
+gp__oslo__037|Осло|Орган собора|Oslo|The cathedral organ

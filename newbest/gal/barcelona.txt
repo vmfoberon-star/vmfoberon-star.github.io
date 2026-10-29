@@ -23,3 +23,14 @@ P1210572|Барселона|В художественном музее|Barcelona
 P1210597|Барселона|Картина в музее|Barcelona|A painting in the museum
 P1210628|Барселона|Башня в Пуэбло-Эспаньол|Barcelona|A tower in the Poble Espanyol
 P1210661|Барселона|Улочка Пуэбло-Эспаньол|Barcelona|A lane in the Poble Espanyol
+gp__giro__004|Жирона|Разноцветные дома над рекой Оньяр|Girona|Colourful houses above the Onyar
+gp__giro__006|Жирона|Красный мост Эйфеля|Girona|Eiffel's red bridge
+gp__giro__072|Жирона|Дома на Оньяре и колокольня|Girona|Houses on the Onyar and a bell tower
+gp__giro__014|Жирона|Кафедральный собор|Girona|The cathedral
+gp__giro__013|Жирона|Под сводами собора|Girona|Under the cathedral vaults
+gp__giro__021|Жирона|Колокольня Сант-Фелиу|Girona|The bell tower of Sant Feliu
+gp__giro__027|Жирона|Над крышами старого города|Girona|Above the rooftops of the old town
+gp__giro__048|Жирона|Вид с городских стен|Girona|The view from the city walls
+gp__giro__045|Жирона|Заснеженные Пиренеи|Girona|The snowy Pyrenees
+gp__giro__063|Жирона|Лестница в старом городе|Girona|A stairway in the old town
+gp__giro__070|Жирона|Аркада на Рамбле|Girona|An arcade on the Rambla

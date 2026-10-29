@@ -12,3 +12,5 @@ __pycache__/
 *.wav
 travel.html
 newbest/cand/
+newbest/gp/th/
+newbest/gp/full/

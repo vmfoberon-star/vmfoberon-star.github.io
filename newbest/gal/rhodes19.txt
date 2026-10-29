@@ -1,0 +1,42 @@
+gp__rhosp__000|Родос|Дворец великих магистров|Rhodes|The Palace of the Grand Masters
+gp__rhosp__002|Родос|Двор дворца|Rhodes|The palace courtyard
+gp__rhosp__014|Родос|Лаокоон во дворце|Rhodes|Laocoön in the palace
+gp__rhosp__016|Родос|Античная мозаика|Rhodes|An ancient mosaic
+gp__rhosp__019|Родос|Залы дворца|Rhodes|The palace halls
+gp__rhosp__024|Родос|Под сводами галереи|Rhodes|Under the gallery vaults
+gp__rhosp__027|Родос|Гербы рыцарей|Rhodes|The knights' coats of arms
+gp__rhosp__043|Родос|Улица Рыцарей|Rhodes|The Street of the Knights
+gp__symi__001|Сими|Остров Сими с моря|Symi|Symi from the sea
+gp__symi__009|Сими|Берега острова|Symi|The island's shores
+gp__symi__013|Сими|Разноцветный амфитеатр домов|Symi|An amphitheatre of colourful houses
+gp__symi__016|Сими|Неоклассический особняк|Symi|A neoclassical mansion
+gp__symi__018|Сими|Гавань Сими|Symi|Symi harbour
+gp__symi__021|Сими|Губки — гордость острова|Symi|Sponges, the island's pride
+gp__symi__025|Сими|Лодки в гавани|Symi|Boats in the harbour
+gp__symi__029|Сими|Улочка у гавани|Symi|A lane by the harbour
+gp__symi__044|Сими|Набережная|Symi|The waterfront
+gp__symi__046|Сими|На причале|Symi|On the quay
+gp__symi__052|Сими|Паром отходит|Symi|The ferry leaves
+gp__symi__054|Сими|Прощание с островом|Symi|Farewell to the island
+gp__rhod__003|Родос|Бухта Энтони Куина|Rhodes|Anthony Quinn Bay
+gp__rhod__006|Родос|Деревенская церковь|Rhodes|A village church
+gp__rhod__008|Родос|Вдвоём над морем|Rhodes|The two of us above the sea
+gp__rhod__046|Родос|Вид на восточное побережье|Rhodes|The east coast
+gp__rhod__050|Родос|Бухта Цамбика|Rhodes|Tsambika Bay
+gp__rhod__052|Родос|Пляж Цамбика с высоты|Rhodes|Tsambika beach from above
+gp__rhod__065|Линдос|Акрополь Линдоса|Lindos|The Acropolis of Lindos
+gp__rhod__067|Линдос|Белый город|Lindos|The white town
+gp__rhod__073|Линдос|Крыши Линдоса|Lindos|The rooftops of Lindos
+gp__rhod__076|Родос|Скалистый берег|Rhodes|A rocky coast
+gp__rhod__077|Монолитос|Замок Монолитос|Monolithos|Monolithos Castle
+gp__rhod__086|Родос|Весенние ромашки|Rhodes|Spring daisies
+gp__rhod__095|Родос|Вечернее море|Rhodes|The sea in the evening
+gp__rcity__003|Родос|Гавань Мандраки|Rhodes|Mandraki Harbour
+gp__rcity__005|Родос|Форт Святого Николая ночью|Rhodes|St Nicholas Fort at night
+gp__rcity__008|Родос|Олень у входа в гавань|Rhodes|The deer at the harbour entrance
+gp__rcity__010|Родос|Церковь Благовещения|Rhodes|The Church of the Annunciation
+gp__rcity__022|Родос|Стены старого города|Rhodes|The old town walls
+gp__rcity__024|Родос|Улица Сократа|Rhodes|Sokratous Street
+gp__rcity__027|Родос|Ворота крепости|Rhodes|A fortress gate
+gp__rcity__028|Родос|Во рву крепости|Rhodes|In the fortress moat
+gp__rcity__051|Родос|Закат над морем|Rhodes|Sunset over the sea
