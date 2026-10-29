@@ -414,8 +414,6 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 <section class="stats gut" id="stats" aria-labelledby="statsTitle"><div class="in">
   <div class="map-head"><h2 id="statsTitle">Наши путешествия в цифрах</h2><p id="statsNote">Расстояния по прямой между городами, с перелётами из дома</p></div>
   <div class="st-grid" id="stGrid"></div>
-  <div class="st-map" id="stMap"><div class="map-msg">Загружаем карту…</div></div>
-  <p class="st-cap">Все маршруты на одной карте. Нажмите на линию или точку, чтобы узнать поездку.</p>
 </div></section>
 <section class="tl gut" id="timeline" aria-labelledby="tlTitle"><div class="in">
   <div class="map-head"><h2 id="tlTitle">Лента времени</h2><p id="tlNote"></p></div>
@@ -945,21 +943,6 @@ function renderStats(){
     [photos,'фото','в слайд-шоу'],[hours,W(hours,'час','часа','часов'),'видео: '+fmt(filmsSec)+' фильмов']];
   $('#stGrid').innerHTML=cells.map(c=>`<div><b>${c[0]}</b><span>${c[1]}</span>${c[2]?`<small>${c[2]}</small>`:''}</div>`).join('');
 }
-function drawAllRoutes(){
-  getLeaflet().then(()=>{const el=$('#stMap');el.innerHTML='';
-    const m=L.map(el,{scrollWheelZoom:false,worldCopyJump:true});
-    m.on('popupopen',e=>{const pe=e.popup.getElement();if(pe)pe.querySelectorAll('[data-slug]').forEach(x=>{x.onclick=ev=>{ev.preventDefault();ev.stopPropagation();m.closePopup();openTrip(x.dataset.slug)}})});
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(m);
-    const all=[];const pal=['#C8901E','#B5462F','#2F6FB5','#3E8E5A','#8A4FB5','#C2563A','#1F8A8A','#9B7A1C'];
-    TRIPS.forEach((t,k)=>{const st=tripStops(t);if(!st.length)return;const ll=st.map(s=>[s[0],s[1]]);all.push(...ll);
-      const col=pal[k%pal.length],lab=`<b>${esc(t.title)}</b> · ${esc(t.year||'')}<br><a href="#" data-slug="${t.slug}">Открыть →</a>`;
-      if(t.route&&t.route.order!==false&&ll.length>1)L.polyline(ll,{color:col,weight:3,opacity:.85}).bindPopup(lab).addTo(m);
-      const seen=new Set();ll.forEach((p,i)=>{const key=p.join();if(seen.has(key))return;seen.add(key);
-        L.circleMarker(p,{radius:5,color:'#0D0E10',weight:1.5,fillColor:col,fillOpacity:1}).bindPopup(`${esc(st[i][RT_LANG?3:2])}<br>${lab}`).addTo(m)})});
-    L.marker(HOME_LL,{icon:L.divIcon({className:'st-home',html:'<b></b>',iconSize:[20,20],iconAnchor:[10,10]})}).bindTooltip('Модиин').addTo(m);
-    m.fitBounds(L.latLngBounds(all.filter(p=>p[1]<60).concat([HOME_LL])),{padding:[24,24]});
-  }).catch(()=>{$('#stMap').innerHTML='<div class="map-msg">Карта сейчас недоступна</div>'});
-}
 function renderTimeline(){
   const dated=TRIPS.filter(t=>t.year).slice().reverse();const byY={};dated.forEach(t=>(byY[t.year]=byY[t.year]||[]).push(t));
   const ys=Object.keys(byY).map(Number).sort((a,b)=>a-b);let html='',prev=null;
@@ -969,7 +952,7 @@ function renderTimeline(){
   $('#tlList').innerHTML=html;$('#tlNote').textContent=`${ys[0]} — ${ys[ys.length-1]}`;
 }
 renderStats();renderTimeline();
-new IntersectionObserver((en,ob)=>{if(en.some(e=>e.isIntersecting)){ob.disconnect();drawAllRoutes()}},{rootMargin:'500px'}).observe($('#stMap'));
+
 
 let mapStarted=false;const startMap=()=>{if(mapStarted)return;mapStarted=true;drawMap()};
 new IntersectionObserver((en,ob)=>{if(en.some(e=>e.isIntersecting)){ob.disconnect();startMap()}},{rootMargin:'600px'}).observe($('#worldmap'));
