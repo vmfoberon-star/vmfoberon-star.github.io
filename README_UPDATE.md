@@ -11,5 +11,5 @@ Trips made of YouTube films live in `data.py` (slug, code, title, place, year, p
 3. Thumbnail: fetch https://i.ytimg.com/vi/<id>/mqdefault.jpg in the browser and convert to a data: URI (base64); null if impossible.
 4. Write new.json `{"<slug>": [[id, ru, en, "m:ss", thumb], ...]}` and run `python3 tools/update_eps.py new.json`
    (needs the `main` branch checked out at ../vmfoberon-star.github.io; it rebuilds, commits and pushes).
-5. Commit the changed `data.py`, `imgs.json`, `en/tr_auto.py` back to this `src` branch.
+5. Commit the changed `data.py`, `imgs.json`, `en/tr_auto.py`, `added.json` back to this `src` branch (update_eps.py records the date in added.json for the "Новое на сайте" block).
 A brand-new "5 · …" playlist that matches no trip is NOT added automatically — report it to the owner.
