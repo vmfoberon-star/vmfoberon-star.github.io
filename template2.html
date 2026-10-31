@@ -286,6 +286,12 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 @media (max-width:600px){.show-cap{bottom:calc(env(safe-area-inset-bottom,0px) + 112px)}.show-ctl{gap:5px}.show-ctl button{width:38px;height:38px;font-size:19px}.show-ctl button.main{width:50px;height:50px}.show-ctl button.skip{font-size:13.5px}.show-seek{gap:8px;font-size:13.5px}}
 @media (prefers-reduced-motion:reduce){.show .layer .fg{animation:none!important}.show .layer{transition:none}}
 /* map */
+.news{padding-block:20px 4px}.news .in{display:grid;gap:12px}
+.news-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.news-item{all:unset;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding:10px 14px;border:1px solid var(--rule);border-left:3px solid var(--amber);border-radius:6px;background:#121417;width:100%;box-sizing:border-box}
+.news-item:hover,.news-item:focus-visible{border-color:var(--amber)}
+.news-item b{font-family:var(--cond);font-weight:600;font-size:1.1rem;text-transform:uppercase;letter-spacing:.02em}
+.news-item span{color:#E4DFD5}.news-item small{color:var(--muted);margin-left:auto}
 .mapsec{padding-block:24px 8px}
 .mapsec .in{display:grid;gap:14px}
 .map-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px}
@@ -382,6 +388,10 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
   </div>
 </div></section>
 
+<section class="news gut" id="newsSec" hidden aria-labelledby="newsTitle"><div class="in">
+  <div class="map-head"><h2 id="newsTitle">Новое на сайте</h2><p>за последние три недели</p></div>
+  <ul class="news-list" id="newsList"></ul>
+</div></section>
 <section class="feature gut" aria-label="Последнее путешествие"><div class="in" id="feature"></div></section>
 <section class="mapsec gut" id="map" aria-labelledby="mapTitle"><div class="in">
   <div class="map-head"><h2 id="mapTitle">Карта поездок</h2><p id="mapNote">Нажмите на точку, чтобы открыть поездку</p></div>
@@ -491,6 +501,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 <script>
 const TRIPS=__DATA__, COVERS=__COVERS__, MUSIC=__MUSIC__;
 const BEST=__BEST__;
+const NEWS=__NEWS__;
 let THUMBS={}; const BUNDLES=__PHOTOS__, PHOTOS={};
 let thumbsP=null; const loadThumbs=()=>thumbsP||(thumbsP=fetch('data/thumbs.json').then(r=>r.json()).then(j=>{THUMBS=j}).catch(()=>{thumbsP=null}));
 const photoCache={};
@@ -920,6 +931,10 @@ function renderStats(){
     [photos,'фото','в слайд-шоу'],[hours,W(hours,'час','часа','часов'),'видео: '+fmt(filmsSec)+' фильмов']];
   $('#stGrid').innerHTML=cells.map(c=>`<div><b>${c[0]}</b><span>${c[1]}</span>${c[2]?`<small>${c[2]}</small>`:''}</div>`).join('');
 }
+(function(){if(!NEWS.length)return;const L=document.documentElement.lang==='en'?'en-GB':'ru-RU';
+  $('#newsList').innerHTML=NEWS.map((n,k)=>`<li><button class="news-item" data-news="${k}"><b>${esc(n.trip)}</b><span>${esc(n.what)}</span><small>${new Date(n.date+'T12:00').toLocaleDateString(L,{day:'numeric',month:'long'})}</small></button></li>`).join('');
+  $('#newsSec').hidden=false;
+  $('#newsList').addEventListener('click',async e=>{const b=e.target.closest('[data-news]');if(!b)return;const n=NEWS[+b.dataset.news];await openTrip(n.slug);if(n.ep>=0)playEp(n.slug,n.ep)})})();
 function renderTimeline(){
   const dated=TRIPS.filter(t=>t.year).slice().reverse();const byY={};dated.forEach(t=>(byY[t.year]=byY[t.year]||[]).push(t));
   const ys=Object.keys(byY).map(Number).sort((a,b)=>a-b);let html='',prev=null;

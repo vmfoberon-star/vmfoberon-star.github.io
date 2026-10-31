@@ -31,6 +31,10 @@ best['title'] = 'Best shots'
 best['place'] = 'The best photos from our trips, 2003–2026'
 best['slides'] = [[s[0], tr(s[1]), tr(s[2])] + list(s[3:]) for s in best['slides']]
 page = page[:j] + json.dumps(best, ensure_ascii=False) + page[j + bend:]
+k = page.index('const NEWS=') + 11
+news, nend = json.JSONDecoder().raw_decode(page[k:])
+for n in news: n['trip'] = tr(n['trip']); n['what'] = tr(n['what'])
+page = page[:k] + json.dumps(news, ensure_ascii=False) + page[k + nend:]
 # assets live one level up
 page = re.sub(r'"(img/c/|photos/|music/)', r'"../\1', page)
 page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
@@ -38,6 +42,8 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('<h2 id="newsTitle">Новое на сайте</h2><p>за последние три недели</p>', '<h2 id="newsTitle">New on the site</h2><p>in the last three weeks</p>'),
+ ('aria-label="Последнее путешествие">\n', 'aria-label="Последнее путешествие">\n'),
  ('<span><b>${t.gal.slides.length}</b>фото</span>', '<span><b>${t.gal.slides.length}</b>photos</span>'),
  ('▶ Фото · слайд-шоу</button>', '▶ Photo slideshow</button>'),
  ("${t.gal?' · фото':''}", "${t.gal?' · photos':''}"),

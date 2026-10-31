@@ -19,6 +19,8 @@ for slug, eps in new.items():
         bysl[slug][7].append((vid, ru, dur)); have.add(vid); added.append(f'{slug}: {ru}')
         if en: auto[ru] = en
         if thumb: imgs['eps'][vid] = thumb
+        import datetime; _ad = json.load(open('added.json')) if os.path.exists('added.json') else []
+        _ad.insert(0, {'slug': slug, 'vid': vid, 'date': datetime.date.today().isoformat()}); json.dump(_ad, open('added.json', 'w'), ensure_ascii=False, indent=0)
 if not added: print('nothing new'); sys.exit(0)
 with open('data.py', 'w') as f:
     f.write('# Trips: slug, code, title, place line, year, playlist id, cover video, episodes [(video, title, duration)]\nTRIPS = ')

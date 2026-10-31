@@ -158,6 +158,18 @@ thumbs={k:v for k,v in o["eps"].items() if v}
 for i,e in enumerate(SP13FILMS): thumbs[e[0]]='data:image/webp;base64,'+base64.b64encode(open(f'vid13thumbs/{i+1}.webp','rb').read()).decode()
 json.dump(thumbs,open('site/data/thumbs.json','w'))
 html=open('template2.html').read()
+import datetime as _dt
+_NEWS=[]
+for _a in (json.load(open('added.json')) if os.path.exists('added.json') else []):
+    if (_dt.date.today()-_dt.date.fromisoformat(_a['date'])).days>21: continue
+    _t=next((t for t in trips if t['slug']==_a['slug']),None)
+    if not _t: continue
+    if _a.get('vid'):
+        _i=next((i for i,e in enumerate(_t['eps']) if e[0]==_a['vid']),None)
+        if _i is None: continue
+        _NEWS.append({'slug':_t['slug'],'trip':_t['title'],'what':_t['eps'][_i][1],'ep':_i,'date':_a['date']})
+    else: _NEWS.append({'slug':_t['slug'],'trip':_t['title'],'what':_a.get('note',''),'ep':-1,'date':_a['date']})
+html=html.replace('__NEWS__',json.dumps(_NEWS[:8],ensure_ascii=False))
 html=html.replace('__DATA__',json.dumps(trips,ensure_ascii=False)).replace('__COVERS__',json.dumps(covers)).replace('__MUSIC__',json.dumps(MUSIC)).replace('__PHOTOS__',json.dumps(PHOTOS)).replace('__BEST__',json.dumps(BEST_SHOW,ensure_ascii=False))
 html=html.replace("const countries=new Set(TRIPS.map(t=>t.country)).size;","const countries=new Set(TRIPS.flatMap(t=>t.countries)).size;")
 open('travel.html','w').write(html)
