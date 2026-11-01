@@ -18,7 +18,9 @@ if not os.path.exists(P) and os.path.exists(os.path.join(D,'private.enc')):
     pw=os.environ.get('FAMILY_PW') or input('Пароль: ')
     tarfile.open(fileobj=io.BytesIO(dec(pw,open(os.path.join(D,'private.enc'),'rb').read()))).extractall(D)
 pw=open(pwf).read().strip()
-sys.path.insert(0,P); import chron
+sys.path.insert(0,P); import chron, kids
+import hmac,hashlib
+from PIL import Image
 e=html.escape
 def chronicle():
     out=[]; years=sorted({c[0] for c in chron.C},reverse=True)
@@ -34,7 +36,26 @@ def chronicle():
         out.append(f'<button class="vid" data-v="{v}" type="button"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/{v}/mqdefault.jpg"><span class="vt">{e(t)}</span></button>')
     out.append('</div></section>')
     return '\n'.join(out)
-inner=open(os.path.join(D,'inner.html'),encoding='utf8').read().replace('__CHRON__',chronicle()).replace('__NVID__',str(len(chron.C)+len(chron.UNDATED)))
+# --- grandchildren pages: photos encrypted with a random image key that lives only inside the encrypted payload
+kf=os.path.join(P,'imgkey.txt')
+if not os.path.exists(kf): open(kf,'w').write(base64.b64encode(secrets.token_bytes(32)).decode())
+IK=base64.b64decode(open(kf).read().strip())
+MOUT=os.path.join(D,'..','site','family','m');os.makedirs(MOUT,exist_ok=True)
+def encimg(data:bytes,tag:str):
+    name=hmac.new(IK,tag.encode(),hashlib.sha256).hexdigest()[:20]
+    iv=hmac.new(IK,b'iv'+data,hashlib.sha256).digest()[:12]
+    open(os.path.join(MOUT,name+'.bin'),'wb').write(iv+AESGCM(IK).encrypt(iv,data,None))
+    return name
+KD=[]
+for k in kids.KIDS:
+    ph=[]
+    for f,d in kids.PHOTOS.get(k['id'],[]):
+        src=os.path.join(P,'media',k['id'],f);raw=open(src,'rb').read()
+        im=Image.open(src);w,h=im.size;im.thumbnail((480,480));b=io.BytesIO();im.convert('RGB').save(b,'WEBP',quality=70)
+        ph.append([encimg(b.getvalue(),k['id']+'/t/'+f),encimg(raw,k['id']+'/'+f),d,w,h])
+    KD.append(dict(id=k['id'],name=k['name'],born=k['born'],parents=kids.PARENTS.get(k['id'],''),photos=ph,videos=kids.VIDEOS.get(k['id'],[])))
+kidsjson=json.dumps(dict(key=base64.b64encode(IK).decode(),kids=KD),ensure_ascii=False).replace('</','<\\/')
+inner=open(os.path.join(D,'inner.html'),encoding='utf8').read().replace('__KIDS__',kidsjson).replace('__CHRON__',chronicle()).replace('__NVID__',str(len(chron.C)+len(chron.UNDATED)))
 salt,iv,ct=enc(pw,inner.encode())
 payload=base64.b64encode(salt+iv+ct).decode()
 shell=open(os.path.join(D,'shell.html'),encoding='utf8').read().replace('__PAYLOAD__',payload).replace('__ITER__',str(ITER))
