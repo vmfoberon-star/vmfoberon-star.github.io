@@ -97,20 +97,38 @@ footer a{color:var(--stone)}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;padding-bottom:50px}
 .gal button{all:unset;cursor:zoom-in;display:block}
 .gal img{aspect-ratio:3/2;object-fit:cover;border-radius:3px}
-#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.94);display:grid;place-items:center}
-#lb img{max-width:96vw;max-height:86vh;object-fit:contain}
-#lb p{position:absolute;bottom:max(16px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:var(--muted);margin:0;padding:0 60px}
-#lb button{all:unset;cursor:pointer;position:absolute;font:600 2rem var(--body);color:var(--paper);padding:14px}
-#lb .p{left:6px;top:50%}#lb .n{right:6px;top:50%}#lb .c{right:max(10px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top));font-size:1.4rem}
+#lb,#ss{position:fixed;inset:0;z-index:50;background:#000;display:grid;place-items:center;touch-action:pan-y;user-select:none}
+#lb img{max-width:100vw;max-height:calc(100vh - 110px);object-fit:contain}
+#lb p,#ss p{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#E8E1D3;margin:0;padding:0 80px;font-size:1.05rem;text-shadow:0 1px 6px #000}
+#lb .cnt,#ss .cnt{position:absolute;top:max(18px,env(safe-area-inset-top));left:max(18px,env(safe-area-inset-left));font-family:var(--cond);letter-spacing:.1em;color:var(--muted)}
+.nb{all:unset;cursor:pointer;position:absolute;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:rgba(20,18,15,.72);border:1px solid rgba(240,235,225,.35);color:var(--paper);font:500 1.9rem/1 var(--body);box-sizing:border-box}
+.nb:hover,.nb:focus-visible{background:var(--stone);color:var(--ink);outline:none}
+.nb.p{left:max(14px,env(safe-area-inset-left));top:calc(50% - 29px)}.nb.n{right:max(14px,env(safe-area-inset-right));top:calc(50% - 29px)}
+.nb.c{right:max(14px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));width:50px;height:50px;font-size:1.3rem}
+#ss .fr{position:absolute;inset:0;overflow:hidden}
+#ss .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 1.2s}
+#ss .fr img.on{opacity:1;animation:kb 7s ease-out forwards}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.05)}}
+#ss .ctl{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(max(18px,env(safe-area-inset-bottom)) + 44px);display:flex;gap:12px}
+#ss .ctl .nb{position:static}
+#ss p{bottom:max(14px,env(safe-area-inset-bottom))}
+.ssbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-family:var(--cond);letter-spacing:.12em;text-transform:uppercase;font-size:.95rem;background:var(--stone);color:var(--ink);padding:12px 20px;border-radius:4px;margin:0 0 18px}
+.ssbtn:hover,.ssbtn:focus-visible{background:var(--paper);outline:none}
+.best{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.best button{all:unset;cursor:zoom-in;display:block;position:relative}
+.best img{aspect-ratio:3/2;object-fit:cover;border-radius:3px;width:100%;display:block}
+.best button:hover img,.best button:focus-visible img{outline:2px solid var(--stone)}
+.best .more{margin-top:14px}
+@media (max-width:600px){.nb{width:48px;height:48px;font-size:1.6rem}.nb.p{left:6px}.nb.n{right:6px}#lb p,#ss p{padding:0 16px;font-size:.95rem}.best{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.grid{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
-html.lite *,html.lite *::before,html.lite *::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}html.lite .bar{background:var(--ink)}
+html.lite *,html.lite *::before,html.lite *::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}html.lite .bar{background:var(--ink)}html.lite #ss .fr img.on{transform:none}
 @media (prefers-reduced-motion:reduce){.slides img{transition:none}.card img{transition:none}}
 </style>
 </head>
 <body>
 <header class="bar gut"><div class="in">
   <a class="brand" href="#">Наш Израиль</a>
-  <nav aria-label="Разделы"><a href="#trips">Поездки</a><a href="#mapSec">Карта</a><a href="#concerts">Концерты</a><a href="../">Путешествия по миру</a></nav>
+  <nav aria-label="Разделы"><a href="#trips">Поездки</a><a href="#best">Лучшие фото</a><a href="#mapSec">Карта</a><a href="#concerts">Концерты</a><a href="../">Путешествия по миру</a></nav>
   <a class="subtop" href="https://forms.gle/Nj8ZNiajMpERk1y78" title="Получать новости сайта">НОВОСТИ</a>
 </div></header>
 
@@ -126,6 +144,11 @@ html.lite *,html.lite *::before,html.lite *::after{animation:none!important;tran
 
 <main>
 <section id="trips" class="gut"><div class="in" id="regions"></div></section>
+<section id="best" class="chap gut"><div class="in">
+  <span class="eyebrow" id="bestN"></span><h2>Лучшие фото</h2>
+  <button class="ssbtn" type="button" id="bestSS">▶&nbsp; Слайд-шоу с музыкой</button>
+  <div class="best" id="bestG"></div>
+</div></section>
 <section id="mapSec" class="chap gut"><div class="in">
   <span class="eyebrow">Карта</span><h2>Где мы побывали</h2>
   <div id="map" role="region" aria-label="Карта поездок"></div>
@@ -146,10 +169,14 @@ html.lite *,html.lite *::before,html.lite *::after{animation:none!important;tran
   <div class="gut"><div class="in">
     <h2 id="tT"></h2><div class="pl" id="tP"></div><p class="bl" id="tB"></p>
     <div id="tV"></div>
+    <button class="ssbtn" type="button" id="tSS" hidden></button>
     <div class="gal" id="tG"></div>
   </div></div>
 </div>
-<div id="lb" hidden><img id="lbI" alt=""><p id="lbC"></p><button class="p" type="button" aria-label="Назад">‹</button><button class="n" type="button" aria-label="Вперёд">›</button><button class="c" type="button" aria-label="Закрыть">✕</button></div>
+<div id="lb" hidden role="dialog" aria-label="Фото"><img id="lbI" alt=""><span class="cnt" id="lbN"></span><p id="lbC"></p><button class="nb p" type="button" aria-label="Предыдущее фото">‹</button><button class="nb n" type="button" aria-label="Следующее фото">›</button><button class="nb c" type="button" aria-label="Закрыть">✕</button></div>
+<div id="ss" hidden role="dialog" aria-label="Слайд-шоу"><div class="fr" id="ssF"></div><span class="cnt" id="ssN"></span><p id="ssC"></p><button class="nb c" type="button" id="ssX" aria-label="Закрыть">✕</button>
+  <div class="ctl"><button class="nb" type="button" id="ssP" aria-label="Предыдущее">‹</button><button class="nb" type="button" id="ssPl" aria-label="Пауза">❚❚</button><button class="nb" type="button" id="ssNx" aria-label="Следующее">›</button><button class="nb" type="button" id="ssM" aria-label="Музыка">♪</button></div>
+  <audio id="ssA" loop preload="none"></audio></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -186,16 +213,49 @@ function poster(box,id){box.textContent='';const b=el('button');b.type='button';
 function openTrip(t){lastScroll=scrollY;$('#tR').textContent=(D.regions.find(r=>r[0]===t.r)||[,''])[1];$('#tT').textContent=t.t;$('#tP').textContent=t.p+' · '+t.y;$('#tB').textContent=t.b||'';
  const V=$('#tV');V.textContent='';if(t.v.length){const box=el('div','player');poster(box,t.v[0][0]);V.append(box);
   if(t.v.length>1){const eps=el('div','eps');t.v.forEach(([id,n],i)=>{const b=el('button',null,n);b.type='button';b.setAttribute('aria-current',i==0);b.onclick=()=>{eps.querySelectorAll('button').forEach(x=>x.setAttribute('aria-current',x===b));player(box,id)};eps.append(b)});V.append(eps)}else V.append(el('div','eps'))}
- const Gl=$('#tG');Gl.textContent='';G=t.g||[];G.forEach((p,i)=>{const b=el('button');b.type='button';b.append(img(p[0],p[1]));b.onclick=()=>lb(i);Gl.append(b)});
+ const Gl=$('#tG');Gl.textContent='';G=t.g||[];G.forEach((p,i)=>{const b=el('button');b.type='button';b.append(img(p[0],p[1]));b.onclick=()=>lb(G,i);Gl.append(b)});
+ const sb=$('#tSS');if(G.length>=3){sb.hidden=false;sb.textContent='▶  Слайд-шоу с музыкой · '+G.length+' фото';sb.onclick=()=>ss(G,0)}else sb.hidden=true;
  TV.hidden=false;TV.scrollTop=0;document.body.style.overflow='hidden';$('#tX').focus()}
 function openVideo(t,id,d){openTrip({r:'',t,p:'Концерт',y:d.split('-').reverse().join('.'),b:'',v:[[id,t]],g:[]});$('#tR').textContent='Концерты и выходы';player($('#tV .player'),id)}
 function closeTrip(){TV.hidden=true;$('#tV').textContent='';document.body.style.overflow='';if(location.hash.startsWith('#t-'))history.replaceState(null,'',location.pathname);scrollTo(0,lastScroll)}
 $('#tX').onclick=closeTrip;
 function route(){const h=location.hash;if(h.startsWith('#t-')){const t=D.trips.find(x=>x.id===h.slice(3));if(t)openTrip(t)}else if(!TV.hidden)closeTrip()}
 addEventListener('hashchange',route);route();
-function lb(i){gi=(i+G.length)%G.length;$('#lbI').src=G[gi][2]||G[gi][0];$('#lbC').textContent=G[gi][1]||'';$('#lb').hidden=false}
-$('#lb .p').onclick=()=>lb(gi-1);$('#lb .n').onclick=()=>lb(gi+1);$('#lb .c').onclick=()=>{$('#lb').hidden=true};
-addEventListener('keydown',e=>{if(!$('#lb').hidden){if(e.key==='ArrowLeft')lb(gi-1);else if(e.key==='ArrowRight')lb(gi+1);else if(e.key==='Escape')$('#lb').hidden=true}else if(!TV.hidden&&e.key==='Escape')closeTrip()});
+// lightbox
+let LB=[],li=0;const LBE=$('#lb');
+function pre(u){if(u){const i=new Image();i.src=u}}
+function lb(list,i){if(list)LB=list;li=(i+LB.length)%LB.length;const g=LB[li];$('#lbI').src=g[2]||g[0];$('#lbC').textContent=[g[1],g[4]].filter(Boolean).join(' — ');$('#lbN').textContent=(li+1)+' / '+LB.length;
+ pre((LB[(li+1)%LB.length]||[])[2]);if(LBE.hidden){LBE.hidden=false;LBE.querySelector('.n').focus()}}
+const lbClose=()=>{LBE.hidden=true};
+LBE.querySelector('.p').onclick=()=>lb(null,li-1);LBE.querySelector('.n').onclick=()=>lb(null,li+1);LBE.querySelector('.c').onclick=lbClose;
+LBE.addEventListener('click',e=>{if(e.target===LBE)lbClose()});
+function swipe(elm,prev,next){let x0=null,y0=0;elm.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+ elm.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))(dx<0?next:prev)()},{passive:true})}
+swipe(LBE,()=>lb(null,li-1),()=>lb(null,li+1));
+// slideshow
+const SS=$('#ss'),SF=$('#ssF'),SA=$('#ssA');let SL=[],si=0,sT=null,sPlay=true,sMus=true,DELAY=5500;
+try{if(localStorage.getItem('ssmus')==='0')sMus=false}catch(_){}
+SA.src=(SA.canPlayType('audio/webm; codecs="opus"')?'music/israel_loop.webm':'music/israel_loop.mp4');SA.volume=.55;
+function ssShow(i){si=(i+SL.length)%SL.length;const g=SL[si];const im=new Image();im.alt='';im.src=g[2]||g[0];
+ const old=[...SF.children];SF.append(im);requestAnimationFrame(()=>requestAnimationFrame(()=>im.classList.add('on')));old.forEach(o=>{o.classList.remove('on');setTimeout(()=>o.remove(),1300)});
+ $('#ssC').textContent=[g[1],g[4]].filter(Boolean).join(' — ');$('#ssN').textContent=(si+1)+' / '+SL.length;pre((SL[(si+1)%SL.length]||[])[2]);ssTimer()}
+function ssTimer(){clearTimeout(sT);if(sPlay)sT=setTimeout(()=>ssShow(si+1),DELAY)}
+function ssMusic(){$('#ssM').style.opacity=sMus?1:.45;if(sMus&&sPlay&&!SS.hidden)SA.play().catch(()=>{});else SA.pause()}
+function ss(list,i){SL=list;SF.textContent='';sPlay=true;$('#ssPl').textContent='❚❚';SS.hidden=false;document.body.style.overflow='hidden';ssShow(i||0);ssMusic();$('#ssPl').focus()}
+function ssClose(){SS.hidden=true;clearTimeout(sT);SA.pause();SF.textContent='';if(TV.hidden)document.body.style.overflow=''}
+$('#ssX').onclick=ssClose;$('#ssP').onclick=()=>ssShow(si-1);$('#ssNx').onclick=()=>ssShow(si+1);
+$('#ssPl').onclick=()=>{sPlay=!sPlay;$('#ssPl').textContent=sPlay?'❚❚':'▶';$('#ssPl').setAttribute('aria-label',sPlay?'Пауза':'Продолжить');ssTimer();ssMusic()};
+$('#ssM').onclick=()=>{sMus=!sMus;try{localStorage.setItem('ssmus',sMus?'1':'0')}catch(_){}ssMusic()};
+swipe(SS,()=>ssShow(si-1),()=>ssShow(si+1));
+// best photos
+(()=>{const B=D.best||[];if(!B.length){$('#best').hidden=true;return}$('#bestN').textContent=B.length+' кадров из наших поездок';
+ const G2=$('#bestG');B.forEach((p,i)=>{const b=el('button');b.type='button';b.setAttribute('aria-label',p[4]);b.append(img(p[0],p[1]||p[4]));b.onclick=()=>lb(B,i);G2.append(b)});
+ $('#bestSS').onclick=()=>ss(B,0)})();
+addEventListener('keydown',e=>{
+ const back=e.key==='Escape'||e.key==='Backspace'||e.key==='GoBack'||e.keyCode===10009||e.keyCode===461;
+ if(!SS.hidden){if(e.key==='ArrowLeft')ssShow(si-1);else if(e.key==='ArrowRight')ssShow(si+1);else if(back){e.preventDefault();ssClose()}else if(e.key===' '||e.key==='Enter'){if(document.activeElement&&document.activeElement.closest('#ss .ctl'))return;e.preventDefault();$('#ssPl').click()}return}
+ if(!LBE.hidden){if(e.key==='ArrowLeft')lb(null,li-1);else if(e.key==='ArrowRight')lb(null,li+1);else if(back){e.preventDefault();lbClose()}return}
+ if(!TV.hidden&&back&&!(e.target.matches&&e.target.matches('input,textarea'))){e.preventDefault();closeTrip()}});
 </script>
 </body>
 </html>
