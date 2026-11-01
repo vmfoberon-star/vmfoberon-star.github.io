@@ -424,7 +424,7 @@ html.lite .bar{background:var(--ink)}html.lite .show .bg{display:none}html.lite 
   <div class="map-head"><h2 id="newsTitle">New on the site</h2><p>in the last three weeks</p></div>
   <ul class="news-list" id="newsList"></ul>
 </div></section>
-<section class="feature gut" aria-label="Latest trip"><div class="in" id="feature"></div></section>
+<section class="feature gut" style="display:none" aria-label="Latest trip"><div class="in" id="feature"></div></section>
 <section class="mapsec gut" id="map" aria-labelledby="mapTitle"><div class="in">
   <div class="map-head"><h2 id="mapTitle">Map of our trips</h2><p id="mapNote">Tap a dot to open a trip</p></div>
   <div class="worldmap" id="worldmap"><div class="map-msg">Loading the map…</div></div>
@@ -973,9 +973,9 @@ function renderStats(){
   $('#newsSec').hidden=false;
   $('#newsList').addEventListener('click',async e=>{const b=e.target.closest('[data-news]');if(!b)return;const n=NEWS[+b.dataset.news];await openTrip(n.slug);if(n.ep>=0)playEp(n.slug,n.ep)})})();
 function renderTimeline(){
-  const dated=TRIPS.filter(t=>t.year).slice().reverse();const byY={};dated.forEach(t=>(byY[t.year]=byY[t.year]||[]).push(t));
-  const ys=Object.keys(byY).map(Number).sort((a,b)=>a-b);let html='',prev=null;
-  for(const y of ys){if(prev&&y-prev>1)html+=`<li class="tl-gap">${y-prev-1===1?'A year':pl(y-prev-1,'year','years','years')} without big trips on the site</li>`;
+  const dated=TRIPS.filter(t=>t.year);const byY={};dated.forEach(t=>(byY[t.year]=byY[t.year]||[]).push(t));
+  const ys=Object.keys(byY).map(Number).sort((a,b)=>b-a);let html='',prev=null;
+  for(const y of ys){if(prev&&prev-y>1)html+=`<li class="tl-gap">${prev-y-1===1?'A year':pl(prev-y-1,'year','years','years')} without big trips on the site</li>`;
     html+=`<li class="tl-yr"><h3>${y}</h3><div class="tl-trips">${byY[y].map(t=>{const pl=(t.place||'').split('·')[0].trim();
       return `<button class="tl-trip" data-slug="${t.slug}" title="${esc(t.place)}"><h4>${esc(t.title)}</h4><span class="pl">${esc(pl)}</span></button>`}).join('')}</div></li>`;prev=y}
   $('#tlList').innerHTML=html;$('#tlNote').textContent=`${ys[0]} — ${ys[ys.length-1]}`;
