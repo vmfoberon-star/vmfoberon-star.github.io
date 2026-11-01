@@ -30,6 +30,7 @@ img{max-width:100%;display:block}
 .bar .in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
 .bar .in{justify-content:flex-start}.bar .brand{margin-right:auto}
 .lang{flex:none;font-family:var(--cond);font-size:14.5px;letter-spacing:.14em;color:var(--amber);text-decoration:none;border:1px solid var(--rule);padding:4px 9px;border-radius:3px}
+.lang.subtop{background:var(--amber);color:var(--ink);border-color:var(--amber)}.lang.subtop:hover,.lang.subtop:focus-visible{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .lang:hover,.lang:focus-visible{color:var(--paper);border-color:var(--amber);outline:none}
 .brand{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.35rem;text-decoration:none;white-space:nowrap}
 .bar nav{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;min-width:0}
@@ -352,6 +353,7 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 <header class="bar gut"><div class="in">
   <a class="brand" href="#top">Наши путешествия</a>
   <nav id="yearNav" aria-label="Годы"></nav>
+  <a class="lang subtop" href="https://forms.gle/Nj8ZNiajMpERk1y78" target="_blank" rel="noopener" title="Получать новости сайта">НОВОСТИ</a>
   <a class="lang" href="israel/" title="Наш Израиль">ИЗРАИЛЬ</a>
   <a class="lang" id="langLink" href="en/" hreflang="en" lang="en" title="English version">EN</a>
 </div></header>
