@@ -79,7 +79,7 @@ UI = [
  ("'вместе со слайд-шоу'", "'including the slideshows'"), ("[photos,'фото','в слайд-шоу']", "[photos,'photos','in the slideshows']"),
  ("'видео: '+fmt(filmsSec)+' фильмов'", "'of video: '+fmt(filmsSec)+' of films'"),
  (">Открыть →</a>`", ">Open →</a>`"), ("bindTooltip('Модиин')", "bindTooltip('Modiin')"),
- ("${y-prev-1===1?'год':pl(y-prev-1,'год','года','лет')} без больших поездок на сайте", "${y-prev-1===1?'A year':pl(y-prev-1,'year','years','years')} without big trips on the site"),
+ ("${prev-y-1===1?'год':pl(prev-y-1,'год','года','лет')} без больших поездок на сайте", "${prev-y-1===1?'A year':pl(prev-y-1,'year','years','years')} without big trips on the site"),
  ('<a href="#stats">Цифры</a><a href="#timeline">Лента</a>', '<a href="#stats">Numbers</a><a href="#timeline">Timeline</a>'),
 
  ('📺 На телевизоре', '📺 On the TV'), ('<div class="eyebrow">Режим для телевизора</div>', '<div class="eyebrow">TV mode</div>'),
