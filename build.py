@@ -192,3 +192,4 @@ best_share_page('', 'Лучшие кадры', BEST_SHOW['place'], 'ОЛЬГА �
 print(len(html)/1e6,'MB page');import subprocess;print(subprocess.run(['du','-sh','site'],capture_output=True,text=True).stdout)
 import runpy; runpy.run_path('en/build_en.py')
 runpy.run_path('family/build_family.py')
+runpy.run_path('israel/build_israel.py')
