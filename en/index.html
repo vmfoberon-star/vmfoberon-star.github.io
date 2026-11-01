@@ -22,6 +22,7 @@
 <link rel="alternate" hreflang="ru" href="https://vmfoberon-star.github.io/">
 <link rel="alternate" hreflang="en" href="https://vmfoberon-star.github.io/en/">
 <title>Our Travels</title>
+<script>(function(){try{var u=navigator.userAgent||"",q=location.search;if(/[?&]lite=0/.test(q)){localStorage.setItem("lite","0")}if(/[?&]lite=1/.test(q)){localStorage.setItem("lite","1")}var s=localStorage.getItem("lite");var tv=/SmartTV|SMART-TV|Tizen|Web0S|webOS|NetCast|HbbTV|BRAVIA|VIDAA|Hisense|Android TV|GoogleTV|AFT[A-Z]|CrKey|Opera TV|TV Safari|Viera|Philips|Roku|PlayStation|Xbox/i.test(u);if(s==="1"||(s!=="0"&&tv))document.documentElement.classList.add("lite")}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Oswald:wght@400;500;600&family=Golos+Text:wght@400;500&display=swap">
 <style>
@@ -365,6 +366,8 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
   .worldmap{aspect-ratio:4/3}
   .pl-top{padding-right:72px}
 }
+html.lite *,html.lite *::before,html.lite *::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.lite .bar{background:var(--ink)}html.lite .show .bg{display:none}html.lite .slides img.on{transform:none}html.lite{scroll-behavior:auto}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .slides img{transition:none}.slides img.on{animation:none;transform:none}
@@ -560,7 +563,7 @@ const slides=$('#slides');
 slides.innerHTML=HERO.map((v,i)=>`<img src="${COVERS[v]}" alt="" class="${i?'':'on'}">`).join('');
 $('#dots').innerHTML=HERO.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('');
 let cur=0;const imgs=slides.children,dots=$('#dots').children;
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(()=>{imgs[cur].classList.remove('on');dots[cur].classList.remove('on');cur=(cur+1)%HERO.length;imgs[cur].classList.add('on');dots[cur].classList.add('on')},6000);
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!document.documentElement.classList.contains('lite')) setInterval(()=>{imgs[cur].classList.remove('on');dots[cur].classList.remove('on');cur=(cur+1)%HERO.length;imgs[cur].classList.add('on');dots[cur].classList.add('on')},6000);
 
 // slideshow videos (one per chapter) count as films too: they are on YouTube as well
 const showVids=t=>!t.slides?[]:t.chapters?t.chapters.map(c=>c.n):t.slug==='italy03'?[t.slides.filter(s=>s[1].startsWith('Rome')).length,t.slides.filter(s=>!s[1].startsWith('Rome')).length]:[t.slides.length];
