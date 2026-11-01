@@ -43,6 +43,8 @@ UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
  ('title="Наш Израиль">ИЗРАИЛЬ</a>', 'title="Our Israel (in Russian)">ISRAEL</a>'),
+ ('<h2 id="subT">Новости сайта</h2><p>Оставьте почту или WhatsApp, и мы напишем, когда появятся новые фильмы и фото.</p>', '<h2 id="subT">Site news</h2><p>Leave your email or WhatsApp and we will let you know when new films and photos appear. (The form is in Russian.)</p>'),
+ ('rel="noopener">Получать новости</a>', 'rel="noopener">Get updates</a>'),
  ('<h2 id="newsTitle">Новое на сайте</h2><p>за последние три недели</p>', '<h2 id="newsTitle">New on the site</h2><p>in the last three weeks</p>'),
  ('aria-label="Последнее путешествие">\n', 'aria-label="Последнее путешествие">\n'),
  ('<span><b>${t.gal.slides.length}</b>фото</span>', '<span><b>${t.gal.slides.length}</b>photos</span>'),
