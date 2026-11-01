@@ -53,7 +53,7 @@ for k in kids.KIDS:
         src=os.path.join(P,'media',k['id'],f);raw=open(src,'rb').read()
         im=Image.open(src);w,h=im.size;im.thumbnail((480,480));b=io.BytesIO();im.convert('RGB').save(b,'WEBP',quality=70)
         ph.append([encimg(b.getvalue(),k['id']+'/t/'+f),encimg(raw,k['id']+'/'+f),d,w,h])
-    KD.append(dict(id=k['id'],name=k['name'],born=k['born'],parents=kids.PARENTS.get(k['id'],''),photos=ph,videos=kids.VIDEOS.get(k['id'],[])))
+    KD.append(dict(id=k['id'],name=k['name'],born=k['born'],parents=kids.PARENTS.get(k['id'],''),photos=ph,videos=sorted(list(kids.VIDEOS.get(k['id'],[]))+[v[:3] for v in getattr(kids,'SHARED',[]) if k['id'] in v[3]],key=lambda v:v[2])))
 kidsjson=json.dumps(dict(key=base64.b64encode(IK).decode(),kids=KD),ensure_ascii=False).replace('</','<\\/')
 inner=open(os.path.join(D,'inner.html'),encoding='utf8').read().replace('__KIDS__',kidsjson).replace('__CHRON__',chronicle()).replace('__NVID__',str(len(chron.C)+len(chron.UNDATED)))
 salt,iv,ct=enc(pw,inner.encode())
