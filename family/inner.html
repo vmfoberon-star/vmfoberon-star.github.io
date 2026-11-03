@@ -1,7 +1,7 @@
 <header class="top gut">
   <div class="brand"><span class="eyebrow">Только для своих</span><h1>Наша семья</h1></div>
   <nav class="tabs" aria-label="Разделы">
-    <a href="#chronicle">Хроника</a><a href="#grandkids">Внуки</a><a href="#tree">Древо</a><a href="#bio">Биографии</a><a href="#archive">Архив</a>
+    <a href="#chronicle">Хроника</a><a href="#timeline">Линия времени</a><a href="#grandkids">Внуки</a><a href="#tree">Древо</a><a href="#bio">Биографии</a><a href="#archive">Архив</a>
   </nav>
 </header>
 
@@ -10,6 +10,14 @@
   <h2>Семейная хроника</h2>
   <p class="lead">Все наши семейные видео по годам, от первых кассет 1997 года до сегодняшнего дня: __NVID__ фильмов. Нажмите на карточку, чтобы посмотреть.</p>
   __CHRON__
+</section>
+
+<section id="timeline" class="pane">
+  <h2>Линия времени</h2>
+  <p class="lead">Жизнь внуков месяц за месяцем: у каждого своя дорожка, общие семейные события — поперёк всех. Нажмите на событие, чтобы открыть фото и видео.</p>
+  <div class="tlf" id="tlFilter" role="group" aria-label="Чья дорожка"></div>
+  <nav class="tlyn" id="tlYears" aria-label="Годы"></nav>
+  <div id="tlBody"></div>
 </section>
 
 <section id="grandkids" class="pane">
@@ -22,24 +30,21 @@
 
 <section id="tree" class="pane">
   <h2>Родословное древо</h2>
-  <p class="lead">Здесь будет древо семьи: от прадедов до правнуков. Каждое имя будет открывать карточку с годами жизни, фотографией и историей.</p>
-  <div class="todo">
-    <h3>Что нужно, чтобы заполнить древо</h3>
-    <p>Подойдёт любой из вариантов:</p>
-    <ul>
-      <li>Список в свободной форме: имя, фамилия (и девичья), годы и места рождения и смерти, кто чей сын или дочь, кто на ком женат.</li>
-      <li>Файл GEDCOM, если древо уже ведётся в MyHeritage, Geni или другой программе.</li>
-      <li>Фото старых записей, если родословная записана от руки.</li>
-    </ul>
-  </div>
+  <p class="lead">76 человек, шесть поколений: от Лейба Фронтона (1862, Умань) до правнуков. Нажмите на любое имя, чтобы перейти к этому человеку: сверху его родители, ниже — семья и дети. Данные из GenoPro (2018), дополнены записями из Ancestry и MyHeritage.</p>
+  <div class="trs"><input type="search" id="trQ" placeholder="Найти по имени…" aria-label="Найти человека" list="trL"><datalist id="trL"></datalist><button type="button" class="trh" id="trHome">← К Владимиру</button></div>
+  <div id="trBox"></div>
+  <details class="tridx"><summary>Все люди в древе по фамилиям</summary><div id="trIdx"></div></details>
+  <p class="trnote">Нашли ошибку или знаете дату, место, профессию? Напишите — дополню. Имена переведены на русский с латиницы из файла; исходное написание указано в карточке.</p>
+  <script type="application/json" id="treeData">__TREE__</script>
 </section>
 
 <section id="bio" class="pane">
   <h2>Истории и биографии</h2>
-  <p class="lead">Рассказы о каждом: где родился, как жил, чем запомнился. Сюда же — воспоминания, записанные со слов старших.</p>
-  <div class="todo">
-    <h3>Как будет выглядеть карточка</h3>
-    <p><b>Имя Фамилия</b> · годы жизни · место рождения<br>Портрет, несколько фото разных лет, рассказ на одну-две страницы, ссылки на видео из хроники, где этот человек появляется.</p>
+  <p class="lead">Рассказы о каждом: где родился, как жил, чем запомнился.</p>
+  <article class="bio" id="bio-misha"></article>
+  <details class="bio2"><summary>Подробнее о боях лета 1941 года: «Чёрный корпус» Петровского</summary><article class="bio" id="bio-korpus"></article></details>
+  <div class="todo" style="margin-top:28px">
+    <h3>Следующие биографии</h3>
     <p>Тексты можно присылать как угодно: напечатанные, надиктованные голосом, фото рукописи.</p>
   </div>
 </section>

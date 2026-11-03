@@ -41,7 +41,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
 .yrs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:3}
 .yrs a{font-variant-numeric:tabular-nums;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:14px}
 .yrs a:hover{border-color:var(--accent)}
-.yr{scroll-margin-top:60px}
+.yr{scroll-margin-top:140px}
 .yr h3{font:600 30px/1 var(--display);color:var(--accent);margin:26px 0 12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 .vid{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px}
@@ -84,6 +84,83 @@ body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
 #klb .nb:focus-visible,#klb .nb:hover{background:#fff;color:#111}
 #klb .p{left:12px;top:calc(50% - 27px)}#klb .n{right:12px;top:calc(50% - 27px)}#klb .c{right:12px;top:max(10px,env(safe-area-inset-top));font-size:20px}
 #klb .pl{right:76px;top:max(10px,env(safe-area-inset-top));font-size:18px}
+/* timeline */
+.tlf{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.tlf button{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:15px;display:inline-flex;align-items:center;gap:7px}
+.tlf button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tlf button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.tly{font:600 34px/1 var(--display);color:var(--accent);padding:22px 0 6px;border-bottom:2px solid var(--accent);margin-bottom:4px;scroll-margin-top:140px}
+.tlg.one .tly,.tlg.mob .tly{margin-top:18px}
+.tlyn{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 14px;position:sticky;top:0;z-index:4;background:var(--bg);padding:8px 0}
+.tlyn a{font-variant-numeric:tabular-nums;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:14px}
+.tlg{display:grid;grid-template-columns:72px repeat(5,minmax(0,1fr));column-gap:10px;row-gap:10px;position:relative}
+.tlh{position:sticky;top:46px;z-index:2;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line);font:600 20px/1.1 var(--display);display:flex;flex-direction:column;gap:2px}
+.tlh small{font:400 12px var(--body);color:var(--muted)}
+.tlh .nm{display:flex;align-items:center;gap:7px}
+.tlm{font:600 18px/1.1 var(--display);color:var(--accent);padding-top:6px;border-top:1px solid var(--line)}
+.tll{width:3px;justify-self:center;border-radius:2px;opacity:.35;z-index:0}
+.tle{all:unset;cursor:pointer;position:relative;z-index:1;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--c,var(--accent));border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.tle.fam{flex-direction:row;border-left-width:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 10%,var(--paper)),var(--paper))}
+.tle:hover,.tle:focus-visible{border-color:var(--accent)}
+.tle img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--line);display:block}
+.tle.fam img{width:min(200px,30%);aspect-ratio:16/9;flex:none}
+.tle .tx{padding:8px 10px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.tle b{font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+.tle small{color:var(--muted);font-size:13px}
+.tle .who{display:flex;gap:4px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}
+.tlg.one,.tlg.mob{display:block}
+.tlg.one .tlh,.tlg.one .tll,.tlg.mob .tlh,.tlg.mob .tll{display:none}
+.tlg.one .tlm,.tlg.mob .tlm{margin:22px 0 10px}
+.tlg.one .tle,.tlg.mob .tle{margin-bottom:10px;flex-direction:row;width:100%;box-sizing:border-box}
+.tlg.one .tle img,.tlg.mob .tle img{width:min(200px,38%);aspect-ratio:3/2;flex:none}
+#tla{position:fixed;inset:0;z-index:15;background:var(--bg);overflow:auto;padding:20px max(16px,4vw) 40px}
+#tla[hidden]{display:none}
+#tla .x{all:unset;cursor:pointer;color:var(--accent);font-weight:500;display:inline-block;margin-bottom:8px}
+#tla h3{font:600 34px/1.1 var(--display);margin:0 0 4px}
+#tla p{color:var(--muted);margin:0 0 14px}
+/* tree */
+.trs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.trs input{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);min-width:min(320px,100%);flex:1 1 240px;max-width:420px}
+.trh{all:unset;cursor:pointer;color:var(--accent);font-weight:500;padding:9px 4px}
+.trrow{margin:0 0 14px}.trrow>h4{font:500 13px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+.trcards{display:flex;flex-wrap:wrap;gap:8px}
+.trc{all:unset;cursor:pointer;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--sx,var(--line));border-radius:9px;padding:8px 12px;min-width:150px;max-width:260px;box-sizing:border-box}
+.trc:hover,.trc:focus-visible{border-color:var(--accent)}
+.trc b{display:block;font-weight:600;line-height:1.25}.trc small{color:var(--muted);font-size:13px}
+.trc.m{--sx:#5b7fa6}.trc.f{--sx:#b0607e}
+.trfocus{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:18px 22px;margin:4px 0 18px;max-width:760px}
+.trfocus h3{font:600 36px/1.1 var(--display);margin:0 0 6px}
+.trfocus p{margin:4px 0;color:var(--ink)}.trfocus .mu{color:var(--muted);font-size:14px}
+.trfocus .nt{white-space:pre-line;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.trfam{border-left:2px solid var(--line);padding-left:12px;margin:0 0 12px}
+.trfam>p{margin:0 0 6px;color:var(--muted);font-size:14px}
+.trph{float:right;width:min(170px,32%);border-radius:8px;margin:0 0 10px 16px}
+.trfocus::after{content:'';display:block;clear:both}
+.trdocs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:12px;clear:both}
+.trdocs button{all:unset;cursor:zoom-in;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.trdocs img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+#trov{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.92);display:grid;place-items:center;padding:16px}
+#trov[hidden]{display:none}
+#trov img{max-width:100%;max-height:calc(100vh - 90px);object-fit:contain}
+#trov p{color:#eee;margin:8px 0 0;text-align:center}
+#trov button{position:absolute;top:12px;right:12px;font:600 16px var(--body);background:#fff;color:#111;border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.tridx{margin-top:26px;max-width:860px}.tridx summary{cursor:pointer;color:var(--accent);font-weight:500}
+.tridx h5{font:600 18px var(--display);margin:14px 0 4px;color:var(--accent)}
+.tridx a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--muted);margin-right:12px;line-height:2}
+.trnote{color:var(--muted);font-size:14px;margin-top:20px;max-width:64ch}
+/* biographies */
+.bio{max-width:720px;font-size:17px;line-height:1.7}
+.bio h1{font:600 40px/1.12 var(--display);margin:6px 0 18px}
+.bio h2{font:600 26px/1.2 var(--display);color:var(--accent);margin:30px 0 8px}
+.bio p{margin:0 0 14px}
+.bio figure{margin:18px 0}.bio figure img{width:100%;border-radius:8px;display:block;background:var(--line);cursor:zoom-in}
+.bio figure.sm{max-width:240px}.bio figure.por{max-width:320px}
+.bio .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.bio .two img{width:100%;border-radius:8px;cursor:zoom-in}
+.bio figcaption{font-size:14px;color:var(--muted);margin-top:6px}
+.bio2{max-width:720px;margin-top:26px}.bio2 summary{cursor:pointer;color:var(--accent);font-weight:500;font-size:17px}
+.bio2 .bio h1{font-size:30px;margin-top:16px}
+@media (max-width:600px){.bio .two{grid-template-columns:1fr}}
 @media (max-width:600px){.kgal{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.khead h2{font-size:40px}#klb p{padding:0 14px}}
 @media (max-width:600px){.top h1{font-size:38px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
 </style>
@@ -102,6 +179,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
 </div>
 <div id="app" hidden></div>
 <div id="klb" hidden role="dialog" aria-label="Фото"><img id="klbI" alt=""><span class="cnt" id="klbN"></span><p id="klbC"></p><button class="nb p" type="button" aria-label="Предыдущее">‹</button><button class="nb n" type="button" aria-label="Следующее">›</button><button class="nb pl" type="button" aria-label="Слайд-шоу">▶</button><button class="nb c" type="button" aria-label="Закрыть">✕</button></div>
+<div id="trov" hidden role="dialog" aria-label="Документ"><button type="button" onclick="this.parentNode.hidden=true">Закрыть ✕</button><div><img alt=""><p></p></div></div>
 <div id="player" role="dialog" aria-label="Видео"><button type="button" id="close">Закрыть ✕</button><iframe id="fr" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Видео"></iframe></div>
 <script>
 const P="__PAYLOAD__",IT=__ITER__,K='fam_pw';
@@ -121,7 +199,7 @@ function show(html){
     panes.forEach(p=>p.hidden=p!==pane);
     tabs.forEach(a=>{if(a.getAttribute('href')==='#'+pane.id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
     if(anchor&&anchor!==pane)anchor.scrollIntoView();else window.scrollTo(0,0)}
-  initKids(app);
+  initKids(app);initTree();
   addEventListener('hashchange',route);route();
   const pl=document.getElementById('player'),fr=document.getElementById('fr');
   app.addEventListener('click',e=>{const v=e.target.closest('.vid');if(!v)return;fr.src='https://www.youtube-nocookie.com/embed/'+v.dataset.v+'?autoplay=1&rel=0';pl.classList.add('on')});
@@ -130,6 +208,43 @@ function show(html){
   addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 }
 
+
+// ---- family tree navigator
+function initTree(){const el=document.getElementById('treeData');if(!el)return;const D=JSON.parse(el.textContent),P=D.p,F=D.f;
+  const box=document.getElementById('trBox'),q=document.getElementById('trQ'),dl=document.getElementById('trL'),idx=document.getElementById('trIdx');
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const yrs=p=>{const y=s=>(String(s).match(/\d{4}/)||[''])[0];const b=y(p.b),d=y(p.d);return b||d?(b||'?')+(p.dead||d?'–'+(d||'?'):''):(p.dead?'†':'')};
+  const parentsOf=id=>{const f=F.find(f=>f.c.includes(id));return f?[f.h,f.w].filter(Boolean):[]};
+  const famsOf=id=>F.filter(f=>f.h===id||f.w===id);
+  const sibs=id=>{const f=F.find(f=>f.c.includes(id));return f?f.c.filter(x=>x!==id):[]};
+  function card(id){const p=P[id];const b=document.createElement('button');b.type='button';b.className='trc '+(p.s==='F'?'f':'m');b.innerHTML=`<b>${esc(p.n)}</b><small>${esc(yrs(p))}</small>`;b.onclick=()=>show(id,true);return b}
+  function row(title,ids){if(!ids.length)return null;const r=document.createElement('div');r.className='trrow';r.innerHTML=`<h4>${title}</h4>`;const c=document.createElement('div');c.className='trcards';ids.forEach(i=>c.append(card(i)));r.append(c);return r}
+  function show(id,scroll){const p=P[id];if(!p)return;box.textContent='';
+    const r1=row('Родители',parentsOf(id));if(r1)box.append(r1);
+    const f=document.createElement('div');f.className='trfocus';
+    let h=`<h3>${esc(p.n)}</h3>`;const life=[p.b?'Родился'.replace('ся',p.s==='F'?'ась':'ся')+': '+esc(p.b)+(p.bp?', '+esc(p.bp):''):'',p.dead?(p.s==='F'?'Умерла':'Умер')+(p.d?': '+esc(p.d):'')+(p.dp?', '+esc(p.dp):''):''].filter(Boolean);
+    life.forEach(x=>h+=`<p>${x}</p>`);if(p.occ)h+=`<p>Профессия: ${esc(p.occ)}</p>`;
+    if(p.kid)h+=`<p><a href="#kid-${p.kid}">Страница внука →</a></p>`;
+    if(p.bio)h+=`<p><a href="#${p.bio}">Биография: «Осколок в сердце» →</a></p>`;
+    if(p.lat&&p.lat!==p.n)h+=`<p class="mu">В исходном файле: ${esc(p.lat)}</p>`;
+    if(p.note)h+=`<p class="nt">${esc(p.note)}</p>`;f.innerHTML=h;
+    if(p.ph){const im=document.createElement('img');im.src=p.ph;im.alt=p.n;im.className='trph';f.prepend(im)}
+    const docs=(p.docs||[]).map(d=>typeof d[0]==='string'&&d[0].startsWith('data:')?d:P[d[0]].docs[d[1]]);
+    if(docs.length){const g=document.createElement('div');g.className='trdocs';docs.forEach(([u,c])=>{const b=document.createElement('button');b.type='button';b.innerHTML=`<img src="${u}" alt=""><span>${esc(c)}</span>`;b.onclick=()=>{const o=document.getElementById('trov');o.querySelector('img').src=u;o.querySelector('p').textContent=c;o.hidden=false};g.append(b)});f.append(g)}
+    box.append(f);
+    famsOf(id).forEach(fm=>{const sp=fm.h===id?fm.w:fm.h;const d=document.createElement('div');d.className='trfam';
+      d.innerHTML=`<p>${sp?(p.s==='F'?'Муж: ':'Жена: '):'Семья'}</p>`;if(sp){const c=document.createElement('div');c.className='trcards';c.append(card(sp));d.append(c)}
+      const rc=row(fm.c.length?'Дети':'',fm.c);if(rc)d.append(rc);box.append(d)});
+    const rs=row('Братья и сёстры',sibs(id));if(rs)box.append(rs);
+    if(scroll)document.getElementById('tree').scrollIntoView({behavior:'smooth'})}
+  const ids=Object.keys(P).sort((a,b)=>P[a].n.localeCompare(P[b].n,'ru'));
+  ids.forEach(i=>{const o=document.createElement('option');o.value=P[i].n+(yrs(P[i])?' ('+yrs(P[i])+')':'');dl.append(o)});
+  q.addEventListener('change',()=>{const v=q.value.toLowerCase();const i=ids.find(i=>(P[i].n+(yrs(P[i])?' ('+yrs(P[i])+')':'')).toLowerCase()===v)||ids.find(i=>P[i].n.toLowerCase().includes(v));if(i){show(i);q.value=''}});
+  document.getElementById('trHome').onclick=()=>show(D.start);
+  const by={};ids.forEach(i=>{const w=P[i].n.replace(/\s*\(.*\)$/,'').split(' ');const s=w.length>1?w[w.length-1].replace(/а$/,''):'Без фамилии';(by[s]=by[s]||[]).push(i)});
+  Object.keys(by).sort((a,b)=>a==='Без фамилии'?1:b==='Без фамилии'?-1:a.localeCompare(b,'ru')).forEach(s=>{const h=document.createElement('h5');h.textContent=s+(s==='Без фамилии'?'':' ('+by[s].length+')');idx.append(h);
+    by[s].forEach(i=>{const a=document.createElement('a');a.href='#tree';a.textContent=P[i].n;a.onclick=e=>{e.preventDefault();show(i,true)};idx.append(a)})});
+  show(D.start)}
 // ---- grandchildren
 function initKids(app){
   const el=document.getElementById('kidsData');if(!el)return;const KD=JSON.parse(el.textContent);let CK=null;const cache=new Map();
@@ -150,7 +265,7 @@ function initKids(app){
     b.append(ph);const nm=document.createElement('b');nm.textContent=k.name;const sm=document.createElement('small');sm.textContent=age(k.born,today)+(k.photos.length||k.videos.length?'':' · страница готовится');b.append(nm,sm);list.append(b)});
   let LB=[],li=0,K0=null,sT=null;const lbE=document.getElementById('klb');
   function lb(arr,i,kid){if(arr){LB=arr;K0=kid}li=(i+LB.length)%LB.length;const p=LB[li];const im=document.getElementById('klbI');im.removeAttribute('src');url(p[1]).then(u=>{if(LB[li]===p)im.src=u});
-    document.getElementById('klbC').textContent=fmtD(p[2])+' · '+age(K0.born,p[2]);document.getElementById('klbN').textContent=(li+1)+' / '+LB.length;
+    document.getElementById('klbC').textContent=fmtD(p[2])+' · '+(K0.cap||age(K0.born,p[2]));document.getElementById('klbN').textContent=(li+1)+' / '+LB.length;
     const nx=LB[(li+1)%LB.length];if(nx)url(nx[1]);lbE.hidden=false}
   function stopSS(){clearInterval(sT);sT=null;lbE.querySelector('.pl').textContent='▶'}
   lbE.querySelector('.p').onclick=()=>lb(null,li-1);lbE.querySelector('.n').onclick=()=>lb(null,li+1);
@@ -159,6 +274,69 @@ function initKids(app){
   let x0=null;lbE.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});lbE.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)lb(null,li+(dx<0?1:-1))},{passive:true});
   addEventListener('keydown',e=>{if(lbE.hidden)return;if(e.key==='ArrowLeft')lb(null,li-1);else if(e.key==='ArrowRight')lb(null,li+1);else if(e.key==='Escape'||e.key==='Backspace'||e.keyCode===10009||e.keyCode===461){e.preventDefault();e.stopImmediatePropagation();stopSS();lbE.hidden=true}},true);
   const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+
+  // ---- biographies
+  (function(){const B=KD.bio||{};function render(el,art){if(!el||!art)return;
+    const mk=(n,cls,cap)=>{const f=document.createElement('figure');if(cls)f.className=cls;const im=document.createElement('img');im.alt=cap||'';im.dataset.e=n[0];io.observe(im);im.onclick=()=>{url(n[1]).then(u=>{const o=document.getElementById('trov');o.querySelector('img').src=u;o.querySelector('p').textContent=cap||'';o.hidden=false})};f.append(im);if(cap){const c=document.createElement('figcaption');c.textContent=cap;f.append(c)}return f};
+    art.forEach(it=>{const [k]=it;if(k==='h1'||k==='h2'||k==='p'){const e=document.createElement(k);e.textContent=it[1];el.append(e)}
+      else if(k==='img')el.append(mk(it[1],'por',it[2]));else if(k==='imgs')el.append(mk(it[1],'sm',it[2]));else if(k==='imgw')el.append(mk(it[1],'',it[2]));
+      else if(k==='img2'){const d=document.createElement('div');d.className='two';d.append(mk(it[1],'',''),mk(it[2],'',''));el.append(d)}})}
+    render(document.getElementById('bio-misha'),B.oskolok);render(document.getElementById('bio-korpus'),B.korpus)})();
+  // ---- timeline
+  (function(){const T=KD.tl||[];const body=document.getElementById('tlBody'),fl=document.getElementById('tlFilter'),yn=document.getElementById('tlYears');if(!body||!T.length)return;
+    const COL={adam:'#3f72a8',lorel:'#b4527e',miley:'#c98a2e',daniel:'#4c8c5a',aviv:'#7b5cb3'};
+    const kids=KD.kids,ix=Object.fromEntries(kids.map((k,i)=>[k.id,i])),byId=Object.fromEntries(kids.map(k=>[k.id,k]));
+    const MN=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    const bornBy=(k,ym)=>k.born.slice(0,7)<=ym;
+    const title=e=>e.t;
+    const cnt=e=>[e.ph.length?e.ph.length+' фото':'',e.v.length?e.v.length+' видео':''].filter(Boolean).join(' · ');
+    let sel='all';
+    const al=document.createElement('div');al.id='tla';al.hidden=true;al.setAttribute('role','dialog');document.getElementById('timeline').append(al);
+    function album(e){al.textContent='';const x=document.createElement('button');x.className='x';x.type='button';x.textContent='← Назад к линии времени';x.onclick=()=>{al.hidden=true;document.body.style.overflow=''};
+      const h=document.createElement('h3');h.textContent=title(e);
+      const [y,m]=e.ym.split('-').map(Number);const p=document.createElement('p');
+      const ages=kids.filter(k=>(e.kind==='kid'?e.who.includes(k.id):bornBy(k,e.ym))).map(k=>k.name+' — '+age(k.born,e.ym+'-15')).join(', ');
+      p.textContent=MN[m-1]+' '+y+(ages?' · '+ages:'');al.append(x,h,p);
+      const pk={cap:title(e)};
+      if(e.ph.length){const g=document.createElement('div');g.className='kgal';e.ph.forEach((ph,i)=>{const b=document.createElement('button');b.type='button';const im=document.createElement('img');im.alt='';im.dataset.e=ph[0];io.observe(im);b.append(im);b.onclick=()=>lb(e.ph,i,pk);g.append(b)});al.append(g)}
+      if(e.v.length){const g=document.createElement('div');g.className='grid kvids';e.v.forEach(([v,t,d])=>{const b=document.createElement('button');b.className='vid';b.type='button';b.dataset.v=v;b.innerHTML=`<img loading="lazy" alt="" src="https://i.ytimg.com/vi/${v}/mqdefault.jpg"><span class="vt">${esc(t)}</span><span class="vn">${fmtD(d)}</span>`;g.append(b)});al.append(g)}
+      al.hidden=false;al.scrollTop=0;document.body.style.overflow='hidden'}
+    function card(e,fam){const b=document.createElement('button');b.type='button';b.className='tle'+(fam?' fam':'');
+      if(!fam)b.style.setProperty('--c',COL[e.who[0]]);
+      const im=document.createElement('img');im.alt='';if(e.ph.length){im.dataset.e=e.ph[0][0];io.observe(im)}else if(e.v.length)im.src='https://i.ytimg.com/vi/'+e.v[0][0]+'/mqdefault.jpg';b.append(im);
+      const tx=document.createElement('span');tx.className='tx';const t=document.createElement('b');t.textContent=title(e);tx.append(t);
+      const c=document.createElement('small');c.textContent=cnt(e);tx.append(c);
+      if(fam){const w=document.createElement('span');w.className='who';const ks=kids.filter(k=>bornBy(k,e.ym));w.innerHTML=ks.map(k=>`<span class="dot" style="background:${COL[k.id]}" title="${esc(k.name)}"></span>`).join('')+' вся семья';tx.append(w)}
+      b.append(tx);b.onclick=()=>album(e);return b}
+    function render(){body.textContent='';const g=document.createElement('div');g.className='tlg';
+      const mob=matchMedia('(max-width:700px)').matches;const one=sel!=='all';if(one)g.classList.add('one');else if(mob)g.classList.add('mob');const grid=!one&&!mob;
+      const ev=T.filter(e=>sel==='all'||(e.kind==='kid'?e.who[0]===sel:bornBy(byId[sel],e.ym)));
+      if(!ev.length){const k=byId[sel];const em=document.createElement('div');em.className='kempty';em.textContent='Событий пока нет.';body.append(em);return}
+      const months=[...new Set(ev.map(e=>e.ym))].sort();const years=[...new Set(months.map(m=>m.slice(0,4)))];
+      yn.textContent='';years.forEach(y=>{const a=document.createElement('a');a.href='#tly-'+y;a.textContent=y;a.onclick=e=>{e.preventDefault();document.getElementById('tly-'+y).scrollIntoView({behavior:'smooth'})};yn.append(a)});
+      let row=1;const start={};
+      if(grid){const h0=document.createElement('div');h0.className='tlh';h0.style.gridRow='1';h0.style.gridColumn='1';g.append(h0);
+        kids.forEach((k,i)=>{const h=document.createElement('div');h.className='tlh';h.style.gridRow='1';h.style.gridColumn=String(i+2);
+          h.innerHTML=`<span class="nm"><span class="dot" style="background:${COL[k.id]}"></span>${esc(k.name)}</span><small>род. ${fmtD(k.born)}</small>`;g.append(h)});row=2}
+      let cy=null;
+      months.forEach(ym=>{const y=ym.slice(0,4);
+        if(y!==cy){cy=y;const yh=document.createElement('div');yh.className='tly';yh.id='tly-'+y;yh.textContent=y;if(grid){yh.style.gridColumn='1 / -1';yh.style.gridRow=String(row)}g.append(yh);row++}
+        start[ym]=row;const es=ev.filter(e=>e.ym===ym),fam=es.filter(e=>e.kind!=='kid'),kd=es.filter(e=>e.kind==='kid');
+        const per={};kd.forEach(e=>{(per[e.who[0]]=per[e.who[0]]||[]).push(e)});const kr=Math.max(0,...Object.values(per).map(a=>a.length));
+        const n=Math.max(1,fam.length+kr);const m=+ym.slice(5,7);
+        const ml=document.createElement('div');ml.className='tlm';ml.textContent=(m?MN[m-1]:'Месяц не указан')+(grid?'':' '+y);if(grid){ml.style.gridColumn='1';ml.style.gridRow=row+' / span '+n}g.append(ml);
+        fam.forEach((e,i)=>{const c=card(e,true);if(grid){c.style.gridColumn='2 / -1';c.style.gridRow=String(row+i)}g.append(c)});
+        Object.entries(per).forEach(([k,a])=>a.forEach((e,i)=>{const c=card(e,false);if(grid){c.style.gridColumn=String(ix[k]+2);c.style.gridRow=String(row+fam.length+i)}g.append(c)}));
+        row+=n});
+      if(grid)kids.forEach((k,i)=>{const st=months.find(ym=>bornBy(k,ym));if(!st)return;const l=document.createElement('div');l.className='tll';l.style.background=COL[k.id];l.style.gridColumn=String(i+2);l.style.gridRow=start[st]+' / '+row;g.prepend(l)});
+      body.append(g)}
+    const opts=[['all','Все вместе']].concat(kids.map(k=>[k.id,k.name]));
+    opts.forEach(([id,nm])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',id===sel);b.innerHTML=(id!=='all'?`<span class="dot" style="background:${COL[id]}"></span>`:'')+esc(nm);
+      b.onclick=()=>{sel=id;fl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};fl.append(b)});
+    render();let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(render,200)});
+    addEventListener('keydown',e=>{if(e.key==='Escape'&&!al.hidden&&document.getElementById('klb').hidden){al.hidden=true;document.body.style.overflow=''}});
+  })();
   window.__kid=id=>{const k=KD.kids.find(x=>x.id===id);list.hidden=!!k;document.querySelector('#grandkids>.lead').hidden=!!k;document.querySelector('#grandkids>h2').hidden=!!k;page.textContent='';if(!k)return;
     const h=document.createElement('div');h.className='khead';
     h.innerHTML=`<a class="kback" href="#grandkids">← Все внуки</a><h2>${esc(k.name)}</h2><p>Дата рождения: ${fmtD(k.born)} · сейчас ${age(k.born,today)}${k.parents?' · мама и папа: '+esc(k.parents):''}</p>`;

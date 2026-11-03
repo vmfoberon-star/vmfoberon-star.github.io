@@ -54,8 +54,29 @@ for k in kids.KIDS:
         im=Image.open(src);w,h=im.size;im.thumbnail((480,480));b=io.BytesIO();im.convert('RGB').save(b,'WEBP',quality=70)
         ph.append([encimg(b.getvalue(),k['id']+'/t/'+f),encimg(raw,k['id']+'/'+f),d,w,h])
     KD.append(dict(id=k['id'],name=k['name'],born=k['born'],parents=kids.PARENTS.get(k['id'],''),photos=ph,videos=sorted(list(kids.VIDEOS.get(k['id'],[]))+[v[:3] for v in getattr(kids,'SHARED',[]) if k['id'] in v[3]],key=lambda v:v[2])))
-kidsjson=json.dumps(dict(key=base64.b64encode(IK).decode(),kids=KD),ensure_ascii=False).replace('</','<\\/')
-inner=open(os.path.join(D,'inner.html'),encoding='utf8').read().replace('__KIDS__',kidsjson).replace('__CHRON__',chronicle()).replace('__NVID__',str(len(chron.C)+len(chron.UNDATED)))
+# --- timeline (prototype): events from private/tl.json, photos in private/media/tl
+TL=[]
+tlf=os.path.join(P,'tl.json')
+if os.path.exists(tlf):
+    for ev_ in json.load(open(tlf,encoding='utf8')):
+        ph=[]
+        for k_,d,w,h in ev_['ph']:
+            t=open(os.path.join(P,'media','tl','t_'+k_+'.webp'),'rb').read();b=open(os.path.join(P,'media','tl',k_+'.webp'),'rb').read()
+            ph.append([encimg(t,'tl/t/'+k_),encimg(b,'tl/'+k_),d,w,h])
+        TL.append(dict(ev_,ph=ph))
+BIO={}
+bf=os.path.join(P,'bio.json')
+if os.path.exists(bf):
+    BIO=json.load(open(bf,encoding='utf8'));bm={}
+    def bimg(n):
+        if n not in bm: bm[n]=[encimg(open(os.path.join(P,'media','bio','t_'+n+'.webp'),'rb').read(),'bio/t/'+n),encimg(open(os.path.join(P,'media','bio',n+'.webp'),'rb').read(),'bio/'+n)]
+        return bm[n]
+    for art in BIO.values():
+        for it in art:
+            if it[0] in('img','imgs','imgw'): it[1]=bimg(it[1])
+            elif it[0]=='img2': it[1]=bimg(it[1]);it[2]=bimg(it[2])
+kidsjson=json.dumps(dict(key=base64.b64encode(IK).decode(),kids=KD,tl=TL,bio=BIO),ensure_ascii=False).replace('</','<\\/')
+inner=open(os.path.join(D,'inner.html'),encoding='utf8').read().replace('__KIDS__',kidsjson).replace('__CHRON__',chronicle()).replace('__TREE__',json.dumps(json.load(open(os.path.join(P,'tree_site.json'),encoding='utf8')),ensure_ascii=False).replace('</','<\\/')).replace('__NVID__',str(len(chron.C)+len(chron.UNDATED)))
 salt,iv,ct=enc(pw,inner.encode())
 payload=base64.b64encode(salt+iv+ct).decode()
 shell=open(os.path.join(D,'shell.html'),encoding='utf8').read().replace('__PAYLOAD__',payload).replace('__ITER__',str(ITER))
