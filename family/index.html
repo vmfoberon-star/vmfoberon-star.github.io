@@ -18,16 +18,45 @@
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
 .gut{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right));max-width:1180px;margin:0 auto}
-/* lock */
-#lock{min-height:100vh;display:grid;place-items:center;padding:24px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 30px;width:min(420px,100%);text-align:center}
-.card h1{font:600 40px/1.1 var(--display);margin:6px 0 6px}
-.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.card p{color:var(--muted);margin:0 0 20px}
-.card input[type=password]{width:100%;font:inherit;font-size:18px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-align:center;letter-spacing:.06em}
-.card label{display:flex;gap:8px;justify-content:center;align-items:center;font-size:14px;color:var(--muted);margin:12px 0 18px}
-.card button{font:inherit;font-weight:600;border:0;border-radius:8px;background:var(--accent);color:var(--accent-ink);padding:12px 26px;cursor:pointer;width:100%}
-.err{color:var(--accent);min-height:1.5em;margin-top:12px;font-size:14px}
+/* lock: splash with a growing family tree (public page: no photos, no names) */
+#lock{--sp-bg:#efe9df;--sp-hi:#fbf8f2;--sp-ink:#5b4a3e;--sp-root:#a8988a;--sp-mut:#7a6d62;--sp-gold:#c8962e;
+position:fixed;inset:0;z-index:50;overflow:auto;display:flex;color:var(--ink);
+background:radial-gradient(120% 85% at 50% 28%,var(--sp-hi) 0%,var(--sp-bg) 72%);transition:opacity .9s ease,visibility .9s}
+@media (prefers-color-scheme:dark){#lock{--sp-bg:#101311;--sp-hi:#1f2420;--sp-ink:#cdbfac;--sp-root:#6c6357;--sp-mut:#a59a8c;--sp-gold:#e2b552}}
+#lock.out{opacity:0;visibility:hidden}
+#lock.out .sp-tree{transform:scale(1.08)}
+.sp{margin:auto;width:min(720px,100%);padding:max(20px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(26px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));display:flex;flex-direction:column;align-items:center;text-align:center}
+.sp-tree{width:min(540px,94vw);height:auto;max-height:46vh;overflow:visible;transition:transform 1.2s ease;display:block}
+.sp-b{fill:none;stroke:var(--sp-ink);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:spDraw .8s ease-out forwards}
+.sp-r{stroke:var(--sp-root)}
+.sp-l{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:spPop .7s cubic-bezier(.3,1.6,.5,1) forwards}
+.sp-g{fill:var(--sp-gold);filter:drop-shadow(0 0 5px var(--sp-gold))}
+.sp-g.on{animation:spPop .8s cubic-bezier(.3,1.6,.5,1) forwards,spGlow 3.2s ease-in-out 1s infinite alternate}
+.sp-gr{fill:var(--sp-root);opacity:.18}
+.sp-t{opacity:0;transform:translateY(10px);animation:spIn 1s ease forwards}
+.sp .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--sp-mut);margin-top:6px}
+.sp h1{font:600 clamp(52px,11vw,88px)/.95 var(--display);margin:8px 0 6px;letter-spacing:-.01em}
+.sp-y{font:500 15px var(--body);letter-spacing:.16em;color:var(--sp-mut);font-variant-numeric:oldstyle-nums proportional-nums}
+.sp-orn{display:flex;align-items:center;gap:12px;color:var(--accent);margin:16px 0 12px;width:min(260px,70%)}
+.sp-orn::before,.sp-orn::after{content:"";flex:1;height:1px;background:currentColor;opacity:.45}
+.sp-q{font:italic 500 clamp(19px,2.6vw,22px)/1.35 var(--display);color:var(--sp-mut);max-width:30ch;margin:0}
+#f{width:min(380px,100%);margin-top:24px}
+.sp-row{display:flex;gap:8px}
+.sp-row input{flex:1;min-width:0;font:inherit;font-size:18px;padding:12px 16px;border:1px solid color-mix(in srgb,var(--sp-ink) 30%,transparent);border-radius:999px;background:color-mix(in srgb,var(--sp-hi) 70%,transparent);color:var(--ink);text-align:center;letter-spacing:.08em}
+.sp-row input:focus-visible{outline-offset:3px}
+.sp-row input::placeholder{letter-spacing:.02em;color:var(--sp-mut);opacity:.8}
+.sp-row button{font:inherit;font-weight:600;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink);padding:12px 24px;cursor:pointer;flex:none}
+.sp-row button:disabled{opacity:.7;cursor:progress}
+#f label{display:flex;gap:8px;justify-content:center;align-items:center;font-size:14px;color:var(--sp-mut);margin:12px 0 0}
+.err{color:var(--accent);min-height:1.5em;margin-top:8px;font-size:14px}
+.sp-wait{display:none;color:var(--sp-mut);margin-top:26px;font-size:15px;letter-spacing:.06em}
+#lock.auto #f{display:none}#lock.auto .sp-wait{display:block}
+@keyframes spDraw{to{stroke-dashoffset:0}}
+@keyframes spPop{to{transform:scale(1)}}
+@keyframes spIn{to{opacity:1;transform:none}}
+@keyframes spGlow{from{opacity:1}to{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.sp-b,.sp-l,.sp-g.on,.sp-t{animation:none!important;stroke-dashoffset:0;transform:none;opacity:1}#lock,.sp-tree{transition:none}}
+@media (max-height:620px){.sp-tree{max-height:36vh}.sp h1{font-size:48px}.sp-orn{margin:8px 0 6px}#f{margin-top:14px}}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 /* site */
 .top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 24px;padding-top:28px;padding-bottom:14px;border-bottom:1px solid var(--line)}
@@ -167,15 +196,23 @@ body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
 </head>
 <body>
 <div id="lock">
-  <form class="card" id="f" autocomplete="on">
-    <span class="eyebrow">Закрытый семейный сайт</span>
-    <h1>Наша семья</h1>
-    <p>Введите семейный пароль</p>
-    <input type="password" id="pw" name="password" autocomplete="current-password" required autofocus aria-label="Пароль">
-    <label><input type="checkbox" id="rem" checked> Запомнить на этом устройстве</label>
-    <button type="submit" id="go">Войти</button>
-    <div class="err" id="err" role="alert"></div>
-  </form>
+  <div class="sp">
+    <svg class="sp-tree" id="spTree" viewBox="0 0 600 470" role="img" aria-label="Рисунок: растущее семейное дерево"></svg>
+    <span class="eyebrow sp-t" style="animation-delay:.5s">Закрытый семейный сайт</span>
+    <h1 class="sp-t" style="animation-delay:.7s">Наша семья</h1>
+    <span class="sp-y sp-t" style="animation-delay:.9s">1862 · шесть поколений · 2026</span>
+    <span class="sp-orn sp-t" style="animation-delay:1.1s" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20"><path d="M10 2C5 6 4 12 10 18 16 12 15 6 10 2Z" fill="currentColor" opacity=".85"/></svg></span>
+    <p class="sp-q sp-t" style="animation-delay:1.3s">Мы снимали это для вас — чтобы вы пересмотрели всё взрослыми и показали своим детям.</p>
+    <form id="f" class="sp-t" style="animation-delay:1.6s" autocomplete="on">
+      <div class="sp-row">
+        <input type="password" id="pw" name="password" autocomplete="current-password" required placeholder="Семейный пароль" aria-label="Семейный пароль">
+        <button type="submit" id="go">Войти</button>
+      </div>
+      <label><input type="checkbox" id="rem" checked> Запомнить на этом устройстве</label>
+      <div class="err" id="err" role="alert"></div>
+    </form>
+    <div class="sp-wait" aria-live="polite">Открываю семейный альбом…</div>
+  </div>
 </div>
 <div id="app" hidden></div>
 <div id="klb" hidden role="dialog" aria-label="Фото"><img id="klbI" alt=""><span class="cnt" id="klbN"></span><p id="klbC"></p><button class="nb p" type="button" aria-label="Предыдущее">‹</button><button class="nb n" type="button" aria-label="Следующее">›</button><button class="nb pl" type="button" aria-label="Слайд-шоу">▶</button><button class="nb c" type="button" aria-label="Закрыть">✕</button></div>
@@ -191,7 +228,7 @@ async function open_(pw){
   return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv},key,ct));
 }
 function show(html){
-  const app=document.getElementById('app');app.innerHTML=html;app.hidden=false;document.getElementById('lock').hidden=true;
+  const app=document.getElementById('app');app.innerHTML=html;app.hidden=false;const lk=document.getElementById('lock');lk.classList.add('out');setTimeout(()=>lk.hidden=true,950);
   const panes=[...app.querySelectorAll('.pane')],tabs=[...app.querySelectorAll('.tabs a')];
   function route(){let h=(location.hash||'#chronicle').slice(1);let pane=panes.find(p=>p.id===h);let anchor=null;
     if(h.startsWith('kid-')){pane=document.getElementById('grandkids');window.__kid&&window.__kid(h.slice(4))}else if(pane&&pane.id==='grandkids'){window.__kid&&window.__kid(null)}
@@ -357,8 +394,30 @@ document.getElementById('f').addEventListener('submit',async e=>{e.preventDefaul
   try{const h=await open_(pw);try{if(document.getElementById('rem').checked)localStorage.setItem(K,pw)}catch(_){}show(h)}
   catch(_){err.textContent='Пароль не подошёл. Проверьте раскладку и попробуйте ещё раз.'}
   go.disabled=false;go.textContent='Войти'});
+(function tree(){const S=document.getElementById('spTree'),N='http://www.w3.org/2000/svg';
+  let q=1862;const r=()=>{q|=0;q=q+0x6D2B79F5|0;let t=Math.imul(q^q>>>15,1|q);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+  const el=(n,a,p)=>{const e=document.createElementNS(N,n);for(const k in a)e.setAttribute(k,a[k]);(p||S).append(e);return e};
+  el('ellipse',{cx:300,cy:392,rx:170,ry:11,class:'sp-gr'});
+  const gR=el('g',{}),gB=el('g',{}),gL=el('g',{}),tips=[],UP=-Math.PI/2,MAX=7;
+  function br(x,y,a,len,w,d,g,root){const x2=x+Math.cos(a)*len,y2=y+Math.sin(a)*len,bd=(r()-.5)*len*.4,
+      mx=(x+x2)/2+Math.cos(a+Math.PI/2)*bd,my=(y+y2)/2+Math.sin(a+Math.PI/2)*bd;
+    el('path',{d:`M${x.toFixed(1)} ${y.toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`,pathLength:1,'stroke-width':w.toFixed(2),class:'sp-b'+(root?' sp-r':''),style:`animation-delay:${(root?.1+d*.25:.15+d*.3).toFixed(2)}s`},g);
+    if(d>=(root?3:MAX)){if(!root)tips.push([x2,y2,d]);return}
+    const n=root?2:(d>0&&r()<.3?3:2),sp=root?.9:(d<2?.95+r()*.2:.5+r()*.25);
+    for(let i=0;i<n;i++){let na=a+(i-(n-1)/2)*sp+(r()-.5)*.32;if(!root)na=na*.95+UP*.05;br(x2,y2,na,len*(d<2?.82:.72+r()*.12),Math.max(w*.66,.6),d+1,g,root)}}
+  for(const a of[.35,.95,1.55,2.15,2.75])br(300,392,a*1.0+.0,22+r()*10,4,1,gR,1);
+  br(300,394,UP,78,16,0,gB);
+  const C=['#6e2f3a','#8a9a5b','#b07a3b','#5f7f6a','#9c5b4a','#7d8f4e'];
+  tips.forEach(([x,y])=>{const k=1+(r()<.5);for(let j=0;j<k;j++)el('circle',{cx:(x+(r()-.5)*14).toFixed(1),cy:(y+(r()-.5)*12).toFixed(1),r:(2.4+r()*3.4).toFixed(1),fill:C[r()*C.length|0],opacity:(.62+r()*.33).toFixed(2),class:'sp-l',style:`animation-delay:${(1.9+r()*1.3).toFixed(2)}s`},gL)});
+  // five golden leaves high in the crown
+  const top=[...tips].sort((a,b)=>a[1]-b[1]).slice(0,40).sort((a,b)=>a[0]-b[0]);
+  for(let i=0;i<5;i++){const t=top[Math.round(i*(top.length-1)/4)];el('circle',{cx:t[0].toFixed(1),cy:(t[1]-4).toFixed(1),r:7.5,class:'sp-l sp-g on',style:`animation-delay:${(3+i*.18).toFixed(2)}s`},gL)}
+})();
 (async()=>{let pw=null;try{pw=localStorage.getItem(K)}catch(_){}
-  if(pw){try{show(await open_(pw))}catch(_){try{localStorage.removeItem(K)}catch(__){}}}})();
+  if(!pw){setTimeout(()=>{try{document.getElementById('pw').focus({preventScroll:true})}catch(_){}},1700);return}
+  const lk=document.getElementById('lock');lk.classList.add('auto');const t0=Date.now();
+  try{const h=await open_(pw);await new Promise(z=>setTimeout(z,Math.max(0,2200-(Date.now()-t0))));show(h)}
+  catch(_){try{localStorage.removeItem(K)}catch(__){}lk.classList.remove('auto')}})();
 </script>
 </body>
 </html>
