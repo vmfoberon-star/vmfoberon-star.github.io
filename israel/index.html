@@ -195,7 +195,7 @@ function img(src,alt){const i=el('img');i.loading='lazy';i.alt=alt||'';i.src=src
 (()=>{const R=$('#regions');const NV={jer:'Иерусалим',ta:'Тель-Авив и Яффо',north:'Север',center:'Центр',south:'Юг',guests:'С гостями'};const nav=el('nav','rnav');nav.setAttribute('aria-label','Районы');R.append(nav);for(const [key,name] of D.regions){const ts=D.trips.filter(t=>t.r===key).sort((a,b)=>b.s.localeCompare(a.s));if(!ts.length)continue;
  const sec=el('div','chap');sec.id='r-'+key;sec.append(el('span','eyebrow',ts.length+' '+(ts.length==1?'поездка':ts.length<5?'поездки':'поездок')),el('h2',null,name));const g=el('div','grid');
  for(const t of ts){const c=el('button','card');c.type='button';c.onclick=()=>{location.hash='t-'+t.id};const ph=el('div','ph');ph.append(img(coverOf(t),''),el('span','tag',t.y));c.append(ph,el('h3',null,t.t),el('div','pl',t.p));g.append(c)}
- sec.append(g);R.append(sec);const b=el('button');b.type='button';b.append(NV[key]||name,el('b',null,ts.length));b.onclick=()=>sec.scrollIntoView({behavior:'smooth'});nav.append(b)}})();
+ sec.append(g);R.append(sec);const b=el('button');b.type='button';b.append(NV[key]||name,el('b',null,ts.length));b.onclick=()=>{const H=document.documentElement,y=sec.getBoundingClientRect().top+scrollY-(document.querySelector('.bar')?.offsetHeight||70)-12;H.style.scrollBehavior='auto';scrollTo(0,y);H.style.scrollBehavior=''};nav.append(b)}})();
 // concerts
 (()=>{const L=$('#clist');const ys=[...new Set(D.concerts.map(c=>c[2].slice(0,4)))].sort().reverse();
  for(const y of ys){const w=el('div','yr');w.append(el('h3',null,y));const g=el('div','cgrid');
