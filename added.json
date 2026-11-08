@@ -1,8 +1,37 @@
 [
- {"slug":"uk26","vid":"ifaZuZukfR8","date":"2026-11-01"},
- {"slug":"uk26","vid":"su9_SXFc8nk","date":"2026-11-01"},
- {"slug":"toscana26","vid":"bmTnzoFrxSw","date":"2026-10-30"},
- {"slug":"budapest17","note":"Новая поездка · слайд-шоу","date":"2026-10-29"},
- {"slug":"rhodes19","note":"Новая поездка · слайд-шоу","date":"2026-10-29"},
- {"slug":"sf10","note":"Новая поездка · слайд-шоу","date":"2026-10-29"}
+{
+"slug": "toscana26",
+"vid": "H7TsggkRwPo",
+"date": "2026-11-08"
+},
+{
+"slug": "uk26",
+"vid": "ifaZuZukfR8",
+"date": "2026-11-01"
+},
+{
+"slug": "uk26",
+"vid": "su9_SXFc8nk",
+"date": "2026-11-01"
+},
+{
+"slug": "toscana26",
+"vid": "bmTnzoFrxSw",
+"date": "2026-10-30"
+},
+{
+"slug": "budapest17",
+"note": "Новая поездка · слайд-шоу",
+"date": "2026-10-29"
+},
+{
+"slug": "rhodes19",
+"note": "Новая поездка · слайд-шоу",
+"date": "2026-10-29"
+},
+{
+"slug": "sf10",
+"note": "Новая поездка · слайд-шоу",
+"date": "2026-10-29"
+}
 ]

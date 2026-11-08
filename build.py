@@ -191,5 +191,7 @@ def best_share_page(prefix, title, place, label, sitetitle):
 best_share_page('', 'Лучшие кадры', BEST_SHOW['place'], 'ОЛЬГА И ВЛАДИМИР ФРОНТОН', 'наши путешествия')
 print(len(html)/1e6,'MB page');import subprocess;print(subprocess.run(['du','-sh','site'],capture_output=True,text=True).stdout)
 import runpy; runpy.run_path('en/build_en.py')
-runpy.run_path('family/build_family.py')
+import os
+if os.path.exists('family/private/password.txt'): runpy.run_path('family/build_family.py')
+else: print('family: skipped (no password file)')
 runpy.run_path('israel/build_israel.py')

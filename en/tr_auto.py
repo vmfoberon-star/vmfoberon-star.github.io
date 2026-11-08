@@ -961,6 +961,7 @@ D={'«Семь дел милосердия» Караваджо': 'Caravaggio’
  'Фахверковые виллы': 'Half-timbered villas',
  'Фахверковые дома': 'Half-timbered houses',
  'Фекан': 'Fécamp',
+ 'Финал': 'Finale',
  'Фламенко': 'Flamenco',
  'Флорентийские стейки': 'Florentine steaks',
  'Флоренция': 'Florence',
