@@ -1,4 +1,12 @@
-D={'«Семь дел милосердия» Караваджо': 'Caravaggio’s Seven Works of Mercy',
+D={
+ 'День 1: Орвьето': 'Day 1: Orvieto',
+ 'День 2: Пьенца': 'Day 2: Pienza',
+ 'День 3: Монтальчино и Монтепульчано': 'Day 3: Montalcino and Montepulciano',
+ 'День 4: Сиена': 'Day 4: Siena',
+ 'День 4: Кастеллина-ин-Кьянти': 'Day 4: Castellina in Chianti',
+ 'День 5: Радда и Сан-Джиминьяно': 'Day 5: Radda and San Gimignano',
+ 'День 5: Радда и Сан-Джиминьяно, часть 2': 'Day 5: Radda and San Gimignano, part 2',
+'«Семь дел милосердия» Караваджо': 'Caravaggio’s Seven Works of Mercy',
  'Аббатство на холме': 'The abbey on the hill',
  'Автопортрет Рембрандта в Уффици': 'Rembrandt’s self-portrait in the Uffizi',
  'Акрополь': 'Acropolis',

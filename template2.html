@@ -867,8 +867,8 @@ function showRoute(t){
       L.DomEvent.disableClickPropagation(b);L.DomEvent.on(b,'click',e=>{L.DomEvent.preventDefault(e);fitAll();box.querySelectorAll('li').forEach(li=>li.classList.remove('on'))});return b}});
     m.addControl(new AllCtl());
     const hl=i=>{mk.forEach((x,j)=>{const e=x.getElement();e&&e.classList.toggle('on',j===i)});box.querySelectorAll('li').forEach((li,j)=>li.classList.toggle('on',j===i))};
-    mk.forEach((x,j)=>x.on('mouseover',()=>hl(j)).on('mouseout',()=>hl(-1)).on('click',()=>{hl(j);m.setView(ll[j],Math.max(m.getZoom(),13))}));
-    box.querySelectorAll('li').forEach((li,j)=>{li.onpointerenter=()=>{hl(j);mk[j].openTooltip()};li.onpointerleave=()=>{hl(-1);mk[j].closeTooltip()};li.onclick=()=>m.setView(ll[j],Math.max(m.getZoom(),13))});
+    mk.forEach((x,j)=>x.on('mouseover',()=>hl(j)).on('mouseout',()=>hl(-1)).on('click',()=>{hl(j);x.openTooltip()}));
+    box.querySelectorAll('li').forEach((li,j)=>{li.onpointerenter=()=>{hl(j);mk[j].openTooltip()};li.onpointerleave=()=>{hl(-1);mk[j].closeTooltip()};li.onclick=()=>{hl(j);mk[j].openTooltip()}});
   }).catch(()=>{const el=$('#rtMap');el&&(el.innerHTML='<div class="map-msg">Карта сейчас недоступна</div>')});
 }
 // world map of trips (d3-geo + world-atlas, loaded when the section comes near)
