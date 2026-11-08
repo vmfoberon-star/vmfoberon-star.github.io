@@ -204,7 +204,7 @@ function img(src,alt){const i=el('img');i.loading='lazy';i.alt=alt||'';i.src=src
 // map
 (()=>{if(!window.L)return;const m=L.map('map',{scrollWheelZoom:false}).setView([31.6,35.0],7);
  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(m);
- const pts=[];for(const t of D.trips){if(t.lat==null)continue;pts.push([t.lat,t.lon]);const mk=L.circleMarker([t.lat,t.lon],{radius:7,color:'#D9B77E',weight:2,fillColor:'#D9B77E',fillOpacity:.55}).addTo(m);
+ const pts=[];for(const t of D.trips){if(t.lat==null)continue;pts.push([t.lat,t.lon]);const mk=L.circleMarker([t.lat,t.lon],{radius:7,color:'#7A4E12',weight:2,fillColor:'#D9A04A',fillOpacity:.85}).addTo(m);
   const b=el('button',null,t.t+' · '+t.y);b.onclick=()=>{location.hash='t-'+t.id};mk.bindPopup(b)}
  if(pts.length)m.fitBounds(pts,{padding:[30,30]})})();
 // trip view
