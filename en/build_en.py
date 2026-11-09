@@ -18,6 +18,8 @@ for t in trips:
     for k in ['title', 'place', 'country', 'blurb']:
         if t.get(k): t[k] = tr(t[k])
     t['eps'] = [[e[0], tr(e[1]), e[2]] for e in t['eps']]
+    for k in ['vidH','vidP']:
+        if t.get(k): t[k] = tr(t[k])
     for c in t.get('chapters') or []:
         for k in ['name', 'date', 'note']:
             if c.get(k): c[k] = tr(c[k])

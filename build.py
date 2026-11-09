@@ -141,6 +141,7 @@ from routes import ROUTES
 for t in trips:
     if t['slug'] in ROUTES: t['route']=ROUTES[t['slug']]
 # YouTube playlists for the photo trips (Full HD slideshow videos) + the Spain 2013 video films
+from slidevids import SV as _SV
 PL5={'italy03':'PLbBMuoRQC-y4','paris06':'PLb-leMkKoPAo','alps08':'PLGR_8S6ZuCoA','uk11':'PLNz4zoSzDyh8',
      'benelux12':'PLITF_0o2LqJw','spain13':'PLMKGApVJIDDc','vienna13':'PLNrcg5RxD_TI'}
 SP13FILMS=[['pMQgKpoxU5w','Гран-Виа и площадь Испании','1:40'],['BkHdwLjpabs','Сибелес и «Метрополис»','1:51'],
@@ -148,6 +149,10 @@ SP13FILMS=[['pMQgKpoxU5w','Гран-Виа и площадь Испании','1:
 for t in trips:
     if t['slug'] in PL5: t['list']=PL5[t['slug']]
     if t['slug']=='spain13': t['eps']=SP13FILMS
+    if t['slug'] in _SV:
+        t['eps']=list(t.get('eps') or [])+[list(x) for x in _SV[t['slug']]]
+        if t['slug']=='spain13': t['vidH'],t['vidP']='Видео','Фильмы с видеокамеры и слайд-шоу по главам на YouTube.'
+        else: t['vidH'],t['vidP']='Видео-слайд-шоу','Те же фотографии в виде видео на YouTube — по одному ролику на главу.'
 import re as _re
 os.makedirs('site/img/c',exist_ok=True)
 CPATH={}

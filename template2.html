@@ -595,7 +595,7 @@ async function openTrip(slug){
   $('#reelEps').className='in eps';
   $('#reelEps').innerHTML=t.eps.map((e,i)=>`
     <a class="ep" data-ep="${i}" href="https://www.youtube.com/watch?v=${e[0]}&list=${t.list}" target="_blank" rel="noopener">
-      <div class="th">${THUMBS[e[0]]?`<img src="${THUMBS[e[0]]}" alt="" loading="lazy">`:`<div class="ph">${i+1}</div>`}<span class="play"></span><span class="dur">${e[2]}</span></div>
+      <div class="th"><img src="${THUMBS[e[0]]||`https://i.ytimg.com/vi/${e[0]}/mqdefault.jpg`}" alt="" loading="lazy"><span class="play"></span><span class="dur">${e[2]}</span></div>
       <div class="row"><span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${esc(e[1])}</span></div>
     </a>`).join('');
   showRoute(t);
@@ -676,7 +676,7 @@ function openPhotoTrip(t){
   }
   if(t.eps&&t.eps.length){loadThumbs().then(()=>{const box=$('#vidSec .eps');if(box)box.innerHTML=filmCards(t)});
     $('#reelEps').insertAdjacentHTML('afterbegin',`<section class="ch" id="vidSec">
-      <header class="ch-head"><div><div class="eyebrow">Видео · ${pl(t.eps.length,'фильм','фильма','фильмов')} · ${fmt(dur(t))}</div><h3>Снято на видеокамеру</h3><p>Короткие фильмы из наших видеозаписей этой поездки.</p></div>
+      <header class="ch-head"><div><div class="eyebrow">Видео · ${pl(t.eps.length,'фильм','фильма','фильмов')} · ${fmt(dur(t))}</div>${t.vidH?`<h3>${esc(t.vidH)}</h3><p>${esc(t.vidP)}</p>`:`<h3>Снято на видеокамеру</h3><p>Короткие фильмы из наших видеозаписей этой поездки.</p>`}</div>
       <button class="btn ghost" data-ep="0">▶ Смотреть фильмы</button></header>
       <div class="eps">${filmCards(t)}</div></section>`);
     if(!nCh)$('#reelEps').className='in chapters';}
@@ -686,7 +686,7 @@ function openPhotoTrip(t){
 }
 function filmCards(t){return t.eps.map((e,i)=>`
     <a class="ep" data-ep="${i}" href="https://www.youtube.com/watch?v=${e[0]}&list=${t.list}" target="_blank" rel="noopener">
-      <div class="th">${THUMBS[e[0]]?`<img src="${THUMBS[e[0]]}" alt="" loading="lazy">`:`<div class="ph">${i+1}</div>`}<span class="play"></span><span class="dur">${e[2]}</span></div>
+      <div class="th"><img src="${THUMBS[e[0]]||`https://i.ytimg.com/vi/${e[0]}/mqdefault.jpg`}" alt="" loading="lazy"><span class="play"></span><span class="dur">${e[2]}</span></div>
       <div class="row"><span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${esc(e[1])}</span></div>
     </a>`).join('')}
 const SLIDE_MS=5500;

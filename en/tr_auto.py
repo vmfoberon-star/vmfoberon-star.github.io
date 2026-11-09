@@ -1222,4 +1222,10 @@ D={
  'Гринвич и прогулка по Темзе': 'Greenwich and a Thames cruise',
  'Утро в Гринвиче: Морской музей, Дом королевы и Королевская обсерватория на нулевом меридиане, а потом теплоход по Темзе мимо Канэри-Уорф и Тауэра.': "A morning in Greenwich: the Maritime Museum, the Queen's House and the Royal Observatory on the prime meridian, then a boat up the Thames past Canary Wharf and the Tower.",
  'Гринвич': 'Greenwich',
- 'Гринвич · 19 апреля': 'Greenwich · 19 April'}
+ 'Гринвич · 19 апреля': 'Greenwich · 19 April',
+ 'Все фото одним фильмом': 'All the photos in one film',
+ 'Париж · слайд-шоу': 'Paris · slideshow',
+ 'Видео-слайд-шоу': 'Video slideshows',
+ 'Те же фотографии в виде видео на YouTube — по одному ролику на главу.': 'The same photos as YouTube videos, one per chapter.',
+ 'Видео': 'Video',
+ 'Фильмы с видеокамеры и слайд-шоу по главам на YouTube.': 'Films from our video camera and chapter slideshows on YouTube.'}
