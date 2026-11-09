@@ -1228,4 +1228,5 @@ D={
  'Видео-слайд-шоу': 'Video slideshows',
  'Те же фотографии в виде видео на YouTube — по одному ролику на главу.': 'The same photos as YouTube videos, one per chapter.',
  'Видео': 'Video',
- 'Фильмы с видеокамеры и слайд-шоу по главам на YouTube.': 'Films from our video camera and chapter slideshows on YouTube.'}
+ 'Фильмы с видеокамеры и слайд-шоу по главам на YouTube.': 'Films from our video camera and chapter slideshows on YouTube.',
+ 'Фильм о поездке': 'Film of the trip'}

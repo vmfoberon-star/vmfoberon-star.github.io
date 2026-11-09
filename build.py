@@ -151,7 +151,7 @@ for t in trips:
     if t['slug']=='spain13': t['eps']=SP13FILMS
     if t['slug'] in _SV:
         t['eps']=list(t.get('eps') or [])+[list(x) for x in _SV[t['slug']]]
-        if t['slug']=='spain13': t['vidH'],t['vidP']='Видео','Фильмы с видеокамеры и слайд-шоу по главам на YouTube.'
+        if t['slug'] in ('spain13','alps08'): t['vidH'],t['vidP']='Видео','Фильмы с видеокамеры и слайд-шоу по главам на YouTube.'
         else: t['vidH'],t['vidP']='Видео-слайд-шоу','Те же фотографии в виде видео на YouTube — по одному ролику на главу.'
 import re as _re
 os.makedirs('site/img/c',exist_ok=True)
