@@ -185,7 +185,7 @@ const D=__DATA__;
 const $=s=>document.querySelector(s),el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e};
 const yt=(id,q)=>'https://i.ytimg.com/vi/'+id+'/'+(q||'maxresdefault')+'.jpg';
 function coverOf(t){return t.cover||(t.v.length?yt(t.v[0][0]):'')}
-function img(src,alt){const i=el('img');i.loading='lazy';i.alt=alt||'';i.src=src;i.onerror=()=>{if(i.src.includes('maxresdefault'))i.src=i.src.replace('maxresdefault','hqdefault')};return i}
+function img(src,alt){const i=el('img');i.loading='lazy';i.alt=alt||'';i.src=src;const fb=()=>{if(i.src.includes('maxresdefault'))i.src=i.src.replace('maxresdefault','hqdefault')};i.onerror=fb;i.onload=()=>{if(i.naturalWidth<=120)fb()};return i}
 // hero
 (()=>{const S=$('#slides'),list=D.hero.length?D.hero:D.trips.slice(0,8).map(coverOf);list.forEach((s,i)=>{const im=img(s);if(i==0)im.classList.add('on');im.loading=i<2?'eager':'lazy';S.append(im)});
  let k=0;const ims=[...S.children];if(ims.length>1&&!matchMedia('(prefers-reduced-motion:reduce)').matches&&!document.documentElement.classList.contains('lite'))setInterval(()=>{ims[k].classList.remove('on');k=(k+1)%ims.length;ims[k].classList.add('on')},6000);
