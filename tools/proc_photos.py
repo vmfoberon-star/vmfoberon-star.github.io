@@ -3,6 +3,7 @@
    proc.py clean <srcdir>              -> deletes staged originals"""
 import sys,os,glob,shutil
 from PIL import Image,ImageOps,ImageDraw,ImageFont
+Image.MAX_IMAGE_PIXELS=None
 import os as _o;W=_o.path.expanduser('~/ilwork');OUT=_o.path.join(_o.path.dirname(_o.path.abspath(__file__)),'..','israel','photos')
 def imgs(dirs):
     r=[]
