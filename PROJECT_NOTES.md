@@ -82,7 +82,7 @@ cd ../travel && git add -A && git commit && git push origin src
 ## Проверка плейлистов 9 ноября 2026
 - «6Our travel in Israel» вырос до 30. Добавлены: ta14 ← HaJFqvNPdFo (Тель-Авив 2014, теперь открыт); g0910 ← iEg5WJ5bbks (Лена 2009); g0912 ← yUM4KDRp88M (Осипенко 2009); guv ← cqwqebFZc80 (Бейт-Гуврин и Бейт-Шеан); новые поездки yaf07 (WQMFBDIYZnA), kin06 (9SI-3ERX2bA), gfr06 «С Фрейдерами» (muAjEVpXZbo).
 - Дубли в плейлисте (не добавлены): czY0o_ib2-M и WEgSQJHIAG0 = Eilat2007 2/1 (уже есть d6pixwLvpIE/_KeZZhraRcY); qcY8ICh9cUk = rosh hanikra2008 (уже есть zOAUWa5BQAE).
-- Ждут ответа владельца: sOTYyNsREvY FamilyTravelIsr, CPyiE6uwFpI FamilyTr, eyTG67NRalE MMFFOA2007, OTTg8ZCiz2E Zvety (фестиваль цветов), bS2Rnm0D928 kiriat gat2006 (на кадрах 5 апреля 2008, есть младенец), YMMss4bRySc ekskurs2007.
+- По ответам владельца: fam03 «Семейная прогулка, 2003» (CPyiE6uwFpI, sOTYyNsREvY; место не уточнять); zv00 «Цветы Иерусалима, 2000» (OTTg8ZCiz2E); ex07 «Экскурсия по Иерусалиму, 2007» (YMMss4bRySc); фильм cqwqebFZc80 вынесен из guv (2022) в отдельную поездку gbs (снят до 2018, год уточнить). MMFFOA2007 (папа) и kiriat gat2006 владелец перенёс в семейный плейлист — на сайт путешествий не ставим.
 - «1FOV» без изменений (21 = концерты на сайте).
 
 ## Осталось сделать
