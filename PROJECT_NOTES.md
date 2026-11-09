@@ -79,6 +79,12 @@ cd ../travel && git add -A && git commit && git push origin src
 - Карта «Наш Израиль»: CARTO стал требовать ключ — перешли на tile.openstreetmap.org; точки тёмные с обводкой.
 - Меню районов над поездками (липкое).
 
+## Проверка плейлистов 9 ноября 2026
+- «6Our travel in Israel» вырос до 30. Добавлены: ta14 ← HaJFqvNPdFo (Тель-Авив 2014, теперь открыт); g0910 ← iEg5WJ5bbks (Лена 2009); g0912 ← yUM4KDRp88M (Осипенко 2009); guv ← cqwqebFZc80 (Бейт-Гуврин и Бейт-Шеан); новые поездки yaf07 (WQMFBDIYZnA), kin06 (9SI-3ERX2bA), gfr06 «С Фрейдерами» (muAjEVpXZbo).
+- Дубли в плейлисте (не добавлены): czY0o_ib2-M и WEgSQJHIAG0 = Eilat2007 2/1 (уже есть d6pixwLvpIE/_KeZZhraRcY); qcY8ICh9cUk = rosh hanikra2008 (уже есть zOAUWa5BQAE).
+- Ждут ответа владельца: sOTYyNsREvY FamilyTravelIsr, CPyiE6uwFpI FamilyTr, eyTG67NRalE MMFFOA2007, OTTg8ZCiz2E Zvety (фестиваль цветов), bS2Rnm0D928 kiriat gat2006 (на кадрах 5 апреля 2008, есть младенец), YMMss4bRySc ekskurs2007.
+- «1FOV» без изменений (21 = концерты на сайте).
+
 ## Осталось сделать
 1. Когда выйдет фильм о Лондоне — добавить в «Англию».
 2. «Тель-Авив сегодня» (TATODAY0125.mp4): добавить на сайт после того, как владелец загрузит ролик на YouTube.
