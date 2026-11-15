@@ -109,8 +109,10 @@ footer a{color:var(--stone)}
 #ss .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 1.2s}
 #ss .fr img.on{opacity:1;animation:kb 7s ease-out forwards}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.05)}}
-#ss .ctl{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(max(18px,env(safe-area-inset-bottom)) + 44px);display:flex;gap:12px}
-#ss .ctl .nb{position:static}
+#ss .ctl{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(max(10px,env(safe-area-inset-bottom)) + 36px);display:flex;gap:8px;transition:opacity .4s}
+#ss .ctl .nb{position:static;width:40px;height:40px;font-size:1.15rem}
+#ss .nb.c,#ss p{transition:opacity .4s,bottom .4s}
+#ss.idle{cursor:none}#ss.idle .ctl,#ss.idle .nb.c{opacity:0;pointer-events:none}
 #ss p{bottom:max(14px,env(safe-area-inset-bottom))}
 .ssbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-family:var(--cond);letter-spacing:.12em;text-transform:uppercase;font-size:.95rem;background:var(--stone);color:var(--ink);padding:12px 20px;border-radius:4px;margin:0 0 18px}
 .ssbtn:hover,.ssbtn:focus-visible{background:var(--paper);outline:none}
@@ -210,7 +212,7 @@ function img(src,alt){const i=el('img');i.loading='lazy';i.alt=alt||'';i.src=src
  if(pts.length)m.fitBounds(pts,{padding:[30,30]})})();
 // trip view
 const TV=$('#trip');let G=[],gi=0,lastScroll=0;
-function player(box,id){box.textContent='';const f=el('iframe');f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture';f.allowFullscreen=true;f.title='Видео';f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';box.append(f)}
+function player(box,id){box.textContent='';const f=el('iframe');f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture';f.allowFullscreen=true;f.title='Видео';f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&vq=hd2160';box.append(f)}
 function poster(box,id){box.textContent='';const b=el('button');b.type='button';b.append(img(yt(id),''),el('span',null,'▶  Смотреть'));b.onclick=()=>player(box,id);box.append(b)}
 function openTrip(t){lastScroll=scrollY;$('#tR').textContent=(D.regions.find(r=>r[0]===t.r)||[,''])[1];$('#tT').textContent=t.t;$('#tP').textContent=t.p+' · '+t.y;$('#tB').textContent=t.b||'';
  const V=$('#tV');V.textContent='';if(t.v.length){const box=el('div','player');poster(box,t.v[0][0]);V.append(box);
@@ -235,7 +237,9 @@ function swipe(elm,prev,next){let x0=null,y0=0;elm.addEventListener('touchstart'
  elm.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))(dx<0?next:prev)()},{passive:true})}
 swipe(LBE,()=>lb(null,li-1),()=>lb(null,li+1));
 // slideshow
-const SS=$('#ss'),SF=$('#ssF'),SA=$('#ssA');let SL=[],si=0,sT=null,sPlay=true,sMus=true,DELAY=5500;
+const SS=$('#ss'),SF=$('#ssF'),SA=$('#ssA');let SL=[],si=0,sT=null,sI=null,sPlay=true,sMus=true,DELAY=5500;
+function ssWake(){SS.classList.remove('idle');clearTimeout(sI);sI=setTimeout(()=>SS.classList.add('idle'),3000)}
+['mousemove','pointerdown','touchstart'].forEach(ev=>SS.addEventListener(ev,ssWake,{passive:true}));
 try{if(localStorage.getItem('ssmus')==='0')sMus=false}catch(_){}
 SA.src=(SA.canPlayType('audio/webm; codecs="opus"')?'music/israel_loop.webm':'music/israel_loop.mp4');SA.volume=.55;
 function ssShow(i){si=(i+SL.length)%SL.length;const g=SL[si];const im=new Image();im.alt='';im.src=g[2]||g[0];
@@ -243,7 +247,7 @@ function ssShow(i){si=(i+SL.length)%SL.length;const g=SL[si];const im=new Image(
  $('#ssC').textContent=[g[1],g[4]].filter(Boolean).join(' — ');$('#ssN').textContent=(si+1)+' / '+SL.length;pre((SL[(si+1)%SL.length]||[])[2]);ssTimer()}
 function ssTimer(){clearTimeout(sT);if(sPlay)sT=setTimeout(()=>ssShow(si+1),DELAY)}
 function ssMusic(){$('#ssM').style.opacity=sMus?1:.45;if(sMus&&sPlay&&!SS.hidden)SA.play().catch(()=>{});else SA.pause()}
-function ss(list,i){SL=list;SF.textContent='';sPlay=true;$('#ssPl').textContent='❚❚';SS.hidden=false;document.body.style.overflow='hidden';ssShow(i||0);ssMusic();$('#ssPl').focus()}
+function ss(list,i){SL=list;SF.textContent='';sPlay=true;$('#ssPl').textContent='❚❚';SS.hidden=false;document.body.style.overflow='hidden';ssShow(i||0);ssMusic();$('#ssPl').focus();ssWake()}
 function ssClose(){SS.hidden=true;clearTimeout(sT);SA.pause();SF.textContent='';if(TV.hidden)document.body.style.overflow=''}
 $('#ssX').onclick=ssClose;$('#ssP').onclick=()=>ssShow(si-1);$('#ssNx').onclick=()=>ssShow(si+1);
 $('#ssPl').onclick=()=>{sPlay=!sPlay;$('#ssPl').textContent=sPlay?'❚❚':'▶';$('#ssPl').setAttribute('aria-label',sPlay?'Пауза':'Продолжить');ssTimer();ssMusic()};
@@ -255,7 +259,7 @@ swipe(SS,()=>ssShow(si-1),()=>ssShow(si+1));
  $('#bestSS').onclick=()=>ss(B,0)})();
 addEventListener('keydown',e=>{
  const back=e.key==='Escape'||e.key==='Backspace'||e.key==='GoBack'||e.keyCode===10009||e.keyCode===461;
- if(!SS.hidden){if(e.key==='ArrowLeft')ssShow(si-1);else if(e.key==='ArrowRight')ssShow(si+1);else if(back){e.preventDefault();ssClose()}else if(e.key===' '||e.key==='Enter'){if(document.activeElement&&document.activeElement.closest('#ss .ctl'))return;e.preventDefault();$('#ssPl').click()}return}
+ if(!SS.hidden){ssWake();if(e.key==='ArrowLeft')ssShow(si-1);else if(e.key==='ArrowRight')ssShow(si+1);else if(back){e.preventDefault();ssClose()}else if(e.key===' '||e.key==='Enter'){if(document.activeElement&&document.activeElement.closest('#ss .ctl'))return;e.preventDefault();$('#ssPl').click()}return}
  if(!LBE.hidden){if(e.key==='ArrowLeft')lb(null,li-1);else if(e.key==='ArrowRight')lb(null,li+1);else if(back){e.preventDefault();lbClose()}return}
  if(!TV.hidden&&back&&!(e.target.matches&&e.target.matches('input,textarea'))){e.preventDefault();closeTrip()}});
 </script>
