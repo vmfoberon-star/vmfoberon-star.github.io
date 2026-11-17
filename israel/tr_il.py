@@ -2178,4 +2178,5 @@ D = {
  'Весенняя прогулка с подругами по паркам и тихим улицам: газоны, кактусы, цветущие кусты и смотровые площадки.': 'A spring walk with friends through parks and quiet streets: lawns, cacti, flowering shrubs and viewpoints.',
  'Тихая апрельская прогулка по зелёным улицам и скверам в дни карантина.': 'A quiet April walk along green streets and little parks during lockdown.',
  'Тель-Авив': 'Tel Aviv',
+ 'Майская прогулка с подругами по паркам и тихим улицам: газоны, кактусы, цветущие кусты и смотровые площадки.': 'A May walk with friends through parks and quiet streets: lawns, cacti, flowering shrubs and viewpoints.',
 }
