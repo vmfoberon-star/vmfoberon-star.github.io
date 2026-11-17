@@ -2171,4 +2171,11 @@ D = {
  'Сад скульптур': 'A sculpture garden',
  'Закат над долиной': 'Sunset above the valley',
  'Прогулка среди цветов': 'A walk among flowers',
+ 'Прогулка с подругами': 'A walk with friends',
+ 'Израиль': 'Israel',
+ 'Тель-Авив, апрель 2020': 'Tel Aviv, April 2020',
+ 'Апрельская прогулка': 'An April walk',
+ 'Весенняя прогулка с подругами по паркам и тихим улицам: газоны, кактусы, цветущие кусты и смотровые площадки.': 'A spring walk with friends through parks and quiet streets: lawns, cacti, flowering shrubs and viewpoints.',
+ 'Тихая апрельская прогулка по зелёным улицам и скверам в дни карантина.': 'A quiet April walk along green streets and little parks during lockdown.',
+ 'Тель-Авив': 'Tel Aviv',
 }
