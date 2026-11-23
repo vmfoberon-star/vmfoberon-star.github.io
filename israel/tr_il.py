@@ -2353,3 +2353,21 @@ D.update({
 "Пикник в лесу": "A picnic in the forest",
 "Декабрь 2013 года: после дождей и снега — солнечный день и пикник в сосновом лесу.": "December 2013: after the rain and snow, a sunny day and a picnic in a pine forest."
 })
+
+D.update({
+"Гостиница на набережной": "A hotel on the promenade",
+"Вилла над морем": "A villa above the sea",
+"Дом с полукруглой крышей": "A house with a curved roof",
+"Вид на пляж с обрыва": "The beach from the cliff",
+"Пляж и волнорез": "The beach and the breakwater",
+"Парус в море": "A sail at sea",
+"Оля с подругой у рояля": "Olya and her friend by the piano",
+"Розы и рояль": "Roses and the piano",
+"Кошка на балконе": "A cat on the balcony",
+"Нетания, 2013": "Netanya, 2013",
+"Набережная · пляж": "Promenade · beach",
+"Июнь 2013 года: семинар в Нетании и прогулка по набережной над морем — виллы на обрыве, пляж и паруса.": "June 2013: a seminar in Netanya and a walk along the promenade above the sea, with villas on the cliff, the beach and sails.",
+"С подругой из Челябинска, 2013": "With a friend from Chelyabinsk, 2013",
+"В гостях": "Visiting",
+"Март 2013 года: Оля в гостях у подруги из Челябинска, которая тоже живёт в Израиле.": "March 2013: Olya visiting a friend from Chelyabinsk who also lives in Israel."
+})
