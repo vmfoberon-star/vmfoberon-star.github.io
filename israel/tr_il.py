@@ -2433,3 +2433,20 @@ D.update({
 "Ущелье · Каср-эль-Яхуд · Кумран": "A gorge · Qasr al-Yahud · Qumran",
 "Весенний день в Иудейской пустыне: прогулка по скалистому ущелью, место крещения на Иордане и смотровые площадки Кумрана.": "A spring day in the Judean Desert: a walk through a rocky gorge, the baptism site on the Jordan and the lookouts of Qumran."
 })
+D.update({
+"Зал серебряной фабрики «ха-Цорфим»": "The hall of the HaTzorfim silver factory",
+"Серебряные футляры для Торы": "Silver Torah cases",
+"Витрины с серебром": "Showcases of silver",
+"Серебряная менора": "A silver menorah",
+"«ха-Цорфим» — с 1952 года": "HaTzorfim — since 1952",
+"Цветущая бугенвиллея": "Bougainvillea in bloom",
+"Оля у деревянного домика": "Olya by a wooden cabin",
+"Виноградники в долине": "Vineyards in the valley",
+"Молодые лозы": "Young vines",
+"Сад металлических скульптур": "A garden of metal sculptures",
+"Оля в погребе винодельни": "Olya in the winery cellar",
+"Виноградник у винодельни": "The vineyard by the winery",
+"Серебряная фабрика «ха-Цорфим» и виноградники": "The HaTzorfim silver factory and vineyards",
+"Окрестности Модиина · окрестности Бейт-Шемеша": "Near Modi'in · near Beit Shemesh",
+"Летняя поездка: серебряная фабрика «ха-Цорфим» под Модиином с менорами и футлярами для Торы, а потом виноградники в окрестностях Бейт-Шемеша.": "A summer outing: the HaTzorfim silver factory near Modi'in with its menorahs and Torah cases, then vineyards around Beit Shemesh."
+})
