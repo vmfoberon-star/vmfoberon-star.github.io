@@ -2269,4 +2269,11 @@ D = {
  'У древней мозаики': 'By an ancient mosaic',
  'В церкви': 'In a church',
  'С друзьями': 'With friends',
+ 'Гостиницы у марины Эйлата': 'Hotels by the Eilat marina',
+ 'Эйлатский отель': 'An Eilat hotel',
+ 'Скалы с пещерами, Тимна': 'Cliffs with caves, Timna',
+ 'Пляж Мёртвого моря': 'A Dead Sea beach',
+ 'Старый город Иерусалима': 'The Old City of Jerusalem',
+ 'В храме Гроба Господня': 'In the Church of the Holy Sepulchre',
+ 'Икона и лилии в храме': 'An icon and lilies in the church',
 }
