@@ -2371,3 +2371,30 @@ D.update({
 "В гостях": "Visiting",
 "Март 2013 года: Оля в гостях у подруги из Челябинска, которая тоже живёт в Израиле.": "March 2013: Olya visiting a friend from Chelyabinsk who also lives in Israel."
 })
+
+D.update({
+"Владимир и Оля на бульваре Ротшильда": "Vladimir and Olya on Rothschild Boulevard",
+"Прогулка по бульвару": "A walk along the boulevard",
+"Башня на бульваре": "A tower on the boulevard",
+"Такси и балюстрада": "A taxi and a balustrade",
+"Пальмы у офисных башен": "Palms by the office towers",
+"Надувная фигура у магазина": "An inflatable figure by a shop",
+"Шоколадный бар": "The chocolate bar",
+"Оля в шоколадном баре": "Olya at the chocolate bar",
+"Оля с гостьей у Габимы": "Olya and her guest by Habima",
+"Тенистый бульвар": "A shady boulevard",
+"Синяя башня": "A blue tower",
+"Владимир на пляже": "Vladimir on the beach",
+"Пляж и высотки": "The beach and the high-rises",
+"Кафе на берегу": "A café on the shore",
+"Храмовая гора в миниатюре": "The Temple Mount in miniature",
+"Церковь в миниатюре": "A church in miniature",
+"Макет завода": "A model factory",
+"Церковь с куполом": "A domed church",
+"Церковь у воды": "A church by the water",
+"Порт в миниатюре": "A harbour in miniature",
+"В субботу на море, 2014": "A Saturday by the sea, 2014",
+"Февральская суббота на берегу: кайтеры над волнами, высотки вдоль пляжа и кафе у самой воды.": "A February Saturday on the shore: kitesurfers over the waves, high-rises along the beach and a café right by the water.",
+"Мини-Израиль, 2014": "Mini Israel, 2014",
+"Снова в парке миниатюр: Храмовая гора и Купол Скалы, церкви и порты страны в масштабе 1:25.": "Back at the miniatures park: the Temple Mount and the Dome of the Rock, churches and harbours of the country at 1:25 scale."
+})
