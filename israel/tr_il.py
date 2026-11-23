@@ -242,7 +242,7 @@ D = {
  'С Осипенко в монастыре Иоанна Предтечи в пустыне': 'With the Osipenkos at the Monastery of St John in the Wilderness',
  'Эвен-Сапир · Иерусалимские горы': 'Even Sapir · Jerusalem Hills',
  'Продолжение приезда друзей: францисканский монастырь над долиной Сорек, где, по преданию, скрывался в пещере Иоанн Креститель — пещера с алтарём, источник и сады на террасах.': 'The visit continues: the Franciscan monastery above the Sorek Valley where, by tradition, John the Baptist hid in a cave — the cave with its altar, a spring and terraced gardens.',
- 'С Зеликманами в Иерусалиме': 'In Jerusalem with the Zelikmans',
+ 'С Целикманами в Иерусалиме': 'In Jerusalem with the Tselikmans',
  'Старый город': 'Old City',
  'Прогулка по Старому городу с друзьями.': 'A walk around the Old City with friends.',
  'С А. Коробовой по Тель-Авиву, 2014': 'Tel Aviv with A. Korobova, 2014',
