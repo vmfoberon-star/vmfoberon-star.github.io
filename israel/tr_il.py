@@ -2488,3 +2488,12 @@ D.update({
 "Хайфа · Бахайские сады · Рош-ха-Никра · Галилея": "Haifa · Baha'i Gardens · Rosh HaNikra · Galilee",
 "Конец декабря 2016 года, друзья снова у нас: Бахайские сады над Хайфским заливом, гроты Рош-ха-Никры у самой ливанской границы и зимняя Галилея с водопадом.": "Late December 2016, our friends are back: the Baha'i Gardens above Haifa Bay, the Rosh HaNikra grottoes right by the Lebanese border and a wintry Galilee with a waterfall."
 })
+D.update({
+"Скульптуры Дали": "Dalí sculptures",
+"Графика Дали в золотой раме": "A Dalí print in a gilded frame",
+"Адам и Ева": "Adam and Eve",
+"Сюрреалистическая инсталляция": "A surreal installation",
+"Выставка Сальвадора Дали в Хайфе": "A Salvador Dalí exhibition in Haifa",
+"Хайфа · скульптура и графика": "Haifa · sculpture and prints",
+"Летом 2016 года в Хайфе: выставка Сальвадора Дали — бронзовые скульптуры, графика и сюрреалистические инсталляции.": "Summer 2016 in Haifa: a Salvador Dalí exhibition with bronze sculptures, prints and surreal installations."
+})
