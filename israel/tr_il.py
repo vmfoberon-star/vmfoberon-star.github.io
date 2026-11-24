@@ -2497,3 +2497,4 @@ D.update({
 "Хайфа · скульптура и графика": "Haifa · sculpture and prints",
 "Летом 2016 года в Хайфе: выставка Сальвадора Дали — бронзовые скульптуры, графика и сюрреалистические инсталляции.": "Summer 2016 in Haifa: a Salvador Dalí exhibition with bronze sculptures, prints and surreal installations."
 })
+D.update({"Древняя синагога Капернаума": "The ancient synagogue of Capernaum", "Хайфа · Бахайские сады · Рош-ха-Никра · Галилея · Капернаум": "Haifa · Baha'i Gardens · Rosh HaNikra · Galilee · Capernaum", "Конец декабря 2016 года, друзья снова у нас: Бахайские сады над Хайфским заливом, гроты Рош-ха-Никры у самой ливанской границы, зимняя Галилея с водопадом и древняя синагога Капернаума.": "Late December 2016, our friends are back: the Baha'i Gardens above Haifa Bay, the Rosh HaNikra grottoes right by the Lebanese border, a wintry Galilee with a waterfall and the ancient synagogue of Capernaum."})
