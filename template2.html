@@ -233,6 +233,20 @@ body.tvmode .show-ctl,body.tvmode .show-seek{opacity:0;transition:opacity .3s}bo
 .rt-all{background:#fff;color:#1b1d20;border:2px solid rgba(0,0,0,.2);border-radius:4px;padding:6px 10px;font:600 13px/1.2 var(--body,sans-serif);cursor:pointer;box-shadow:none}.rt-all:hover{background:#f4f4f4}.rt-all:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 .route .rt-map{position:relative;z-index:0;isolation:isolate;aspect-ratio:4/3;max-height:460px;background:#121417;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
 .route .rt-map img{max-width:none}
+.strip{padding-block:26px 6px}
+.strip .rt-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:16px}
+.strip .rt-head h3,.gall h2{font-family:var(--cond);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);text-transform:uppercase;margin:4px 0 0;line-height:1.05}
+.strip .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.strip .grid button{all:unset;cursor:pointer;aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--ink-2)}
+.strip .grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.strip .grid button:hover img,.strip .grid button:focus-visible img{transform:scale(1.05)}
+.strip .grid button:focus-visible{outline:2px solid var(--gold,#d9a84e);outline-offset:2px}
+.gall{padding-block:56px 30px}
+.gall .head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:22px}
+.gall .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px 18px}
+.gall .grid .card .pic{aspect-ratio:4/3}
+.gall .grid .card .pic img{width:100%;height:100%;object-fit:cover}
+.gall .card .n{font-size:.85rem;opacity:.7}
 .route .rt-map .leaflet-attribution-flag{display:none!important}
 .route .rt-map .leaflet-container{background:#1b1d20;font:inherit}
 .rt-mk{display:grid;place-items:center}
@@ -358,6 +372,7 @@ html.lite .bar{background:var(--ink)}html.lite .show .bg{display:none}html.lite 
 <header class="bar gut"><div class="in">
   <a class="brand" href="#top">Наши путешествия</a>
   <nav id="yearNav" aria-label="Годы"></nav>
+  <a class="lang" href="#gallery" title="Фотогалерея">ФОТО</a>
   <a class="lang subtop" href="https://forms.gle/Nj8ZNiajMpERk1y78" target="_blank" rel="noopener" title="Получать новости сайта">НОВОСТИ</a>
   <a class="lang" href="israel/" title="Наш Израиль">ИЗРАИЛЬ</a>
   <a class="lang" id="langLink" href="en/" hreflang="en" lang="en" title="English version">EN</a>
@@ -411,6 +426,7 @@ html.lite .bar{background:var(--ink)}html.lite .show .bg{display:none}html.lite 
   <div class="map-head"><h2 id="statsTitle">Наши путешествия в цифрах</h2><p id="statsNote">Расстояния по прямой между городами, с перелётами из дома</p></div>
   <div class="st-grid" id="stGrid"></div>
 </div></section>
+<section class="gall gut" id="gallery" aria-labelledby="gallTitle"><div class="in" id="gallIn"></div></section>
 <section class="tl gut" id="timeline" aria-labelledby="tlTitle"><div class="in">
   <div class="map-head"><h2 id="tlTitle">Лента времени</h2><p id="tlNote"></p></div>
   <ol class="tl-list" id="tlList"></ol>
@@ -433,6 +449,7 @@ html.lite .bar{background:var(--ink)}html.lite .show .bg{display:none}html.lite 
   <div class="reel-band" id="reelBand"></div>
   <div class="reel-top gut" id="reelTop"></div>
   <div class="gut"><section class="in route" id="reelRoute" hidden></section></div>
+  <div class="gut"><section class="in strip" id="reelStrip" hidden></section></div>
   <div class="gut"><div class="in eps" id="reelEps"></div></div>
 </div>
 
@@ -600,7 +617,7 @@ async function openTrip(slug){
       <div class="th"><img src="${THUMBS[e[0]]||`https://i.ytimg.com/vi/${e[0]}/mqdefault.jpg`}" alt="" loading="lazy"><span class="play"></span><span class="dur">${e[2]}</span></div>
       <div class="row"><span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${esc(e[1])}</span></div>
     </a>`).join('');
-  showRoute(t);
+  showRoute(t);showStrip(t);
   reel.dataset.trip=t.slug;
   reel.hidden=false;reel.scrollTop=0;document.body.style.overflow='hidden';$('#reelClose').focus();
 }
@@ -682,7 +699,7 @@ function openPhotoTrip(t){
       <button class="btn ghost" data-ep="0">▶ Смотреть фильмы</button></header>
       <div class="eps">${filmCards(t)}</div></section>`);
     if(!nCh)$('#reelEps').className='in chapters';}
-  showRoute(t);
+  showRoute(t);showStrip(t);
   reel.dataset.trip=t.slug;
   reel.hidden=false;reel.scrollTop=0;document.body.style.overflow='hidden';$('#reelClose').focus();
 }
@@ -843,6 +860,29 @@ document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('#sharePanel')
 const RT_LANG=0;
 let worldP=null,leafP=null,rtMap=null;
 function getLeaflet(){return leafP||(leafP=(async()=>{const l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(l);await loadScript('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js')})().catch(e=>{leafP=null;throw e}))}
+const GL=RT_LANG?{ph:'Photos',fr:'Shots from the trip',all:n=>`▶ All ${n} photos · slideshow`,g:'Photo gallery',gh:'Photos from our trips',tr:(a,b)=>`${a} trips · ${b} photos`,n:n=>`${n} photos`,best:'Best shots'}:{ph:'Фотографии',fr:'Кадры из поездки',all:n=>`▶ Все ${n} фото · слайд-шоу`,g:'Фотогалерея',gh:'Фото из поездок',tr:(a,b)=>`${a} ${W(a,'поездка','поездки','поездок')} · ${b} фото`,n:n=>`${n} фото`,best:'Лучшие кадры'};
+function showStrip(t){
+  const box=$('#reelStrip');const g=t.gal;
+  if(!g||!g.strip||!g.strip.length){box.hidden=true;box.innerHTML='';return}
+  box.innerHTML=`<div class="rt-head"><div><div class="eyebrow">${GL.ph} · ${g.slides.length}</div><h3>${GL.fr}</h3></div><button class="btn ghost" data-gal="${t.slug}">${GL.all(g.slides.length)}</button></div>
+    <div class="grid">${g.strip.map(([i,f])=>`<button data-gi="${i}" aria-label="${esc(g.slides[i][2])}"><img src="${f}" alt="${esc(g.slides[i][2])}" loading="lazy"></button>`).join('')}</div>`;
+  box.hidden=false;box.dataset.slug=t.slug;
+}
+document.addEventListener('click',async ev=>{const b=ev.target.closest('#reelStrip [data-gi]');if(!b)return;ev.preventDefault();ev.stopPropagation();const s=$('#reelStrip').dataset.slug;
+  document.body.style.cursor='progress';try{await loadPhotos('g:'+s)}catch(e){document.body.style.cursor='';return}document.body.style.cursor='';startShow('g:'+s,+b.dataset.gi)},true);
+function buildGallery(){
+  const L=TRIPS.filter(t=>(t.slides&&t.slides.length)||(t.gal&&t.gal.slides.length));
+  const cnt=t=>t.slides?t.slides.length:t.gal.slides.length;
+  const tot=L.reduce((a,t)=>a+cnt(t),0);
+  const best=`<button class="card" data-gk="best"><div class="pic">${BEST.cover&&COVERS[BEST.cover]?`<img src="${COVERS[BEST.cover]}" alt="" loading="lazy">`:''}</div><div><b>${GL.best}</b><div class="n">${GL.n(BEST.slides.length)}</div></div></button>`;
+  $('#gallIn').innerHTML=`<div class="head"><div><div class="eyebrow">${GL.g} · ${GL.tr(L.length,tot)}</div><h2 id="gallTitle">${GL.gh}</h2></div></div>
+    <div class="grid">${best}${L.map(t=>`<button class="card" data-gk="${t.slug}"><div class="pic">${t.gal&&t.gal.strip&&t.gal.strip.length?`<img src="${t.gal.strip[0][1]}" alt="" loading="lazy">`:coverImg(t)}</div><div><b>${esc(t.title)}</b>${t.year?` · ${esc(t.year)}`:''}<div class="n">${GL.n(cnt(t))}</div></div></button>`).join('')}</div>`;
+}
+document.addEventListener('click',async ev=>{const b=ev.target.closest('#gallIn [data-gk]');if(!b)return;ev.preventDefault();ev.stopPropagation();const k=b.dataset.gk;
+  if(k==='best'){document.body.style.cursor='progress';try{await loadPhotos('best')}catch(e){document.body.style.cursor='';return}document.body.style.cursor='';startShow('best',0);return}
+  const t=TRIPS.find(x=>x.slug===k);if(t.gal&&!t.slides){openGallery(k);return}
+  document.body.style.cursor='progress';try{await loadPhotos(k)}catch(e){document.body.style.cursor='';return}document.body.style.cursor='';startShow(k,0)},true);
+try{buildGallery()}catch(e){console.log(e)}
 function showRoute(t){
   const box=$('#reelRoute');const r=t.route;
   if(!r||!r.stops||r.stops.length<2){box.hidden=true;box.innerHTML='';return}

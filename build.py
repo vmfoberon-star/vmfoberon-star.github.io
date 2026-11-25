@@ -117,6 +117,15 @@ for _s,_g in _GAL.items():
     if not _t or _s in _nt: continue
     _t['gal']={'music':_g['music'],'slides':_g['slides']}
     PHOTO_SETS['g:'+_s]={x[0]:enc(f'photosgal/{_s}/{x[0]}.webp',1280,66) for x in _g['slides']}
+    # 25.11.2026: лента из 12 кадров на странице поездки (маленькие файлы, грузятся лениво)
+    _n=len(_g['slides']);_k=min(12,_n);_st=[]
+    os.makedirs('site/img/c',exist_ok=True)
+    for _q in range(_k):
+        _ix=round(_q*(_n-1)/max(_k-1,1));_id=_g['slides'][_ix][0];_fn=f'img/c/s_{_s}_{_id}.webp'
+        if not os.path.exists('site/'+_fn):
+            _im=Image.open(f'photosgal/{_s}/{_id}.webp').convert('RGB');_im.thumbnail((480,480));_im.save('site/'+_fn,'WEBP',quality=70,method=6)
+        _st.append([_ix,_fn])
+    _t['gal']['strip']=_st
 for slug,ph in PHOTO_SETS.items():
     chunks=[{}];size=0
     for k,du in ph.items():

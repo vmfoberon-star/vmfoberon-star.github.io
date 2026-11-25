@@ -44,6 +44,7 @@ page = page.replace("fetch('data/thumbs.json')", "fetch('../data/thumbs.json')")
 UI = [
  ('<title>Наши путешествия</title>', '<title>Our Travels</title>'),
  ('const RT_LANG=0;', 'const RT_LANG=1;'),
+ ('href="#gallery" title="Фотогалерея">ФОТО</a>', 'href="#gallery" title="Photo gallery">PHOTOS</a>'),
  ('href="israel/" title="Наш Израиль">ИЗРАИЛЬ</a>', 'href="../israel/en/" title="Our Israel">ISRAEL</a>'),
  ('title="Получать новости сайта">НОВОСТИ</a>', 'title="Get site updates (form in Russian)">UPDATES</a>'),
  ('<h2 id="subT">Новости сайта</h2><p>Оставьте почту или WhatsApp, и мы напишем, когда появятся новые фильмы и фото.</p>', '<h2 id="subT">Site news</h2><p>Leave your email or WhatsApp and we will let you know when new films and photos appear. (The form is in Russian.)</p>'),
