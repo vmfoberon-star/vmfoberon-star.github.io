@@ -2392,3 +2392,12 @@ D={
  '+19 новых фото': '+19 new photos',
  '+7 новых фото Барселоны и Жироны': '+7 new photos of Barcelona and Girona',
 }
+
+D['Чёрно-белая улочка']='A black-and-white lane'
+D['Слон Дали на площади']="Dalí's elephant on the square"
+D['Площадь со скульптурой Дали']='A square with a Dalí sculpture'
+D['Вечерняя площадь']='The square in the evening'
+D['Улочка в Сасси']='A lane in the Sassi'
+D['Скалистое плато у Матеры']='The rocky plateau by Matera'
+D['Море у старых стен']='The sea by the old walls'
+D['+8 новых фото Апулии']='+8 new photos of Apulia'
